@@ -19,25 +19,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the view's delegate
         sceneView.delegate = self
-        
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+        configureLighting()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-
-        // Run the view's session
-        sceneView.session.run(configuration)
+        resetTrackingConfiguration()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,17 +33,47 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+    
+    func configureLighting() {
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
+    }
+    
+    func resetTrackingConfiguration() {
+        let configuration = ARImageTrackingConfiguration()
+        
+        guard let trackingImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
+            // failed to read them – crash immediately!
+            fatalError("Couldn't load tracking images.")
+        }
+
+        configuration.trackingImages = trackingImages
+        sceneView.session.run(configuration)
+    }
 
     // MARK: - ARSCNViewDelegate
     
-/*
     // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        // make sure this is an image anchor, otherwise bail out
+        guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
+        
+        // create a plane at the exact physical width and height of our reference image
+        let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
+        
+        // make the plane have a transparent blue color
+        plane.firstMaterial?.diffuse.contents = UIColor.blue.withAlphaComponent(0.5)
+        
+        // wrap the plane in a node and rotate it so it's facing us
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.eulerAngles.x = -.pi / 2
+        
+        // now wrap that in another node and send it back
         let node = SCNNode()
-     
+        node.addChildNode(planeNode)
         return node
     }
-*/
+
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
