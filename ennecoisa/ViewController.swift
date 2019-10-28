@@ -59,10 +59,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
         
         // create a plane at the exact physical width and height of our reference image
-        let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
+        let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.height, height: imageAnchor.referenceImage.physicalSize.height)
         
         // make the plane have a transparent blue color
-        plane.firstMaterial?.diffuse.contents = UIColor.blue.withAlphaComponent(0.5)
+        plane.firstMaterial?.diffuse.contents = UIImage(named: "rawr")
         
         // wrap the plane in a node and rotate it so it's facing us
         let planeNode = SCNNode(geometry: plane)
@@ -73,7 +73,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         node.addChildNode(planeNode)
         return node
     }
-
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
