@@ -58,11 +58,15 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
         // make sure this is an image anchor, otherwise bail out
         guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
         
-        // create a plane at the exact physical width and height of our reference image
+        print(imageAnchor.referenceImage.physicalSize.height)
+        
+        // create a plane
         let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.height, height: imageAnchor.referenceImage.physicalSize.height)
         
-        // make the plane have a transparent blue color
-        plane.firstMaterial?.diffuse.contents = UIImage(named: "rawr")
+        // add image from directory to plane
+        let fileName = "image.png"
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/" + fileName
+        plane.firstMaterial?.diffuse.contents = UIImage(contentsOfFile: path)
         
         // wrap the plane in a node and rotate it so it's facing us
         let planeNode = SCNNode(geometry: plane)
