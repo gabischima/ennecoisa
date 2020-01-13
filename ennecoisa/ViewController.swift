@@ -77,7 +77,7 @@ class ViewController: UIViewController {
     
     @IBAction func saveImage(_ sender: Any) {
         // get context
-        let size = CGSize(width: enneView.frame.size.width, height: enneView.frame.size.width)
+        let size = CGSize(width: enneView.frame.size.width, height: enneView.frame.size.height)
         UIGraphicsBeginImageContext(size)
         enneView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let final:UIImage = UIGraphicsGetImageFromCurrentImageContext()!

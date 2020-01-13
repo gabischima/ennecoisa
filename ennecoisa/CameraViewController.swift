@@ -61,7 +61,7 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
         print(imageAnchor.referenceImage.physicalSize.height)
         
         // create a plane
-        let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.height, height: imageAnchor.referenceImage.physicalSize.height)
+        let plane = SCNPlane(width: 14, height: 23)
         
         // add image from directory to plane
         let fileName = "image.png"
