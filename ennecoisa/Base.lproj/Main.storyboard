@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="u5S-bf-XEx" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="0NE-6w-tBv"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="0xC-Nw-3rJ"/>
@@ -76,6 +76,7 @@
                                 <rect key="frame" x="181.5" y="711" width="51" height="30"/>
                                 <state key="normal" title="camera"/>
                                 <connections>
+                                    <action selector="saveImage:" destination="9x8-VY-5JV" eventType="touchUpInside" id="JC2-vg-UdV"/>
                                     <segue destination="BV1-FR-VrT" kind="showDetail" id="M65-oB-GE6"/>
                                 </connections>
                             </button>
@@ -133,6 +134,7 @@
                     <connections>
                         <outlet property="cameraBtn" destination="QFQ-G2-pTN" id="NJc-F4-21x"/>
                         <outlet property="enneSectionsTabbar" destination="tmI-2h-wcU" id="wXn-eE-1BU"/>
+                        <outlet property="enneView" destination="XWr-Dp-aRv" id="bCX-ps-1Lj"/>
                         <outlet property="hairImageView" destination="xCs-Zb-2jJ" id="SF1-Dx-ZVp"/>
                         <outlet property="headImageView" destination="Jk3-63-Q6i" id="teT-oZ-CwJ"/>
                         <outlet property="legsImageView" destination="bPG-FU-NFS" id="p36-Wx-nyR"/>

@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var shirtImageView: UIImageView!
     @IBOutlet weak var legsImageView: UIImageView!
     @IBOutlet weak var shoesImageView: UIImageView!
-    
+    @IBOutlet weak var enneView: UIView!
     
     /* Images */
     var head: [UIImage] = [
@@ -75,6 +75,21 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    @IBAction func saveImage(_ sender: Any) {
+        // get context
+        let size = CGSize(width: enneView.frame.size.width, height: enneView.frame.size.width)
+        UIGraphicsBeginImageContext(size)
+        enneView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let final:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // salva no contents directory
+        let fileManager = FileManager.default
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let filePathToWrite = "\(paths)/image.png"
+        let imageData: Data = final.pngData()!
+        fileManager.createFile(atPath: filePathToWrite, contents: imageData, attributes: nil)
+    }
 }
 
 extension ViewController: UITabBarDelegate {
