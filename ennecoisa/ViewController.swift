@@ -53,8 +53,11 @@ class ViewController: UIViewController {
     ]
     
     /* Active Set */
+    // array of image of active set
     var activeSet = [UIImage()]
+    // name of active set [head|hair|shirt|legs|shoes]
     var activeSection = String()
+    // active image for each set
     var activeImages = ["head_", "hair_", "shirt_", "legs_", "shoes_"]
     
     override func viewDidLoad() {
@@ -76,18 +79,33 @@ class ViewController: UIViewController {
     }
     
     @IBAction func saveImage(_ sender: Any) {
-        // get context
-        let size = CGSize(width: enneView.frame.size.width, height: enneView.frame.size.height)
+        // get images
+        let eye: UIImage? = UIImage(named: "eye")
+        let head: UIImage? = UIImage(named: self.activeImages[0])
+        let hair: UIImage? = UIImage(named: self.activeImages[1])
+        let shirt: UIImage? = UIImage(named: self.activeImages[2])
+        let legs: UIImage? = UIImage(named: self.activeImages[3])
+        let shoes: UIImage? = UIImage(named: self.activeImages[4])
+
+        let size = CGSize(width: 750, height: 1334)
         UIGraphicsBeginImageContext(size)
-        enneView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let final:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+
+        let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        eye?.draw(in: areaSize)
+        hair?.draw(in: areaSize, blendMode: .normal, alpha: 1)
+        head?.draw(in: areaSize, blendMode: .normal, alpha: 1)
+        shoes?.draw(in: areaSize, blendMode: .normal, alpha: 1)
+        legs?.draw(in: areaSize, blendMode: .normal, alpha: 1)
+        shirt?.draw(in: areaSize, blendMode: .normal, alpha: 1)
+
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
-        // salva no contents directory
+
+        // save in contents directory
         let fileManager = FileManager.default
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let filePathToWrite = "\(paths)/image.png"
-        let imageData: Data = final.pngData()!
+        let imageData: Data = newImage.pngData()!
         fileManager.createFile(atPath: filePathToWrite, contents: imageData, attributes: nil)
     }
 }

@@ -16,7 +16,6 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set the view's delegate
         sceneView.delegate = self
         configureLighting()
@@ -55,13 +54,8 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
     
     // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        // make sure this is an image anchor, otherwise bail out
-        guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
-        
-        print(imageAnchor.referenceImage.physicalSize.height)
-        
         // create a plane
-        let plane = SCNPlane(width: 14, height: 23)
+        let plane = SCNPlane(width: 750/57, height: 1334/57)
         
         // add image from directory to plane
         let fileName = "image.png"
