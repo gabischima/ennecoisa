@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9x8-VY-5JV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9x8-VY-5JV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +20,9 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base" translatesAutoresizingMaskIntoConstraints="NO" id="iCg-fq-8u1">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" translatesAutoresizingMaskIntoConstraints="NO" id="30h-FM-gDd">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-Zb-2jJ">
@@ -48,6 +51,7 @@
                                     <constraint firstItem="u5S-bf-XEx" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="3AX-1i-cpF"/>
                                     <constraint firstAttribute="trailing" secondItem="iCg-fq-8u1" secondAttribute="trailing" id="4in-eu-6pm"/>
                                     <constraint firstItem="u5S-bf-XEx" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="8ye-JD-jAH"/>
+                                    <constraint firstItem="30h-FM-gDd" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="931-dL-K8t"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="9mK-oS-MJr"/>
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="Aht-29-Meb"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="BQa-9d-tc9"/>
@@ -55,12 +59,16 @@
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="Iwx-i5-RA5"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="PPq-ZH-3yN"/>
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="PUt-3v-KeX"/>
+                                    <constraint firstAttribute="trailing" secondItem="30h-FM-gDd" secondAttribute="trailing" id="WQw-MU-xm4"/>
                                     <constraint firstItem="dV7-7f-bTk" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="WR4-gf-vIk"/>
+                                    <constraint firstItem="30h-FM-gDd" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="Wkc-0n-btW"/>
                                     <constraint firstAttribute="trailing" secondItem="dV7-7f-bTk" secondAttribute="trailing" id="aLC-Ca-8wo"/>
+                                    <constraint firstItem="30h-FM-gDd" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="aTO-To-cqk"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="apD-NF-eP0"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="atv-yo-mNL"/>
                                     <constraint firstAttribute="trailing" secondItem="Jk3-63-Q6i" secondAttribute="trailing" id="cqx-pB-6Tp"/>
                                     <constraint firstItem="dV7-7f-bTk" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="dAi-2j-ypi"/>
+                                    <constraint firstItem="30h-FM-gDd" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="e95-AQ-Uvy"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="geV-RC-eSL"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="hbm-PO-taB"/>
                                     <constraint firstAttribute="trailing" secondItem="u5S-bf-XEx" secondAttribute="trailing" id="j8F-ES-2oZ"/>
@@ -87,11 +95,11 @@
                                     <constraint firstAttribute="height" constant="49" id="w4j-CZ-n4M"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem title="head" image="head_0_icon" id="Hpf-aD-Q4n"/>
-                                    <tabBarItem tag="1" title="hair" image="hair_0_icon" id="7UP-ce-yF4"/>
-                                    <tabBarItem tag="2" title="shirt" image="shirt_0_icon" id="xkd-6w-Fuy"/>
-                                    <tabBarItem tag="3" title="pants" image="legs_0_icon" id="GJW-wV-AdU"/>
-                                    <tabBarItem tag="4" title="shoes" image="shoes_0_icon" id="vZP-KF-jsg"/>
+                                    <tabBarItem title="" image="head" id="Hpf-aD-Q4n"/>
+                                    <tabBarItem tag="1" title="" image="hair" id="7UP-ce-yF4"/>
+                                    <tabBarItem tag="2" title="" image="shirt" id="xkd-6w-Fuy"/>
+                                    <tabBarItem tag="3" title="" image="legs" id="GJW-wV-AdU"/>
+                                    <tabBarItem tag="4" title="" image="shoes" id="vZP-KF-jsg"/>
                                 </items>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tabBar>
@@ -180,10 +188,11 @@
     </scenes>
     <resources>
         <image name="base" width="750" height="1334"/>
-        <image name="hair_0_icon" width="44" height="44"/>
-        <image name="head_0_icon" width="44" height="44"/>
-        <image name="legs_0_icon" width="44" height="44"/>
-        <image name="shirt_0_icon" width="44" height="44"/>
-        <image name="shoes_0_icon" width="44" height="44"/>
+        <image name="eye" width="750" height="1334"/>
+        <image name="hair" width="30" height="30"/>
+        <image name="head" width="30" height="30"/>
+        <image name="legs" width="30" height="30"/>
+        <image name="shirt" width="30" height="30"/>
+        <image name="shoes" width="30" height="30"/>
     </resources>
 </document>
