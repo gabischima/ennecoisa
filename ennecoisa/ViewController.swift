@@ -21,7 +21,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var shoesImageView: UIImageView!
     @IBOutlet weak var enneView: UIView!
     
-    /* Images */
+    /*
+     * Images
+     * head = 0
+     * hair = 1
+     * shirt = 2
+     * legs = 3
+     * shoes = 4
+     */
     var images: [[UIImage]] = [
         [
             UIImage(named: "head_0")!,
@@ -59,8 +66,6 @@ class ViewController: UIViewController {
     }
 
     /* Active Set */
-    
-    
     // array of image of active set
     var activeSet = [UIImage()]
     // name of active set
@@ -144,10 +149,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath) as! ItemCollectionViewCell
         let name = "\(self.activeSection)_\(String(indexPath.row))"
+        cell.layer.cornerRadius = 4.0
         cell.thumbnail.image = UIImage(named: "\(name)_icon")
         if let _ = self.activeImages.firstIndex(of: name) {
             cell.isSelected = true
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .bottom)
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         } else {
             cell.isSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
@@ -155,25 +161,21 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return cell
     }
     
-    private func collectionView(collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let imageView = self.enneView.viewWithTag(self.activeSection.rawValue) as? UIImageView
+        let activeIndex = self.activeSection.rawValue
         if let selectedItems = collectionView.indexPathsForSelectedItems {
             if selectedItems.contains(indexPath) {
+                self.activeImages[activeIndex] = "\(self.activeSection)_"
+                imageView?.image = nil
                 collectionView.deselectItem(at: indexPath, animated: false)
                 return false
             }
         }
+        imageView?.image = self.images[activeIndex][indexPath.row]
+        self.activeImages[activeIndex] = "\(self.activeSection)_\(String(indexPath.row))"
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         return true
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let imageView = self.enneView.viewWithTag(self.activeSection.rawValue) as? UIImageView
-        let activeIndex = self.activeSection.rawValue
-        if (self.activeImages[activeIndex] == "\(self.activeSection)_\(String(indexPath.row))") {
-            self.activeImages[activeIndex] = "\(self.activeSection)_"
-            imageView?.image = nil
-        } else {
-            imageView?.image = self.images[activeIndex][indexPath.row]
-            self.activeImages[activeIndex] = "\(self.activeSection)_\(String(indexPath.row))"
-        }
-    }
+
 }
