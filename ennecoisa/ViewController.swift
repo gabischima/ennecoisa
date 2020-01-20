@@ -66,12 +66,12 @@ class ViewController: UIViewController {
     }
 
     /* Active Set */
-    // array of image of active set
+    // array of image for active set
     var activeSet = [UIImage()]
-    // name of active set
+    // string for name of active set
     var activeSection = Sections.head
-    // active image for each set
-    var activeImages = [String()]
+    // selected image for each set
+    var selectedImages = [String()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
         self.enneSectionsTabbar.delegate = self
         self.view.bringSubviewToFront(self.enneSectionsTabbar)
         self.enneSectionsTabbar.selectedItem = self.enneSectionsTabbar.items?[0]
-        // remove tabbar bottom
+        // remove tabbar border
         self.enneSectionsTabbar.layer.borderWidth = 0.50
         self.enneSectionsTabbar.layer.borderColor = UIColor.clear.cgColor
         self.enneSectionsTabbar.clipsToBounds = true
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
         self.sectionCollection.allowsMultipleSelection = false
         
         Sections.allCases.forEach { (section) in
-            self.activeImages.append("\(section)_")
+            self.selectedImages.append("\(section)_")
         }
         self.activeSet = self.images[0]
         self.activeSection = Sections.head
@@ -107,11 +107,11 @@ class ViewController: UIViewController {
         // get images
         let eye: UIImage? = UIImage(named: "enneeye")
 
-        let head: UIImage? = UIImage(named: self.activeImages[0])
-        let hair: UIImage? = UIImage(named: self.activeImages[1])
-        let shirt: UIImage? = UIImage(named: self.activeImages[2])
-        let legs: UIImage? = UIImage(named: self.activeImages[3])
-        let shoes: UIImage? = UIImage(named: self.activeImages[4])
+        let head: UIImage? = UIImage(named: self.selectedImages[0])
+        let hair: UIImage? = UIImage(named: self.selectedImages[1])
+        let shirt: UIImage? = UIImage(named: self.selectedImages[2])
+        let legs: UIImage? = UIImage(named: self.selectedImages[3])
+        let shoes: UIImage? = UIImage(named: self.selectedImages[4])
 
         let size = CGSize(width: 750, height: 1334)
         UIGraphicsBeginImageContext(size)
@@ -133,6 +133,27 @@ class ViewController: UIViewController {
         let filePathToWrite = "\(paths)/image.png"
         let imageData: Data = newImage.pngData()!
         fileManager.createFile(atPath: filePathToWrite, contents: imageData, attributes: nil)
+    }
+    
+    @IBAction func shuffleAction() {
+        Sections.allCases.forEach { (section) in
+            let img = Int(arc4random_uniform(UInt32(self.images[section.rawValue].count)))
+            self.selectedImages[section.rawValue] = "\(section)_\(img)"
+            if let imageView = self.enneView.viewWithTag(section.rawValue) as? UIImageView {
+                UIView.transition(with: imageView,
+                    duration: 0.1,
+                    options: .transitionCrossDissolve,
+                    animations: { imageView.image = self.images[section.rawValue][img] },
+                    completion: nil)
+            }
+        }
+        self.sectionCollection.reloadData()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            shuffleAction()
+        }
     }
 }
 
@@ -158,9 +179,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let name = "\(self.activeSection)_\(String(indexPath.row))"
         cell.thumbnail.image = UIImage(named: "\(name)_icon")
         cell.thumbnail.alpha = 0.6
-        if let _ = self.activeImages.firstIndex(of: name) {
+        if let _ = self.selectedImages.firstIndex(of: name) {
             cell.isSelected = true
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         } else {
             cell.isSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
@@ -173,15 +194,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let activeIndex = self.activeSection.rawValue
         if let selectedItems = collectionView.indexPathsForSelectedItems {
             if selectedItems.contains(indexPath) {
-                self.activeImages[activeIndex] = "\(self.activeSection)_"
+                self.selectedImages[activeIndex] = "\(self.activeSection)_"
                 imageView?.image = nil
                 collectionView.deselectItem(at: indexPath, animated: false)
                 return false
             }
         }
         imageView?.image = self.images[activeIndex][indexPath.row]
-        self.activeImages[activeIndex] = "\(self.activeSection)_\(String(indexPath.row))"
-        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+        self.selectedImages[activeIndex] = "\(self.activeSection)_\(String(indexPath.row))"
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         return true
     }
 

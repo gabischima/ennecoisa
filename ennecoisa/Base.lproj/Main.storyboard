@@ -87,6 +87,7 @@
                                     <constraint firstAttribute="width" constant="55" id="Sjv-V4-up4"/>
                                 </constraints>
                                 <state key="normal" image="camera_btn"/>
+                                <state key="highlighted" image="camera btn_highlight"/>
                                 <connections>
                                     <action selector="saveImage:" destination="9x8-VY-5JV" eventType="touchUpInside" id="JC2-vg-UdV"/>
                                     <segue destination="BV1-FR-VrT" kind="showDetail" id="M65-oB-GE6"/>
@@ -126,6 +127,18 @@
                                     <outlet property="delegate" destination="9x8-VY-5JV" id="oSN-uj-1ZQ"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhq-n3-u7m" userLabel="shuffle">
+                                <rect key="frame" x="370" y="713" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="5c9-d4-fC3"/>
+                                    <constraint firstAttribute="width" constant="24" id="Xjb-bu-Orb"/>
+                                </constraints>
+                                <state key="normal" image="shuffle_btn"/>
+                                <state key="highlighted" image="shuffle_btn_highlight"/>
+                                <connections>
+                                    <action selector="shuffleAction" destination="9x8-VY-5JV" eventType="touchUpInside" id="aXx-go-j2U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -134,6 +147,8 @@
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="top" secondItem="Fh6-1G-HAh" secondAttribute="bottom" symbolic="YES" id="NLn-rD-HC4"/>
                             <constraint firstItem="XWr-Dp-aRv" firstAttribute="trailing" secondItem="xww-RZ-a6X" secondAttribute="trailing" id="U7G-9P-OFX"/>
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="bottom" secondItem="xww-RZ-a6X" secondAttribute="bottom" id="bQh-FY-CaE"/>
+                            <constraint firstItem="Dhq-n3-u7m" firstAttribute="bottom" secondItem="QFQ-G2-pTN" secondAttribute="bottom" constant="-4" id="coC-5S-I4r"/>
+                            <constraint firstItem="xww-RZ-a6X" firstAttribute="trailing" secondItem="Dhq-n3-u7m" secondAttribute="trailing" constant="20" id="eQx-mf-Wcg"/>
                             <constraint firstItem="XWr-Dp-aRv" firstAttribute="top" secondItem="xww-RZ-a6X" secondAttribute="top" id="k6c-aa-bjs"/>
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" id="naI-ew-fe7"/>
                             <constraint firstItem="Fh6-1G-HAh" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" id="plP-Ku-kPT"/>
@@ -224,6 +239,7 @@
     </scenes>
     <resources>
         <image name="base" width="750" height="1334"/>
+        <image name="camera btn_highlight" width="55" height="55"/>
         <image name="camera_btn" width="55" height="55"/>
         <image name="clearColor" width="375" height="49"/>
         <image name="enneeye" width="750" height="1334"/>
@@ -232,6 +248,8 @@
         <image name="legs" width="30" height="30"/>
         <image name="shirt" width="30" height="30"/>
         <image name="shoes" width="30" height="30"/>
+        <image name="shuffle_btn" width="24" height="24"/>
+        <image name="shuffle_btn_highlight" width="24" height="24"/>
         <image name="take_picture" width="73" height="73"/>
     </resources>
 </document>
