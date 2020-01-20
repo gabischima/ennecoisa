@@ -75,8 +75,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        /* tabbar */
         self.enneSectionsTabbar.delegate = self
+        self.view.bringSubviewToFront(self.enneSectionsTabbar)
         self.enneSectionsTabbar.selectedItem = self.enneSectionsTabbar.items?[0]
+        // remove tabbar bottom
+        self.enneSectionsTabbar.layer.borderWidth = 0.50
+        self.enneSectionsTabbar.layer.borderColor = UIColor.clear.cgColor
+        self.enneSectionsTabbar.clipsToBounds = true
+        /* collection view */
         self.sectionCollection.delegate = self
         self.sectionCollection.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "0")
         self.sectionCollection.allowsMultipleSelection = false
@@ -98,7 +105,7 @@ class ViewController: UIViewController {
     
     @IBAction func saveImage(_ sender: Any) {
         // get images
-        let eye: UIImage? = UIImage(named: "eye")
+        let eye: UIImage? = UIImage(named: "enneeye")
 
         let head: UIImage? = UIImage(named: self.activeImages[0])
         let hair: UIImage? = UIImage(named: self.activeImages[1])
@@ -149,8 +156,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath) as! ItemCollectionViewCell
         let name = "\(self.activeSection)_\(String(indexPath.row))"
-        cell.layer.cornerRadius = 4.0
         cell.thumbnail.image = UIImage(named: "\(name)_icon")
+        cell.thumbnail.alpha = 0.6
         if let _ = self.activeImages.firstIndex(of: name) {
             cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)

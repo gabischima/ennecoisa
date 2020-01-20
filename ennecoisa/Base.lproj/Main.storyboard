@@ -22,7 +22,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base" translatesAutoresizingMaskIntoConstraints="NO" id="iCg-fq-8u1">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" translatesAutoresizingMaskIntoConstraints="NO" id="30h-FM-gDd">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="enneeye" translatesAutoresizingMaskIntoConstraints="NO" id="30h-FM-gDd">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-Zb-2jJ">
@@ -80,15 +80,18 @@
                                     <constraint firstItem="xCs-Zb-2jJ" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="vSi-la-ydF"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFQ-G2-pTN">
-                                <rect key="frame" x="181.5" y="711" width="51" height="30"/>
-                                <state key="normal" title="camera"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFQ-G2-pTN">
+                                <rect key="frame" x="174.5" y="611" width="65" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="Sjv-V4-up4"/>
+                                </constraints>
+                                <state key="normal" image="camera_btn"/>
                                 <connections>
                                     <action selector="saveImage:" destination="9x8-VY-5JV" eventType="touchUpInside" id="JC2-vg-UdV"/>
                                     <segue destination="BV1-FR-VrT" kind="showDetail" id="M65-oB-GE6"/>
                                 </connections>
                             </button>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tmI-2h-wcU">
+                            <tabBar contentMode="scaleToFill" backgroundImage="clearColor" translatesAutoresizingMaskIntoConstraints="NO" id="tmI-2h-wcU">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -101,7 +104,8 @@
                                     <tabBarItem tag="3" title="" image="legs" id="GJW-wV-AdU"/>
                                     <tabBarItem tag="4" title="" image="shoes" id="vZP-KF-jsg"/>
                                 </items>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tabBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fh6-1G-HAh">
                                 <rect key="frame" x="0.0" y="749" width="414" height="64"/>
@@ -109,11 +113,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="ZOW-TO-m7A"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="usp-jk-CE1">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="usp-jk-CE1">
                                     <size key="itemSize" width="44" height="44"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <connections>
@@ -188,7 +192,9 @@
     </scenes>
     <resources>
         <image name="base" width="750" height="1334"/>
-        <image name="eye" width="750" height="1334"/>
+        <image name="camera_btn" width="65" height="65"/>
+        <image name="clearColor" width="375" height="49"/>
+        <image name="enneeye" width="750" height="1334"/>
         <image name="hair" width="30" height="30"/>
         <image name="head" width="30" height="30"/>
         <image name="legs" width="30" height="30"/>

@@ -10,10 +10,12 @@ import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thumbnail: UIImageView!
+    @IBOutlet weak var selectedImage: UIImageView!
+    
     override var isSelected: Bool {
         didSet {
-            self.layer.borderWidth = 1.0
-            self.layer.borderColor = isSelected ? UIColor.black.cgColor : UIColor.lightGray.cgColor
+            self.selectedImage.image = isSelected ? UIImage(named: "selected_image") : nil
+            self.thumbnail.alpha = isSelected ? 1.0 : 0.6
         }
     }
 
