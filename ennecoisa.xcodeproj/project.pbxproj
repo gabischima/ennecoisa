@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0609283C23D40D5C0023465F /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0609283B23D40D5C0023465F /* ExtensionView.swift */; };
 		068E00A423CA6AC1004C45CF /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */; };
 		068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */; };
 		06B3DE8B23C677BA00C1E843 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3DE8A23C677BA00C1E843 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0609283B23D40D5C0023465F /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		06B3DE8A23C677BA00C1E843 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0609283A23D40D450023465F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0609283B23D40D5C0023465F /* ExtensionView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		867AF39D22C511FA001C1E8F = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		867AF3A822C511FA001C1E8F /* ennecoisa */ = {
 			isa = PBXGroup;
 			children = (
+				0609283A23D40D450023465F /* Extensions */,
 				867AF3A922C511FA001C1E8F /* AppDelegate.swift */,
 				867AF3AF22C511FA001C1E8F /* Main.storyboard */,
 				867AF3AD22C511FA001C1E8F /* CameraViewController.swift */,
@@ -267,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06B3DE8B23C677BA00C1E843 /* ViewController.swift in Sources */,
+				0609283C23D40D5C0023465F /* ExtensionView.swift in Sources */,
 				068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */,
 				867AF3AE22C511FA001C1E8F /* CameraViewController.swift in Sources */,
 				867AF3AA22C511FA001C1E8F /* AppDelegate.swift in Sources */,

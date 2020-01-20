@@ -81,9 +81,10 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFQ-G2-pTN">
-                                <rect key="frame" x="174.5" y="611" width="65" height="130"/>
+                                <rect key="frame" x="179.5" y="686" width="55" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="Sjv-V4-up4"/>
+                                    <constraint firstAttribute="height" constant="55" id="M2c-Zb-4gY"/>
+                                    <constraint firstAttribute="width" constant="55" id="Sjv-V4-up4"/>
                                 </constraints>
                                 <state key="normal" image="camera_btn"/>
                                 <connections>
@@ -113,7 +114,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="ZOW-TO-m7A"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="usp-jk-CE1">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="20" id="usp-jk-CE1">
                                     <size key="itemSize" width="44" height="44"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -170,18 +171,49 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hp6-wU-WcZ">
+                                <rect key="frame" x="170.5" y="691" width="73" height="73"/>
+                                <state key="normal" image="take_picture">
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="takePicture:" destination="BV1-FR-VrT" eventType="touchUpInside" id="PkO-rQ-1rx"/>
+                                </connections>
+                            </button>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxC-DJ-nLl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="bxC-DJ-nLl" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="6b9-A3-fAJ"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
+                            <constraint firstItem="Hp6-wU-WcZ" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="LYf-aU-QmI"/>
+                            <constraint firstItem="bxC-DJ-nLl" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="N2j-6C-UvC"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="Hp6-wU-WcZ" secondAttribute="bottom" constant="44" id="Q3u-Tb-bcp"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
+                            <constraint firstItem="bxC-DJ-nLl" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="a6R-tM-lOC"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
+                            <constraint firstItem="bxC-DJ-nLl" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="suy-LX-1aa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <navigationItem key="navigationItem" id="8iW-Pr-85N"/>
                     <connections>
+                        <outlet property="feedbackView" destination="bxC-DJ-nLl" id="qgI-5F-hKc"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>
@@ -192,7 +224,7 @@
     </scenes>
     <resources>
         <image name="base" width="750" height="1334"/>
-        <image name="camera_btn" width="65" height="65"/>
+        <image name="camera_btn" width="55" height="55"/>
         <image name="clearColor" width="375" height="49"/>
         <image name="enneeye" width="750" height="1334"/>
         <image name="hair" width="30" height="30"/>
@@ -200,5 +232,6 @@
         <image name="legs" width="30" height="30"/>
         <image name="shirt" width="30" height="30"/>
         <image name="shoes" width="30" height="30"/>
+        <image name="take_picture" width="73" height="73"/>
     </resources>
 </document>

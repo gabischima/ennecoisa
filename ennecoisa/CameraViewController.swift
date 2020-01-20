@@ -13,7 +13,8 @@ import ARKit
 class CameraViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
-    
+    @IBOutlet weak var feedbackView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set the view's delegate
@@ -86,4 +87,40 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+    func fadeIn() {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+            self.feedbackView.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0, alpha: 1.0)
+        }, completion: nil)
+    }
+    
+    func fadeOut() {
+        UIView.animate(withDuration: 0.05, delay: 0.1, options: .curveEaseOut, animations: {
+            self.feedbackView.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0, alpha: 0)
+        }, completion: nil)
+    }
+
+    func showAlert() {
+        let alert = UIAlertController(title: "Photo could not be saved", message: "Please, check permissions.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+
+    @IBAction func takePicture(_ sender: Any) {
+        let image = sceneView.snapshot()
+        fadeIn()
+        fadeOut()
+        // save it to photo library
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
+        guard error == nil else {
+            // Error saving image
+            showAlert()
+            return
+        }
+        // Image saved successfully
+    }
+
 }
