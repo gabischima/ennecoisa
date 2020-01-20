@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var shoesImageView: UIImageView!
     @IBOutlet weak var enneView: UIView!
     
+    var canShakeItToShuffle: Bool = true
     /*
      * Images
      * head = 0
@@ -140,11 +141,7 @@ class ViewController: UIViewController {
             let img = Int(arc4random_uniform(UInt32(self.images[section.rawValue].count)))
             self.selectedImages[section.rawValue] = "\(section)_\(img)"
             if let imageView = self.enneView.viewWithTag(section.rawValue) as? UIImageView {
-                UIView.transition(with: imageView,
-                    duration: 0.1,
-                    options: .transitionCrossDissolve,
-                    animations: { imageView.image = self.images[section.rawValue][img] },
-                    completion: nil)
+                imageView.image = self.images[section.rawValue][img]
             }
         }
         self.sectionCollection.reloadData()
@@ -153,7 +150,21 @@ class ViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             shuffleAction()
+            animateEnneView()
         }
+    }
+    
+    func animateEnneView() {
+        let midX = self.enneView.center.x
+        let midY = self.enneView.center.y
+
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.04
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = CGPoint(x: midX - 4, y: midY)
+        animation.toValue = CGPoint(x: midX + 4, y: midY)
+        self.enneView.layer.add(animation, forKey: "position")
     }
 }
 
