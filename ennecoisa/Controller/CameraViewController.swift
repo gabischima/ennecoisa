@@ -48,6 +48,7 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
         }
 
         configuration.trackingImages = trackingImages
+        configuration.isAutoFocusEnabled = true
         sceneView.session.run(configuration)
     }
 
@@ -122,5 +123,4 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
         }
         // Image saved successfully
     }
-
 }

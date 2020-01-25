@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var shoesImageView: UIImageView!
     @IBOutlet weak var enneView: UIView!
     
+    @IBOutlet weak var toogleShake: ShakeItButton!
+
     var canShakeItToShuffle: Bool = true
     /*
      * Images
@@ -104,6 +106,26 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake && self.toogleShake.isOn {
+            shuffleAction()
+            animateEnneView()
+        }
+    }
+    
+    func animateEnneView() {
+        let midX = self.enneView.center.x
+        let midY = self.enneView.center.y
+
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.04
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = CGPoint(x: midX - 4, y: midY)
+        animation.toValue = CGPoint(x: midX + 4, y: midY)
+        self.enneView.layer.add(animation, forKey: "position")
+    }
+    
     @IBAction func saveImage(_ sender: Any) {
         // get images
         let eye: UIImage? = UIImage(named: "enneeye")
@@ -145,26 +167,6 @@ class ViewController: UIViewController {
             }
         }
         self.sectionCollection.reloadData()
-    }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            shuffleAction()
-            animateEnneView()
-        }
-    }
-    
-    func animateEnneView() {
-        let midX = self.enneView.center.x
-        let midY = self.enneView.center.y
-
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.04
-        animation.repeatCount = 4
-        animation.autoreverses = true
-        animation.fromValue = CGPoint(x: midX - 4, y: midY)
-        animation.toValue = CGPoint(x: midX + 4, y: midY)
-        self.enneView.layer.add(animation, forKey: "position")
     }
 }
 

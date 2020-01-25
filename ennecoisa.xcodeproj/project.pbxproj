@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0609283C23D40D5C0023465F /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0609283B23D40D5C0023465F /* ExtensionView.swift */; };
+		0689382C23DB9BFD00D025AB /* ShakeItButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689382B23DB9BFD00D025AB /* ShakeItButton.swift */; };
 		068E00A423CA6AC1004C45CF /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */; };
 		068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */; };
 		06B3DE8B23C677BA00C1E843 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3DE8A23C677BA00C1E843 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		0609283B23D40D5C0023465F /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
+		0689382B23DB9BFD00D025AB /* ShakeItButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeItButton.swift; sourceTree = "<group>"; };
 		068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		06B3DE8A23C677BA00C1E843 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,27 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		0689382D23DBA18400D025AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				867AF3AF22C511FA001C1E8F /* Main.storyboard */,
+				068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */,
+				068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */,
+				867AF3B422C511FB001C1E8F /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0689382E23DBA18B00D025AB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				867AF3AD22C511FA001C1E8F /* CameraViewController.swift */,
+				06B3DE8A23C677BA00C1E843 /* ViewController.swift */,
+				0689382B23DB9BFD00D025AB /* ShakeItButton.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		867AF39D22C511FA001C1E8F = {
 			isa = PBXGroup;
 			children = (
@@ -113,15 +136,11 @@
 		867AF3A822C511FA001C1E8F /* ennecoisa */ = {
 			isa = PBXGroup;
 			children = (
+				0689382E23DBA18B00D025AB /* Controller */,
+				0689382D23DBA18400D025AB /* View */,
 				0609283A23D40D450023465F /* Extensions */,
 				867AF3A922C511FA001C1E8F /* AppDelegate.swift */,
-				867AF3AF22C511FA001C1E8F /* Main.storyboard */,
-				867AF3AD22C511FA001C1E8F /* CameraViewController.swift */,
-				06B3DE8A23C677BA00C1E843 /* ViewController.swift */,
-				068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */,
-				068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */,
 				867AF3B222C511FB001C1E8F /* Assets.xcassets */,
-				867AF3B422C511FB001C1E8F /* LaunchScreen.storyboard */,
 				867AF3B722C511FB001C1E8F /* Info.plist */,
 			);
 			path = ennecoisa;
@@ -278,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06B3DE8B23C677BA00C1E843 /* ViewController.swift in Sources */,
+				0689382C23DB9BFD00D025AB /* ShakeItButton.swift in Sources */,
 				0609283C23D40D5C0023465F /* ExtensionView.swift in Sources */,
 				068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */,
 				867AF3AE22C511FA001C1E8F /* CameraViewController.swift in Sources */,
@@ -466,7 +486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabischima.ennecoisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -484,7 +504,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabischima.ennecoisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -128,10 +128,11 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhq-n3-u7m" userLabel="shuffle">
-                                <rect key="frame" x="370" y="713" width="24" height="24"/>
+                                <rect key="frame" x="360" y="707" width="34" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="5c9-d4-fC3"/>
-                                    <constraint firstAttribute="width" constant="24" id="Xjb-bu-Orb"/>
+                                    <constraint firstAttribute="width" secondItem="Dhq-n3-u7m" secondAttribute="height" multiplier="1:1" id="WuZ-qs-DAC"/>
+                                    <constraint firstAttribute="width" constant="34" id="Xjb-bu-Orb"/>
                                 </constraints>
                                 <state key="normal" image="shuffle_btn"/>
                                 <state key="highlighted" image="shuffle_btn_highlight"/>
@@ -139,15 +140,25 @@
                                     <action selector="shuffleAction" destination="9x8-VY-5JV" eventType="touchUpInside" id="aXx-go-j2U"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsr-W8-iri" userLabel="toogleShake" customClass="ShakeItButton" customModule="ennecoisa" customModuleProvider="target">
+                                <rect key="frame" x="20" y="707" width="34" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="0xj-hL-x65"/>
+                                    <constraint firstAttribute="width" secondItem="Vsr-W8-iri" secondAttribute="height" multiplier="1:1" id="Dcn-WB-dUC"/>
+                                </constraints>
+                                <state key="normal" image="shakeiton_btn"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Vsr-W8-iri" firstAttribute="width" secondItem="Vsr-W8-iri" secondAttribute="height" multiplier="1:1" id="5qX-ZA-w0N"/>
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="bottom" symbolic="YES" id="Bky-3b-ceS"/>
                             <constraint firstItem="XWr-Dp-aRv" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" id="L4t-4f-YPg"/>
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="top" secondItem="Fh6-1G-HAh" secondAttribute="bottom" symbolic="YES" id="NLn-rD-HC4"/>
                             <constraint firstItem="XWr-Dp-aRv" firstAttribute="trailing" secondItem="xww-RZ-a6X" secondAttribute="trailing" id="U7G-9P-OFX"/>
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="bottom" secondItem="xww-RZ-a6X" secondAttribute="bottom" id="bQh-FY-CaE"/>
-                            <constraint firstItem="Dhq-n3-u7m" firstAttribute="bottom" secondItem="QFQ-G2-pTN" secondAttribute="bottom" constant="-4" id="coC-5S-I4r"/>
+                            <constraint firstItem="Dhq-n3-u7m" firstAttribute="bottom" secondItem="QFQ-G2-pTN" secondAttribute="bottom" id="coC-5S-I4r"/>
                             <constraint firstItem="xww-RZ-a6X" firstAttribute="trailing" secondItem="Dhq-n3-u7m" secondAttribute="trailing" constant="20" id="eQx-mf-Wcg"/>
                             <constraint firstItem="XWr-Dp-aRv" firstAttribute="top" secondItem="xww-RZ-a6X" secondAttribute="top" id="k6c-aa-bjs"/>
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" id="naI-ew-fe7"/>
@@ -156,6 +167,8 @@
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="trailing" secondItem="xww-RZ-a6X" secondAttribute="trailing" id="qsX-Ul-F0D"/>
                             <constraint firstItem="Fh6-1G-HAh" firstAttribute="top" secondItem="QFQ-G2-pTN" secondAttribute="bottom" constant="8" id="uuL-cL-bmm"/>
                             <constraint firstItem="Fh6-1G-HAh" firstAttribute="trailing" secondItem="xww-RZ-a6X" secondAttribute="trailing" id="vRK-zd-Cli"/>
+                            <constraint firstItem="Vsr-W8-iri" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" constant="20" id="wqQ-Cu-N3i"/>
+                            <constraint firstItem="Vsr-W8-iri" firstAttribute="bottom" secondItem="QFQ-G2-pTN" secondAttribute="bottom" id="xls-ax-Yte"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xww-RZ-a6X"/>
                     </view>
@@ -169,6 +182,7 @@
                         <outlet property="sectionCollection" destination="Fh6-1G-HAh" id="nBX-db-nmt"/>
                         <outlet property="shirtImageView" destination="u5S-bf-XEx" id="ux9-Ic-IOk"/>
                         <outlet property="shoesImageView" destination="dV7-7f-bTk" id="6ar-ub-BFU"/>
+                        <outlet property="toogleShake" destination="Vsr-W8-iri" id="GP5-4G-WNF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29U-kS-x1S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -246,10 +260,11 @@
         <image name="hair" width="30" height="30"/>
         <image name="head" width="30" height="30"/>
         <image name="legs" width="30" height="30"/>
+        <image name="shakeiton_btn" width="34" height="34"/>
         <image name="shirt" width="30" height="30"/>
         <image name="shoes" width="30" height="30"/>
-        <image name="shuffle_btn" width="24" height="24"/>
-        <image name="shuffle_btn_highlight" width="24" height="24"/>
+        <image name="shuffle_btn" width="34" height="34"/>
+        <image name="shuffle_btn_highlight" width="34" height="34"/>
         <image name="take_picture" width="73" height="73"/>
     </resources>
 </document>
