@@ -5,7 +5,16 @@
   },
   "resources" : [
     {
-      "filename" : "enne_tattoo.arreferenceimage"
+      "filename" : "enne_tattoo_1.arreferenceimage"
+    },
+    {
+      "filename" : "enne_tattoo_2.arreferenceimage"
+    },
+    {
+      "filename" : "enne_tattoo_3.arreferenceimage"
+    },
+    {
+      "filename" : "enne_tattoo_4.arreferenceimage"
     },
     {
       "filename" : "enne.arreferenceimage"
