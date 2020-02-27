@@ -14,12 +14,19 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var feedbackView: UIView!
-
+    @IBOutlet weak var closeBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set the view's delegate
         sceneView.delegate = self
         configureLighting()
+        // show close btn if iOS < 13.0
+        if #available(iOS 13, *) {
+            self.closeBtn.isHidden = true
+        } else {
+            self.closeBtn.isHidden = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +112,10 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
         let alert = UIAlertController(title: "Photo could not be saved", message: "Please, check permissions.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
+    }
+
+    @IBAction func closeView(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func takePicture(_ sender: Any) {

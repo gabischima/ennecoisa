@@ -90,7 +90,7 @@
                                 <state key="highlighted" image="camera btn_highlight"/>
                                 <connections>
                                     <action selector="saveImage:" destination="9x8-VY-5JV" eventType="touchUpInside" id="JC2-vg-UdV"/>
-                                    <segue destination="BV1-FR-VrT" kind="showDetail" id="M65-oB-GE6"/>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="M65-oB-GE6"/>
                                 </connections>
                             </button>
                             <tabBar contentMode="scaleToFill" backgroundImage="clearColor" translatesAutoresizingMaskIntoConstraints="NO" id="tmI-2h-wcU">
@@ -200,7 +200,7 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                             </arscnView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hp6-wU-WcZ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hp6-wU-WcZ" userLabel="take_picture">
                                 <rect key="frame" x="170.5" y="691" width="73" height="73"/>
                                 <state key="normal" image="take_picture">
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -220,6 +220,13 @@
                                     <action selector="takePicture:" destination="BV1-FR-VrT" eventType="touchUpInside" id="PkO-rQ-1rx"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Auh-ld-NG3" userLabel="close">
+                                <rect key="frame" x="360" y="20" width="34" height="34"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="closeView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="TEH-0E-ZBw"/>
+                                </connections>
+                            </button>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxC-DJ-nLl">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -229,9 +236,11 @@
                         <constraints>
                             <constraint firstItem="bxC-DJ-nLl" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="6b9-A3-fAJ"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
+                            <constraint firstItem="Auh-ld-NG3" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="20" id="JO7-a9-lfR"/>
                             <constraint firstItem="Hp6-wU-WcZ" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="LYf-aU-QmI"/>
                             <constraint firstItem="bxC-DJ-nLl" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="N2j-6C-UvC"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="Hp6-wU-WcZ" secondAttribute="bottom" constant="44" id="Q3u-Tb-bcp"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="Auh-ld-NG3" secondAttribute="trailing" constant="20" id="VY4-qO-leH"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="bxC-DJ-nLl" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="a6R-tM-lOC"/>
@@ -242,6 +251,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8iW-Pr-85N"/>
                     <connections>
+                        <outlet property="closeBtn" destination="Auh-ld-NG3" id="Fyi-as-vtv"/>
                         <outlet property="feedbackView" destination="bxC-DJ-nLl" id="qgI-5F-hKc"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
@@ -256,6 +266,7 @@
         <image name="camera btn_highlight" width="55" height="55"/>
         <image name="camera_btn" width="55" height="55"/>
         <image name="clearColor" width="375" height="49"/>
+        <image name="close" width="34" height="34"/>
         <image name="enneeye" width="750" height="1334"/>
         <image name="hair" width="30" height="30"/>
         <image name="head" width="30" height="30"/>
