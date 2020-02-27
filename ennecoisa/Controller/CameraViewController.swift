@@ -109,7 +109,7 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
     }
 
     func showAlert() {
-        let alert = UIAlertController(title: "Photo could not be saved", message: "Please, check permissions.", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Photo could not be saved", comment: ""), message: NSLocalizedString("Please, check permissions.", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
