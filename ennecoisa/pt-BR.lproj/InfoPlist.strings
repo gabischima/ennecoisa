@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  ennecoisa
+
+  Created by Gabriela Schirmer Mauricio on 26/02/20.
+  Copyright © 2020 Gabriela Schirmer. All rights reserved.
+*/
+
+NSCameraUsageDescription = "A câmera é usada para a interação de Realidade Aumentada.";
+NSPhotoLibraryAddUsageDescription = "Permição de acesso à galeria para salvar fotos.";
