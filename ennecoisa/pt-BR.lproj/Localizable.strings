@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  ennecoisa
+
+  Created by Gabriela Schirmer Mauricio on 23/02/20.
+  Copyright © 2020 Gabriela Schirmer. All rights reserved.
+*/
+
+/* INFO VIEW */
+"Download blank enne" = "Baixar enne em branco";
+"Go to website" = "Ir para o site";
+
+/* SHARED */
+"Success!" = "Sucesso!";
+"Image was successfully saved." = "Imagem salva com sucesso.";
+"Photo could not be saved" = "A foto não pode ser salva";
+"Please, check permissions." = "Por favor, cheque suas permissões.";
