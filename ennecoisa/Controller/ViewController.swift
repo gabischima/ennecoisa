@@ -183,6 +183,8 @@ extension ViewController: UITabBarDelegate {
         self.activeSection = Sections(rawValue: item.tag)!
         self.activeSet = self.images[item.tag]
         self.sectionCollection.reloadData()
+        self.sectionCollection.scrollToItem(at: IndexPath(index: 0), at: .right, animated: false)
+        self.sectionCollection.showsHorizontalScrollIndicator = false
     }
 }
 
