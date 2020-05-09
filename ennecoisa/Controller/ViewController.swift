@@ -44,18 +44,26 @@ class ViewController: UIViewController {
             UIImage(named: "hair_2")!,
             UIImage(named: "hair_3")!,
             UIImage(named: "hair_4")!,
-            UIImage(named: "hair_5")!
+            UIImage(named: "hair_5")!,
+            UIImage(named: "hair_6")!,
+            UIImage(named: "hair_7")!,
+            UIImage(named: "hair_8")!,
+            UIImage(named: "hair_9")!,
+            UIImage(named: "hair_10")!
         ],
         [
             UIImage(named: "shirt_0")!,
             UIImage(named: "shirt_1")!,
             UIImage(named: "shirt_2")!,
-            UIImage(named: "shirt_3")!
+            UIImage(named: "shirt_3")!,
+            UIImage(named: "shirt_4")!,
+            UIImage(named: "shirt_5")!
         ],
         [
             UIImage(named: "legs_0")!,
             UIImage(named: "legs_1")!,
-            UIImage(named: "legs_2")!
+            UIImage(named: "legs_2")!,
+            UIImage(named: "legs_3")!
         ],
         [
             UIImage(named: "shoes_0")!,
@@ -175,6 +183,8 @@ extension ViewController: UITabBarDelegate {
         self.activeSection = Sections(rawValue: item.tag)!
         self.activeSet = self.images[item.tag]
         self.sectionCollection.reloadData()
+        self.sectionCollection.scrollToItem(at: IndexPath(index: 0), at: .right, animated: false)
+        self.sectionCollection.showsHorizontalScrollIndicator = false
     }
 }
 
