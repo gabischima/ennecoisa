@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PencilKit
 
 class ViewController: UIViewController {
 
@@ -21,7 +22,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var shoesImageView: UIImageView!
     @IBOutlet weak var enneView: UIView!
     
-    @IBOutlet weak var toogleShake: ShakeItButton!
+    @IBOutlet weak var toggleShake: ShakeItButton!
+    @IBOutlet weak var toggleCanvas: ToggleCanvasButton!
+    
+    @IBOutlet weak var eraserConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pencilConstraint: NSLayoutConstraint!
+    
+    
+    var canvasView: PKCanvasView!
+
+    enum Tools: Int {
+        case pencil, eraser
+    }
+    
+    let eraserTool = PKEraserTool(.bitmap)
+    let pencilTool = PKInkingTool(.pencil, color: .black, width: 6)
+    
+    var currentTool: Tools = Tools.pencil
 
     var canShakeItToShuffle: Bool = true
     /*
@@ -86,14 +103,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /* tabbar */
-        self.enneSectionsTabbar.delegate = self
-        self.view.bringSubviewToFront(self.enneSectionsTabbar)
-        self.enneSectionsTabbar.selectedItem = self.enneSectionsTabbar.items?[0]
-        // remove tabbar border
-        self.enneSectionsTabbar.layer.borderWidth = 0.50
-        self.enneSectionsTabbar.layer.borderColor = UIColor.clear.cgColor
-        self.enneSectionsTabbar.clipsToBounds = true
+        
+        setupTabbar()
+        
         /* collection view */
         self.sectionCollection.delegate = self
         self.sectionCollection.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "0")
@@ -104,6 +116,8 @@ class ViewController: UIViewController {
         }
         self.activeSet = self.images[0]
         self.activeSection = Sections.head
+        
+        setupCanvasView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -115,10 +129,45 @@ class ViewController: UIViewController {
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake && self.toogleShake.isOn {
+        if motion == .motionShake && self.toggleShake.isOn {
             shuffleAction()
             animateEnneView()
         }
+    }
+    
+    func setupTabbar() {
+        self.enneSectionsTabbar.delegate = self
+        self.view.bringSubviewToFront(self.enneSectionsTabbar)
+        self.enneSectionsTabbar.selectedItem = self.enneSectionsTabbar.items?[0]
+        // remove tabbar border
+        self.enneSectionsTabbar.layer.borderWidth = 0.50
+        self.enneSectionsTabbar.layer.borderColor = UIColor.clear.cgColor
+        self.enneSectionsTabbar.clipsToBounds = true
+    }
+    
+    func setupCanvasView() {
+        let canvasView = PKCanvasView(frame: self.enneView.bounds)
+        self.canvasView = canvasView
+        self.enneView.addSubview(canvasView)
+        
+        canvasView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            canvasView.topAnchor.constraint(equalTo: self.enneView.topAnchor),
+            canvasView.bottomAnchor.constraint(equalTo: self.enneView.bottomAnchor),
+            canvasView.rightAnchor.constraint(equalTo: self.enneView.rightAnchor),
+            canvasView.leftAnchor.constraint(equalTo: self.enneView.leftAnchor)
+        ])
+        
+        canvasView.overrideUserInterfaceStyle = .light
+        canvasView.backgroundColor = .clear
+        canvasView.isOpaque = false
+        canvasView.tool = self.pencilTool
+        self.currentTool = .pencil
+        
+        // setup apple pencil interaction
+        let interaction = UIPencilInteraction()
+        interaction.delegate = self
+        view.addInteraction(interaction)
     }
     
     func animateEnneView() {
@@ -133,6 +182,28 @@ class ViewController: UIViewController {
         animation.toValue = CGPoint(x: midX + 4, y: midY)
         self.enneView.layer.add(animation, forKey: "position")
     }
+    
+    func changeTool (_ tool: Int) {
+        switch tool {
+        case Tools.pencil.rawValue:
+            self.canvasView.tool = self.pencilTool
+            self.currentTool = Tools.pencil
+            self.eraserConstraint.constant = -20.0
+            self.pencilConstraint.constant = 0.0
+        case Tools.eraser.rawValue:
+            self.canvasView.tool = self.eraserTool
+            self.currentTool = Tools.eraser
+            self.eraserConstraint.constant = 0.0
+            self.pencilConstraint.constant = -20.0
+        default:
+            break
+        }
+        UIView.animate(withDuration: Double(0.2), animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    /* MARK: IBAction */
     
     @IBAction func saveImage(_ sender: Any) {
         // get images
@@ -176,6 +247,33 @@ class ViewController: UIViewController {
         }
         self.sectionCollection.reloadData()
     }
+    
+    @IBAction func toggleCanvasAction(_ sender: Any) {
+        if (self.toggleCanvas.isOn) {
+            self.canvasView.isUserInteractionEnabled = true
+        } else {
+            self.canvasView.isUserInteractionEnabled = false
+        }
+    }
+    
+    @IBAction func changeToolAction(_ sender: UIButton) {
+        self.changeTool(sender.tag)
+    }
+    
+}
+
+extension ViewController: UIPencilInteractionDelegate {
+    func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
+        if (self.toggleCanvas.isOn) {
+            var newTool = Int()
+            if (self.currentTool == Tools.pencil) {
+                newTool = Tools.eraser.rawValue
+            } else {
+                newTool = Tools.pencil.rawValue
+            }
+            self.changeTool(newTool)
+        }
+    }
 }
 
 extension ViewController: UITabBarDelegate {
@@ -183,7 +281,7 @@ extension ViewController: UITabBarDelegate {
         self.activeSection = Sections(rawValue: item.tag)!
         self.activeSet = self.images[item.tag]
         self.sectionCollection.reloadData()
-        self.sectionCollection.scrollToItem(at: IndexPath(index: 0), at: .right, animated: false)
+        self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
         self.sectionCollection.showsHorizontalScrollIndicator = false
     }
 }

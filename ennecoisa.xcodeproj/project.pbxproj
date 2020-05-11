@@ -11,6 +11,7 @@
 		0689382C23DB9BFD00D025AB /* ShakeItButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689382B23DB9BFD00D025AB /* ShakeItButton.swift */; };
 		068E00A423CA6AC1004C45CF /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */; };
 		068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */; };
+		0693EF762468A51D00E0337D /* ToggleCanvasButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693EF752468A51D00E0337D /* ToggleCanvasButton.swift */; };
 		06B3DE8B23C677BA00C1E843 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3DE8A23C677BA00C1E843 /* ViewController.swift */; };
 		06BA56D924059E1E006E6C93 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA56D824059E1E006E6C93 /* InfoViewController.swift */; };
 		06BD174324034D250028FADC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06BD174124034D250028FADC /* Localizable.strings */; };
@@ -46,6 +47,7 @@
 		0689382B23DB9BFD00D025AB /* ShakeItButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeItButton.swift; sourceTree = "<group>"; };
 		068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		0693EF752468A51D00E0337D /* ToggleCanvasButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCanvasButton.swift; sourceTree = "<group>"; };
 		06B3DE8A23C677BA00C1E843 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		06BA56D824059E1E006E6C93 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		06BA56DB2405F4AB006E6C93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -119,9 +121,17 @@
 				06B3DE8A23C677BA00C1E843 /* ViewController.swift */,
 				867AF3AD22C511FA001C1E8F /* CameraViewController.swift */,
 				0689382B23DB9BFD00D025AB /* ShakeItButton.swift */,
+				0693EF752468A51D00E0337D /* ToggleCanvasButton.swift */,
 				06BA56D824059E1E006E6C93 /* InfoViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		0693EF772468B80B00E0337D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		867AF39D22C511FA001C1E8F = {
@@ -149,6 +159,7 @@
 			children = (
 				0689382E23DBA18B00D025AB /* Controller */,
 				0689382D23DBA18400D025AB /* View */,
+				0693EF772468B80B00E0337D /* Utils */,
 				0609283A23D40D450023465F /* Extensions */,
 				867AF3A922C511FA001C1E8F /* AppDelegate.swift */,
 				867AF3B222C511FB001C1E8F /* Assets.xcassets */,
@@ -317,6 +328,7 @@
 				0609283C23D40D5C0023465F /* ExtensionView.swift in Sources */,
 				06BA56D924059E1E006E6C93 /* InfoViewController.swift in Sources */,
 				068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */,
+				0693EF762468A51D00E0337D /* ToggleCanvasButton.swift in Sources */,
 				867AF3AE22C511FA001C1E8F /* CameraViewController.swift in Sources */,
 				867AF3AA22C511FA001C1E8F /* AppDelegate.swift in Sources */,
 			);
@@ -445,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -501,7 +513,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -528,7 +540,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabischima.ennecoisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -549,7 +561,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabischima.ennecoisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
