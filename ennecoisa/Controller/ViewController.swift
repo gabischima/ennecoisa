@@ -171,6 +171,19 @@ class ViewController: UIViewController {
         let interaction = UIPencilInteraction()
         interaction.delegate = self
         view.addInteraction(interaction)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let undoGesture = UITapGestureRecognizer(target: self, action: #selector(undoAction(_:)))
+            undoGesture.numberOfTouchesRequired = 2
+            
+            let redoGesture = UITapGestureRecognizer(target: self, action: #selector(redoAction(_:)))
+            redoGesture.numberOfTouchesRequired = 3
+            
+            let tapGestures: [UIGestureRecognizer] = [undoGesture, redoGesture]
+            for tap in tapGestures {
+                view.addGestureRecognizer(tap)
+            }
+        }
     }
     
     func animateEnneView() {
