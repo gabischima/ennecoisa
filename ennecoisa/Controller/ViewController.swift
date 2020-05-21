@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var eraserConstraint: NSLayoutConstraint!
     @IBOutlet weak var pencilConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var widthControl: WidthControl!
     
     var canvasView: PKCanvasView!
 
@@ -36,7 +37,7 @@ class ViewController: UIViewController {
     }
     
     let eraserTool = PKEraserTool(.bitmap)
-    let pencilTool = PKInkingTool(.pencil, color: .black, width: 6)
+    var pencilTool = PKInkingTool(.pencil, color: .black, width: 6)
     
     var currentTool: Tools = Tools.pencil
 
@@ -118,6 +119,8 @@ class ViewController: UIViewController {
         self.activeSection = Sections.head
         
         setupCanvasView()
+        
+        self.widthControl.value = 6.0
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -215,16 +218,36 @@ class ViewController: UIViewController {
         let legs: UIImage? = UIImage(named: self.selectedImages[3])
         let shoes: UIImage? = UIImage(named: self.selectedImages[4])
 
-        let size = CGSize(width: 750, height: 1334)
-        UIGraphicsBeginImageContext(size)
+        let canvasImage: UIImage! = self.canvasView.drawing.image(from: self.canvasView.frame, scale: 2.0)
 
-        let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        eye?.draw(in: areaSize)
-        hair?.draw(in: areaSize, blendMode: .normal, alpha: 1)
-        head?.draw(in: areaSize, blendMode: .normal, alpha: 1)
-        shoes?.draw(in: areaSize, blendMode: .normal, alpha: 1)
-        legs?.draw(in: areaSize, blendMode: .normal, alpha: 1)
-        shirt?.draw(in: areaSize, blendMode: .normal, alpha: 1)
+        var size = CGSize()
+
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            size.width = 2388
+            size.height = 1482
+        case .phone:
+            size.width = 750
+            size.height = 1196
+        default:
+            size.width = 750
+            size.height = 1196
+        }
+        
+        UIGraphicsBeginImageContext(size)
+        
+        let newWidth = 750 * (size.height/1334)
+        let canvasSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        let enneSize = CGRect(origin: CGPoint(x: (canvasSize.midX - newWidth/2), y: 0), size: CGSize(width: newWidth, height: size.height))
+
+        eye?.draw(in: enneSize)
+        hair?.draw(in: enneSize, blendMode: .normal, alpha: 1)
+        head?.draw(in: enneSize, blendMode: .normal, alpha: 1)
+        shoes?.draw(in: enneSize, blendMode: .normal, alpha: 1)
+        legs?.draw(in: enneSize, blendMode: .normal, alpha: 1)
+        shirt?.draw(in: enneSize, blendMode: .normal, alpha: 1)
+
+        canvasImage?.draw(in: canvasSize, blendMode: .normal, alpha: 1)
 
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
@@ -249,7 +272,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func toggleCanvasAction(_ sender: Any) {
-        if (self.toggleCanvas.isOn) {
+        if self.toggleCanvas.isOn {
             self.canvasView.isUserInteractionEnabled = true
         } else {
             self.canvasView.isUserInteractionEnabled = false
@@ -258,6 +281,23 @@ class ViewController: UIViewController {
     
     @IBAction func changeToolAction(_ sender: UIButton) {
         self.changeTool(sender.tag)
+    }
+    
+    @IBAction func undoAction(_ sender: Any) {
+        if let _ = self.canvasView.undoManager?.canUndo {
+            self.canvasView.undoManager?.undo()
+        }
+    }
+    
+    @IBAction func redoAction(_ sender: Any) {
+        if let _ = self.canvasView.undoManager?.canRedo {
+            self.canvasView.undoManager?.redo()
+        }
+    }
+    
+    @IBAction func changeWidthValue(_ sender: WidthControl) {
+        self.pencilTool.width = CGFloat(sender.value)
+        self.changeTool(Tools.pencil.rawValue)
     }
     
 }

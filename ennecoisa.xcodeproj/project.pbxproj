@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06030821246B7616001C78B8 /* WidthControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06030820246B7616001C78B8 /* WidthControl.swift */; };
 		0609283C23D40D5C0023465F /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0609283B23D40D5C0023465F /* ExtensionView.swift */; };
 		0689382C23DB9BFD00D025AB /* ShakeItButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689382B23DB9BFD00D025AB /* ShakeItButton.swift */; };
 		068E00A423CA6AC1004C45CF /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06030820246B7616001C78B8 /* WidthControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthControl.swift; sourceTree = "<group>"; };
 		0609283B23D40D5C0023465F /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		0689382B23DB9BFD00D025AB /* ShakeItButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeItButton.swift; sourceTree = "<group>"; };
 		068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */,
 				068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */,
 				867AF3B422C511FB001C1E8F /* LaunchScreen.storyboard */,
+				06030820246B7616001C78B8 /* WidthControl.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				0693EF762468A51D00E0337D /* ToggleCanvasButton.swift in Sources */,
 				867AF3AE22C511FA001C1E8F /* CameraViewController.swift in Sources */,
 				867AF3AA22C511FA001C1E8F /* AppDelegate.swift in Sources */,
+				06030821246B7616001C78B8 /* WidthControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
