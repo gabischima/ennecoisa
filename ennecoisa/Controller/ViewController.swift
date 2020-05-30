@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     var currentTool: Tools = Tools.pencil
 
     var canShakeItToShuffle: Bool = true
+
     /*
      * Images
      * head = 0
@@ -50,57 +51,19 @@ class ViewController: UIViewController {
      * legs = 3
      * shoes = 4
      */
-    var images: [[UIImage]] = [
-        [
-            UIImage(named: "head_0")!,
-            UIImage(named: "head_1")!,
-            UIImage(named: "head_2")!
-        ],
-        [
-            UIImage(named: "hair_0")!,
-            UIImage(named: "hair_1")!,
-            UIImage(named: "hair_2")!,
-            UIImage(named: "hair_3")!,
-            UIImage(named: "hair_4")!,
-            UIImage(named: "hair_5")!,
-            UIImage(named: "hair_6")!,
-            UIImage(named: "hair_7")!,
-            UIImage(named: "hair_8")!,
-            UIImage(named: "hair_9")!,
-            UIImage(named: "hair_10")!
-        ],
-        [
-            UIImage(named: "shirt_0")!,
-            UIImage(named: "shirt_1")!,
-            UIImage(named: "shirt_2")!,
-            UIImage(named: "shirt_3")!,
-            UIImage(named: "shirt_4")!,
-            UIImage(named: "shirt_5")!
-        ],
-        [
-            UIImage(named: "legs_0")!,
-            UIImage(named: "legs_1")!,
-            UIImage(named: "legs_2")!,
-            UIImage(named: "legs_3")!
-        ],
-        [
-            UIImage(named: "shoes_0")!,
-            UIImage(named: "shoes_1")!,
-            UIImage(named: "shoes_2")!
-        ]
+    var enneSections: [EnneSection] = [
+        EnneSection(slug: "head", size: 3),
+        EnneSection(slug: "hair", size: 11),
+        EnneSection(slug: "shirt", size: 6),
+        EnneSection(slug: "legs", size: 4),
+        EnneSection(slug: "shoes", size: 3)
     ]
-    
-    enum Sections: Int, CaseIterable {
-        case head, hair, shirt, legs, shoes
-    }
 
     /* Active Set */
-    // array of image for active set
-    var activeSet = [UIImage()]
     // string for name of active set
-    var activeSection = Sections.head
+    var activeSection = EnneSections.head
     // selected image for each set
-    var selectedImages = [String()]
+    var selectedImages: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,11 +75,11 @@ class ViewController: UIViewController {
         self.sectionCollection.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "0")
         self.sectionCollection.allowsMultipleSelection = false
         
-        Sections.allCases.forEach { (section) in
+        EnneSections.allCases.forEach { (section) in
             self.selectedImages.append("\(section)_")
         }
-        self.activeSet = self.images[0]
-        self.activeSection = Sections.head
+
+        self.activeSection = EnneSections.head
         
         setupCanvasView()
         
@@ -233,19 +196,7 @@ class ViewController: UIViewController {
 
         let canvasImage: UIImage! = self.canvasView.drawing.image(from: self.canvasView.frame, scale: 2.0)
 
-        var size = CGSize()
-
-        switch UIDevice.current.userInterfaceIdiom {
-        case .pad:
-            size.width = 2388
-            size.height = 1482
-        case .phone:
-            size.width = 750
-            size.height = 1196
-        default:
-            size.width = 750
-            size.height = 1196
-        }
+        let size = ARSize.device
         
         UIGraphicsBeginImageContext(size)
         
@@ -274,11 +225,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func shuffleAction() {
-        Sections.allCases.forEach { (section) in
-            let img = Int(arc4random_uniform(UInt32(self.images[section.rawValue].count)))
-            self.selectedImages[section.rawValue] = "\(section)_\(img)"
-            if let imageView = self.enneView.viewWithTag(section.rawValue) as? UIImageView {
-                imageView.image = self.images[section.rawValue][img]
+        for (i, section) in self.enneSections.enumerated() {
+            let j = Int(arc4random_uniform(UInt32(section.images.count)))
+            self.selectedImages[i] = section.images[j].slug
+            if let imageView = self.enneView.viewWithTag(i) as? UIImageView {
+                imageView.image = section.images[j].image
             }
         }
         self.sectionCollection.reloadData()
@@ -315,33 +266,20 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UIPencilInteractionDelegate {
-    func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
-        if (self.toggleCanvas.isOn) {
-            var newTool = Int()
-            if (self.currentTool == Tools.pencil) {
-                newTool = Tools.eraser.rawValue
-            } else {
-                newTool = Tools.pencil.rawValue
-            }
-            self.changeTool(newTool)
-        }
-    }
-}
-
+//MARK: - Tabbar delegate
 extension ViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        self.activeSection = Sections(rawValue: item.tag)!
-        self.activeSet = self.images[item.tag]
+        self.activeSection = EnneSections(rawValue: item.tag)!
         self.sectionCollection.reloadData()
         self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
         self.sectionCollection.showsHorizontalScrollIndicator = false
     }
 }
 
+//MARK: - Collection view delegate / datasource
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.activeSet.count
+        return self.enneSections[self.activeSection.rawValue].size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -350,10 +288,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath) as! ItemCollectionViewCell
-        let name = "\(self.activeSection)_\(String(indexPath.row))"
-        cell.thumbnail.image = UIImage(named: "\(name)_icon")
+        let enneimg = self.enneSections[self.activeSection.rawValue].images[indexPath.row]
+        cell.thumbnail.image = enneimg.icon
         cell.thumbnail.alpha = 0.6
-        if let _ = self.selectedImages.firstIndex(of: name) {
+        if let _ = self.selectedImages.firstIndex(of: enneimg.slug) {
             cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         } else {
@@ -374,10 +312,25 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 return false
             }
         }
-        imageView?.image = self.images[activeIndex][indexPath.row]
-        self.selectedImages[activeIndex] = "\(self.activeSection)_\(String(indexPath.row))"
+        imageView?.image = self.enneSections[activeIndex].images[indexPath.row].image
+        self.selectedImages[activeIndex] = self.enneSections[activeIndex].images[indexPath.row].slug
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         return true
     }
 
+}
+
+//MARK: - Pencil delegate
+extension ViewController: UIPencilInteractionDelegate {
+    func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
+        if (self.toggleCanvas.isOn) {
+            var newTool = Int()
+            if (self.currentTool == Tools.pencil) {
+                newTool = Tools.eraser.rawValue
+            } else {
+                newTool = Tools.pencil.rawValue
+            }
+            self.changeTool(newTool)
+        }
+    }
 }

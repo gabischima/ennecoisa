@@ -8,9 +8,13 @@
 
 import UIKit
 
+
+enum EnneSections: Int, CaseIterable {
+    case head, hair, shirt, legs, shoes
+}
+
 struct EnneSection: Equatable {
     let slug: String
-    var selected: Bool? = false
     var icon: UIImage? {
         return UIImage(named: slug)
     }
@@ -21,6 +25,11 @@ struct EnneSection: Equatable {
             arr.append(EnneImage(slug: "\(slug)_\(item)"))
         }
         return arr
+    }
+
+    init(slug: String, size: Int) {
+        self.slug = slug
+        self.size = size
     }
     
     static func == (lhs: EnneSection, rhs: EnneSection) -> Bool {
