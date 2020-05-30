@@ -10,34 +10,32 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-    @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    let titles =
-    [
-        [
-            "Download blank enne",
-            "Go to website"
-        ]
-    ]
+    struct Section {
+        var title: String?
+        var items: [Subsection]?
+        
+        struct Subsection {
+            var title: String?
+            var image: UIImage?
+        }
+    }
     
-    let images =
-    [
-        [
-            "download",
-            "external_link"
-        ]
+    let sections: [Section] = [
+        Section(title: "Configurations", items: [
+            Section.Subsection(title: "Right hand interface", image: nil),
+            Section.Subsection(title: "Save drawing", image: nil)
+        ]),
+        Section(title: "Info", items: [
+            Section.Subsection(title: "Download blank enne", image: UIImage(named: "download")),
+            Section.Subsection(title: "Go to website", image: UIImage(named: "external_link"))
+        ])
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        // show close btn if iOS < 13.0
-        if #available(iOS 13, *) {
-            self.closeBtn.isHidden = true
-        } else {
-            self.closeBtn.isHidden = false
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,11 +45,7 @@ class InfoViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
-    @IBAction func closeView(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         guard error == nil else {
             // Error saving image
@@ -75,17 +69,29 @@ class InfoViewController: UIViewController {
 
 extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return titles.count
+        return sections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles[section].count
+        return sections[section].items?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].title
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 24.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = NSLocalizedString(titles[indexPath.section][indexPath.row], comment: "")
-        cell.imageView?.image = UIImage(named: images[indexPath.section][indexPath.row])
+        cell.textLabel?.text = NSLocalizedString(sections[indexPath.section].items?[indexPath.row].title ?? "", comment: "")
+        cell.imageView?.image = sections[indexPath.section].items?[indexPath.row].image
         cell.imageView?.contentMode = .scaleAspectFit
         
         return cell
@@ -93,7 +99,10 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (indexPath.section == 0) {
+        switch indexPath.section {
+        case 0:
+            print("section 1")
+        case 1:
             switch indexPath.row {
             case 0:
                 if let image = UIImage(named: "card") {
@@ -104,6 +113,8 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
             default:
                 break
             }
+        default:
+            break
         }
     }
 }
