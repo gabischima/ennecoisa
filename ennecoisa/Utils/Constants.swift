@@ -19,6 +19,16 @@ struct ARSize {
             return CGSize(width: 750, height: 1196)
         }
     }
+    static var divider: CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            return 63
+        case .phone:
+            return 51
+        default:
+            return 51
+        }
+    }
 }
 
 enum EnneSections: Int, CaseIterable {
