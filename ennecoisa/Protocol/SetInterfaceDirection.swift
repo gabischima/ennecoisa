@@ -6,8 +6,9 @@
 //  Copyright © 2020 Gabriela Schirmer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol SetToolsPositionDelegate {
+protocol ConfigurationDelegate {
     func setToolsPosition(position: ToolsPosition)
+    func saveEnneToCameraRoll() -> UIImage
 }

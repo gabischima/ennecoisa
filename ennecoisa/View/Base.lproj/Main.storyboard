@@ -21,9 +21,6 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base" translatesAutoresizingMaskIntoConstraints="NO" id="iCg-fq-8u1">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="enneeye" translatesAutoresizingMaskIntoConstraints="NO" id="30h-FM-gDd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
-                                    </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-Zb-2jJ">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
                                     </imageView>
@@ -54,7 +51,6 @@
                                     <constraint firstItem="u5S-bf-XEx" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="3AX-1i-cpF"/>
                                     <constraint firstAttribute="trailing" secondItem="iCg-fq-8u1" secondAttribute="trailing" id="4in-eu-6pm"/>
                                     <constraint firstItem="u5S-bf-XEx" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="8ye-JD-jAH"/>
-                                    <constraint firstItem="30h-FM-gDd" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="931-dL-K8t"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="9mK-oS-MJr"/>
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="Aht-29-Meb"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="BQa-9d-tc9"/>
@@ -64,17 +60,13 @@
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="PPq-ZH-3yN"/>
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="PUt-3v-KeX"/>
                                     <constraint firstItem="lIA-JH-X51" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="T5H-Qf-0UD"/>
-                                    <constraint firstAttribute="trailing" secondItem="30h-FM-gDd" secondAttribute="trailing" id="WQw-MU-xm4"/>
                                     <constraint firstItem="dV7-7f-bTk" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="WR4-gf-vIk"/>
-                                    <constraint firstItem="30h-FM-gDd" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="Wkc-0n-btW"/>
                                     <constraint firstAttribute="trailing" secondItem="dV7-7f-bTk" secondAttribute="trailing" id="aLC-Ca-8wo"/>
-                                    <constraint firstItem="30h-FM-gDd" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="aTO-To-cqk"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="apD-NF-eP0"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="atv-yo-mNL"/>
                                     <constraint firstAttribute="trailing" secondItem="Jk3-63-Q6i" secondAttribute="trailing" id="cqx-pB-6Tp"/>
                                     <constraint firstItem="lIA-JH-X51" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="cwR-oJ-eYE"/>
                                     <constraint firstItem="dV7-7f-bTk" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="dAi-2j-ypi"/>
-                                    <constraint firstItem="30h-FM-gDd" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="e95-AQ-Uvy"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="geV-RC-eSL"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="hbm-PO-taB"/>
                                     <constraint firstAttribute="trailing" secondItem="u5S-bf-XEx" secondAttribute="trailing" id="j8F-ES-2oZ"/>
@@ -142,7 +134,7 @@
                                 <state key="normal" image="camera_btn"/>
                                 <state key="highlighted" image="camera btn_highlight"/>
                                 <connections>
-                                    <action selector="saveImage:" destination="9x8-VY-5JV" eventType="touchUpInside" id="JC2-vg-UdV"/>
+                                    <action selector="saveImageToAR:" destination="9x8-VY-5JV" eventType="touchUpInside" id="hmZ-kM-vuz"/>
                                     <segue destination="BV1-FR-VrT" kind="show" id="M65-oB-GE6"/>
                                 </connections>
                             </button>
@@ -154,11 +146,11 @@
                                 </constraints>
                                 <items>
                                     <tabBarItem title="" image="head" id="Hpf-aD-Q4n"/>
-                                    <tabBarItem title="" image="face" id="c06-nU-jCm"/>
-                                    <tabBarItem tag="1" title="" image="hair" id="7UP-ce-yF4"/>
-                                    <tabBarItem tag="2" title="" image="shirt" id="xkd-6w-Fuy"/>
-                                    <tabBarItem tag="3" title="" image="legs" id="GJW-wV-AdU"/>
-                                    <tabBarItem tag="4" title="" image="shoes" id="vZP-KF-jsg"/>
+                                    <tabBarItem tag="1" title="" image="face" id="c06-nU-jCm"/>
+                                    <tabBarItem tag="2" title="" image="hair" id="7UP-ce-yF4"/>
+                                    <tabBarItem tag="3" title="" image="shirt" id="xkd-6w-Fuy"/>
+                                    <tabBarItem tag="4" title="" image="legs" id="GJW-wV-AdU"/>
+                                    <tabBarItem tag="5" title="" image="shoes" id="vZP-KF-jsg"/>
                                 </items>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -509,7 +501,6 @@
         <image name="clearColor" width="375" height="49"/>
         <image name="close" width="34" height="34"/>
         <image name="config" width="30" height="30"/>
-        <image name="enneeye" width="750" height="1334"/>
         <image name="eraser" width="60" height="30"/>
         <image name="face" width="30" height="30"/>
         <image name="hair" width="30" height="30"/>

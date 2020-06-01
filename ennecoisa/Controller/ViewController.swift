@@ -11,6 +11,8 @@ import PencilKit
 
 class ViewController: UIViewController {
 
+    //MARK: - IBOutlet
+
     @IBOutlet weak var enneSectionsTabbar: UITabBar!
     @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var sectionCollection: UICollectionView!
@@ -41,6 +43,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var shuffleViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var shuffleViewTrailingConstraint: NSLayoutConstraint!
     
+    //MARK: - Variables
     var canvasView: PKCanvasView!
 
     enum Tools: Int {
@@ -66,7 +69,7 @@ class ViewController: UIViewController {
      */
     var enneSections: [EnneSection] = [
         EnneSection(slug: "head", size: 3),
-        EnneSection(slug: "face", size: 0),
+        EnneSection(slug: "face", size: 7),
         EnneSection(slug: "hair", size: 11),
         EnneSection(slug: "shirt", size: 6),
         EnneSection(slug: "legs", size: 4),
@@ -79,6 +82,7 @@ class ViewController: UIViewController {
     // selected image for each set
     var selectedImages: [String] = []
     
+    //MARK: - View Controller methos
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,6 +96,12 @@ class ViewController: UIViewController {
         EnneSections.allCases.forEach { (section) in
             self.selectedImages.append("\(section)_")
         }
+        
+        if let str = UserDefaults.standard.string(forKey: "toolsPosition"), let position = Int(str) {
+            toolsPosition = ToolsPosition(rawValue: position) ?? .right
+            setToolsPosition(position: toolsPosition)
+        }
+
 
         self.activeSection = EnneSections.head
         
@@ -108,6 +118,7 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    //MARK: - Motion method
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake && self.toggleShake.isOn {
             shuffleAction()
@@ -115,6 +126,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: - Setup methods
     func setupTabbar() {
         self.enneSectionsTabbar.delegate = self
         self.view.bringSubviewToFront(self.enneSectionsTabbar)
@@ -163,6 +175,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: - Functions
     func animateEnneView() {
         let midX = self.enneView.center.x
         let midY = self.enneView.center.y
@@ -210,12 +223,7 @@ class ViewController: UIViewController {
         }
     }
     
-    /* MARK: IBAction */
-    
-    @IBAction func saveImage(_ sender: Any) {
-        // get images
-        // let eye: UIImage? = UIImage(named: "enneeye")
-
+    func mergeImages (toAR: Bool) -> UIImage {
         let head: UIImage? = UIImage(named: self.selectedImages[0])
         let face: UIImage? = UIImage(named: self.selectedImages[1])
         let hair: UIImage? = UIImage(named: self.selectedImages[2])
@@ -233,19 +241,31 @@ class ViewController: UIViewController {
         let canvasSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         let enneSize = CGRect(origin: CGPoint(x: (canvasSize.midX - newWidth/2), y: 0), size: CGSize(width: newWidth, height: size.height))
 
-        // eye?.draw(in: enneSize)
+        if (!toAR) {
+            let enne: UIImage? = UIImage(named: "base")
+            enne?.draw(in: enneSize)
+        }
         face?.draw(in: enneSize)
         hair?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         head?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         shoes?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         legs?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         shirt?.draw(in: enneSize, blendMode: .normal, alpha: 1)
+        
 
         canvasImage?.draw(in: canvasSize, blendMode: .normal, alpha: 1)
 
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
+        return newImage
+    }
+    
+    //MARK: - IBAction
+    @IBAction func saveImageToAR(_ sender: Any) {
+        // get images
+        let newImage = mergeImages(toAR: true)
+        
         // save in contents directory
         let fileManager = FileManager.default
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
@@ -365,9 +385,11 @@ extension ViewController: UIPencilInteractionDelegate {
     }
 }
 
-extension ViewController: SetToolsPositionDelegate {
+//MARK: - Set Tools Position delegate
+extension ViewController: ConfigurationDelegate {
     func setToolsPosition(position: ToolsPosition) {
         toolsPosition = position
+        UserDefaults.standard.set(String(position.rawValue), forKey: "toolsPosition")
         switch position {
         case .right:
             toolsViewLeadingConstraint.priority = UILayoutPriority(rawValue: 1)
@@ -393,5 +415,9 @@ extension ViewController: SetToolsPositionDelegate {
             self.pencilBtn.imageView?.transform = CGAffineTransform(rotationAngle: (180.0 * .pi) / 180.0)
         }
         self.view.layoutIfNeeded()
+    }
+
+    func saveEnneToCameraRoll() -> UIImage {
+        return mergeImages(toAR: false)
     }
 }

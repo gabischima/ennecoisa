@@ -12,7 +12,7 @@ class InfoViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var delegate: SetToolsPositionDelegate?
+    var delegate: ConfigurationDelegate?
     
     struct Section {
         var title: String
@@ -21,17 +21,17 @@ class InfoViewController: UIViewController {
 
     struct Subsection {
         var title: String
-        var cellIdentifier: String?
+        var cellIdentifier: String
         var image: UIImage?
     }
     
     let sections: [Section] = [
         Section(title: "Configurations", items: [
-            Subsection(title: "Drawing tools position", cellIdentifier: "switchCell", image: nil),
-            Subsection(title: "Save drawing", cellIdentifier: "cell", image: nil)
+            Subsection(title: "Drawing tools position", cellIdentifier: "switchCell", image: UIImage(named: "drawing_tools")),
+            Subsection(title: "Save drawing", cellIdentifier: "cell", image: UIImage(named: "download"))
         ]),
         Section(title: "Info", items: [
-            Subsection(title: "Download blank enne", cellIdentifier: "cell", image: UIImage(named: "download")),
+            Subsection(title: "Download blank Enne", cellIdentifier: "cell", image: UIImage(named: "download")),
             Subsection(title: "Go to website", cellIdentifier: "cell", image: UIImage(named: "external_link"))
         ])
     ]
@@ -56,7 +56,7 @@ class InfoViewController: UIViewController {
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         guard error == nil else {
             // Error saving image
-            showAlert(title: "Photo could not be saved", message: "Please, check permissions.")
+            showAlert(title: "Image could not be saved", message: "Please, check permissions.")
             return
         }
         // Image saved successfully
@@ -77,7 +77,6 @@ class InfoViewController: UIViewController {
         if (self.delegate) != nil {
             delegate?.setToolsPosition(position: ToolsPosition(rawValue: sender.selectedSegmentIndex) ?? .right)
         }
-        
     }
 }
 
@@ -103,17 +102,19 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (sections[indexPath.section].items[indexPath.row].cellIdentifier == "switchCell") {
+        let item = sections[indexPath.section].items[indexPath.row]
+        if (item.cellIdentifier == "switchCell") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchTableViewCell
-            cell.title?.text = sections[indexPath.section].items[indexPath.row].title
-            cell.imageView?.image = sections[indexPath.section].items[indexPath.row].image ?? nil
+            cell.title?.text = item.title
+            cell.imageView?.image = item.image ?? nil
             cell.interfaceSwitch.selectedSegmentIndex = toolsPosition.rawValue
             cell.interfaceSwitch.addTarget(self, action: #selector(changeInterface(sender:)), for: .valueChanged)
+            cell.imageView?.contentMode = .scaleAspectFit
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DefaultTableViewCell
-            cell.title?.text = sections[indexPath.section].items[indexPath.row].title
-            cell.imageView?.image = sections[indexPath.section].items[indexPath.row].image ?? nil
+            cell.title?.text = item.title
+            cell.imageView?.image = item.image ?? nil
             return cell
         }
     }
@@ -122,7 +123,17 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
-            print("section 1")
+            switch indexPath.row {
+            case 1:
+                if (self.delegate) != nil {
+                    if let image = delegate?.saveEnneToCameraRoll() {
+                        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    }
+                }
+            break
+            default:
+                break
+            }
         case 1:
             switch indexPath.row {
             case 0:
