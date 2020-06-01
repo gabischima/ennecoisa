@@ -9,10 +9,6 @@
 import UIKit
 
 
-enum EnneSections: Int, CaseIterable {
-    case head, hair, shirt, legs, shoes
-}
-
 struct EnneSection: Equatable {
     let slug: String
     var icon: UIImage? {

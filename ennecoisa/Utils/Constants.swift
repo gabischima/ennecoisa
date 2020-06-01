@@ -20,3 +20,11 @@ struct ARSize {
         }
     }
 }
+
+enum EnneSections: Int, CaseIterable {
+    case head, face, hair, shirt, legs, shoes
+}
+
+enum ToolsPosition: Int {
+    case left, right
+}

@@ -12,30 +12,37 @@ class InfoViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var delegate: SetToolsPositionDelegate?
+    
     struct Section {
-        var title: String?
-        var items: [Subsection]?
-        
-        struct Subsection {
-            var title: String?
-            var image: UIImage?
-        }
+        var title: String
+        var items: [Subsection]
+    }
+
+    struct Subsection {
+        var title: String
+        var cellIdentifier: String?
+        var image: UIImage?
     }
     
     let sections: [Section] = [
         Section(title: "Configurations", items: [
-            Section.Subsection(title: "Right hand interface", image: nil),
-            Section.Subsection(title: "Save drawing", image: nil)
+            Subsection(title: "Drawing tools position", cellIdentifier: "switchCell", image: nil),
+            Subsection(title: "Save drawing", cellIdentifier: "cell", image: nil)
         ]),
         Section(title: "Info", items: [
-            Section.Subsection(title: "Download blank enne", image: UIImage(named: "download")),
-            Section.Subsection(title: "Go to website", image: UIImage(named: "external_link"))
+            Subsection(title: "Download blank enne", cellIdentifier: "cell", image: UIImage(named: "download")),
+            Subsection(title: "Go to website", cellIdentifier: "cell", image: UIImage(named: "external_link"))
         ])
     ]
+    
+    var toolsPosition: ToolsPosition = .right
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        self.tableView.register(UINib(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        self.tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "switchCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +72,13 @@ class InfoViewController: UIViewController {
     func openSite () {
         UIApplication.shared.open(URL(string: "https://gabischima.github.io/en/ennecoisa")!, options: [:], completionHandler: nil)
     }
+    
+    @objc func changeInterface(sender: UISegmentedControl) {
+        if (self.delegate) != nil {
+            delegate?.setToolsPosition(position: ToolsPosition(rawValue: sender.selectedSegmentIndex) ?? .right)
+        }
+        
+    }
 }
 
 extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -73,7 +87,7 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].items?.count ?? 0
+        return sections[section].items.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -89,12 +103,19 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = NSLocalizedString(sections[indexPath.section].items?[indexPath.row].title ?? "", comment: "")
-        cell.imageView?.image = sections[indexPath.section].items?[indexPath.row].image
-        cell.imageView?.contentMode = .scaleAspectFit
-        
-        return cell
+        if (sections[indexPath.section].items[indexPath.row].cellIdentifier == "switchCell") {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchTableViewCell
+            cell.title?.text = sections[indexPath.section].items[indexPath.row].title
+            cell.imageView?.image = sections[indexPath.section].items[indexPath.row].image ?? nil
+            cell.interfaceSwitch.selectedSegmentIndex = toolsPosition.rawValue
+            cell.interfaceSwitch.addTarget(self, action: #selector(changeInterface(sender:)), for: .valueChanged)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DefaultTableViewCell
+            cell.title?.text = sections[indexPath.section].items[indexPath.row].title
+            cell.imageView?.image = sections[indexPath.section].items[indexPath.row].image ?? nil
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

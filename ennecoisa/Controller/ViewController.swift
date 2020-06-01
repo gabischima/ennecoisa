@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var sectionCollection: UICollectionView!
     
     @IBOutlet weak var headImageView: UIImageView!
+    @IBOutlet weak var faceImageView: UIImageView!
     @IBOutlet weak var hairImageView: UIImageView!
     @IBOutlet weak var shirtImageView: UIImageView!
     @IBOutlet weak var legsImageView: UIImageView!
@@ -25,10 +26,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var toggleShake: ShakeItButton!
     @IBOutlet weak var toggleCanvas: ToggleCanvasButton!
     
-    @IBOutlet weak var eraserConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pencilConstraint: NSLayoutConstraint!
+    @IBOutlet weak var eraserTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var eraserLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pencilTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pencilLeadingConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var eraserBtn: UIButton!
+    @IBOutlet weak var pencilBtn: UIButton!
     
     @IBOutlet weak var widthControl: WidthControl!
+    
+    @IBOutlet weak var toolsViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolsViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var shuffleViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var shuffleViewTrailingConstraint: NSLayoutConstraint!
     
     var canvasView: PKCanvasView!
 
@@ -42,6 +53,8 @@ class ViewController: UIViewController {
     var currentTool: Tools = Tools.pencil
 
     var canShakeItToShuffle: Bool = true
+    
+    var toolsPosition: ToolsPosition = .right
 
     /*
      * Images
@@ -53,6 +66,7 @@ class ViewController: UIViewController {
      */
     var enneSections: [EnneSection] = [
         EnneSection(slug: "head", size: 3),
+        EnneSection(slug: "face", size: 0),
         EnneSection(slug: "hair", size: 11),
         EnneSection(slug: "shirt", size: 6),
         EnneSection(slug: "legs", size: 4),
@@ -162,18 +176,23 @@ class ViewController: UIViewController {
         self.enneView.layer.add(animation, forKey: "position")
     }
     
+    // TODO: change tool constrait relative to tools positions
     func changeTool (_ tool: Int) {
         switch tool {
         case Tools.pencil.rawValue:
             self.canvasView.tool = self.pencilTool
             self.currentTool = Tools.pencil
-            self.eraserConstraint.constant = -20.0
-            self.pencilConstraint.constant = 0.0
+            self.eraserTrailingConstraint.constant = -20.0
+            self.pencilTrailingConstraint.constant = 0.0
+            self.eraserLeadingConstraint.constant = -20.0
+            self.pencilLeadingConstraint.constant = 0.0
         case Tools.eraser.rawValue:
             self.canvasView.tool = self.eraserTool
             self.currentTool = Tools.eraser
-            self.eraserConstraint.constant = 0.0
-            self.pencilConstraint.constant = -20.0
+            self.eraserTrailingConstraint.constant = 0.0
+            self.pencilTrailingConstraint.constant = -20.0
+            self.eraserLeadingConstraint.constant = 0.0
+            self.pencilLeadingConstraint.constant = -20.0
         default:
             break
         }
@@ -182,17 +201,27 @@ class ViewController: UIViewController {
         })
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showConfig" {
+            if let nextViewController = segue.destination as? InfoViewController {
+                nextViewController.delegate = self
+                nextViewController.toolsPosition = self.toolsPosition
+            }
+        }
+    }
+    
     /* MARK: IBAction */
     
     @IBAction func saveImage(_ sender: Any) {
         // get images
-        let eye: UIImage? = UIImage(named: "enneeye")
+        // let eye: UIImage? = UIImage(named: "enneeye")
 
         let head: UIImage? = UIImage(named: self.selectedImages[0])
-        let hair: UIImage? = UIImage(named: self.selectedImages[1])
-        let shirt: UIImage? = UIImage(named: self.selectedImages[2])
-        let legs: UIImage? = UIImage(named: self.selectedImages[3])
-        let shoes: UIImage? = UIImage(named: self.selectedImages[4])
+        let face: UIImage? = UIImage(named: self.selectedImages[1])
+        let hair: UIImage? = UIImage(named: self.selectedImages[2])
+        let shirt: UIImage? = UIImage(named: self.selectedImages[3])
+        let legs: UIImage? = UIImage(named: self.selectedImages[4])
+        let shoes: UIImage? = UIImage(named: self.selectedImages[5])
 
         let canvasImage: UIImage! = self.canvasView.drawing.image(from: self.canvasView.frame, scale: 2.0)
 
@@ -204,7 +233,8 @@ class ViewController: UIViewController {
         let canvasSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         let enneSize = CGRect(origin: CGPoint(x: (canvasSize.midX - newWidth/2), y: 0), size: CGSize(width: newWidth, height: size.height))
 
-        eye?.draw(in: enneSize)
+        // eye?.draw(in: enneSize)
+        face?.draw(in: enneSize)
         hair?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         head?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         shoes?.draw(in: enneSize, blendMode: .normal, alpha: 1)
@@ -332,5 +362,36 @@ extension ViewController: UIPencilInteractionDelegate {
             }
             self.changeTool(newTool)
         }
+    }
+}
+
+extension ViewController: SetToolsPositionDelegate {
+    func setToolsPosition(position: ToolsPosition) {
+        toolsPosition = position
+        switch position {
+        case .right:
+            toolsViewLeadingConstraint.priority = UILayoutPriority(rawValue: 1)
+            shuffleViewTrailingConstraint.priority = UILayoutPriority(rawValue: 1)
+            toolsViewTrailingConstraint.priority = UILayoutPriority(rawValue: 1000)
+            shuffleViewLeadingConstraint.priority = UILayoutPriority(rawValue: 1000)
+            eraserLeadingConstraint.priority = UILayoutPriority(rawValue: 1)
+            pencilLeadingConstraint.priority = UILayoutPriority(rawValue: 1)
+            eraserTrailingConstraint.priority = UILayoutPriority(rawValue: 1000)
+            pencilTrailingConstraint.priority = UILayoutPriority(rawValue: 1000)
+            self.eraserBtn.imageView?.transform = CGAffineTransform(rotationAngle: 0)
+            self.pencilBtn.imageView?.transform = CGAffineTransform(rotationAngle: 0)
+        case .left:
+            toolsViewTrailingConstraint.priority = UILayoutPriority(rawValue: 1)
+            shuffleViewLeadingConstraint.priority = UILayoutPriority(rawValue: 1)
+            toolsViewLeadingConstraint.priority = UILayoutPriority(rawValue: 1000)
+            shuffleViewTrailingConstraint.priority = UILayoutPriority(rawValue: 100)
+            eraserTrailingConstraint.priority = UILayoutPriority(rawValue: 1)
+            pencilTrailingConstraint.priority = UILayoutPriority(rawValue: 1)
+            eraserLeadingConstraint.priority = UILayoutPriority(rawValue: 1000)
+            pencilLeadingConstraint.priority = UILayoutPriority(rawValue: 1000)
+            self.eraserBtn.imageView?.transform = CGAffineTransform(rotationAngle: (180.0 * .pi) / 180.0)
+            self.pencilBtn.imageView?.transform = CGAffineTransform(rotationAngle: (180.0 * .pi) / 180.0)
+        }
+        self.view.layoutIfNeeded()
     }
 }

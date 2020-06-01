@@ -24,19 +24,22 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="enneeye" translatesAutoresizingMaskIntoConstraints="NO" id="30h-FM-gDd">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-Zb-2jJ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-Zb-2jJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lIA-JH-X51" userLabel="Face Image View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jk3-63-Q6i">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dV7-7f-bTk">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dV7-7f-bTk">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bPG-FU-NFS">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bPG-FU-NFS">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u5S-bf-XEx">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u5S-bf-XEx">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
                                     </imageView>
                                 </subviews>
@@ -46,6 +49,7 @@
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="0xC-Nw-3rJ"/>
                                     <constraint firstItem="xCs-Zb-2jJ" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="1Fb-Q2-J1b"/>
                                     <constraint firstItem="xCs-Zb-2jJ" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="1aO-vP-YcM"/>
+                                    <constraint firstItem="lIA-JH-X51" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="1lr-ZF-t77"/>
                                     <constraint firstItem="dV7-7f-bTk" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="2QT-UT-HYV"/>
                                     <constraint firstItem="u5S-bf-XEx" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="3AX-1i-cpF"/>
                                     <constraint firstAttribute="trailing" secondItem="iCg-fq-8u1" secondAttribute="trailing" id="4in-eu-6pm"/>
@@ -55,9 +59,11 @@
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="Aht-29-Meb"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="BQa-9d-tc9"/>
                                     <constraint firstItem="xCs-Zb-2jJ" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="Fie-hO-NH0"/>
+                                    <constraint firstItem="lIA-JH-X51" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="Gc5-0C-5Tn"/>
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="Iwx-i5-RA5"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="PPq-ZH-3yN"/>
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="PUt-3v-KeX"/>
+                                    <constraint firstItem="lIA-JH-X51" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="T5H-Qf-0UD"/>
                                     <constraint firstAttribute="trailing" secondItem="30h-FM-gDd" secondAttribute="trailing" id="WQw-MU-xm4"/>
                                     <constraint firstItem="dV7-7f-bTk" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="WR4-gf-vIk"/>
                                     <constraint firstItem="30h-FM-gDd" firstAttribute="centerX" secondItem="XWr-Dp-aRv" secondAttribute="centerX" id="Wkc-0n-btW"/>
@@ -66,6 +72,7 @@
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="apD-NF-eP0"/>
                                     <constraint firstItem="Jk3-63-Q6i" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="atv-yo-mNL"/>
                                     <constraint firstAttribute="trailing" secondItem="Jk3-63-Q6i" secondAttribute="trailing" id="cqx-pB-6Tp"/>
+                                    <constraint firstItem="lIA-JH-X51" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="cwR-oJ-eYE"/>
                                     <constraint firstItem="dV7-7f-bTk" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="dAi-2j-ypi"/>
                                     <constraint firstItem="30h-FM-gDd" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="top" id="e95-AQ-Uvy"/>
                                     <constraint firstItem="iCg-fq-8u1" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="geV-RC-eSL"/>
@@ -77,6 +84,7 @@
                                     <constraint firstAttribute="trailing" secondItem="bPG-FU-NFS" secondAttribute="trailing" id="tgE-6g-vPI"/>
                                     <constraint firstItem="bPG-FU-NFS" firstAttribute="centerY" secondItem="XWr-Dp-aRv" secondAttribute="centerY" id="uZs-To-4Sn"/>
                                     <constraint firstItem="xCs-Zb-2jJ" firstAttribute="leading" secondItem="XWr-Dp-aRv" secondAttribute="leading" id="vSi-la-ydF"/>
+                                    <constraint firstAttribute="trailing" secondItem="lIA-JH-X51" secondAttribute="trailing" id="zUY-eQ-ZRZ"/>
                                 </constraints>
                             </view>
                             <navigationBar contentMode="scaleToFill" shadowImage="clearColor" translatesAutoresizingMaskIntoConstraints="NO" id="8Gu-Lz-VIH">
@@ -116,7 +124,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="config"/>
                                                 <connections>
-                                                    <segue destination="ozW-xa-bPD" kind="popoverPresentation" popoverAnchorView="tex-9q-ItC" id="U73-Ph-zBM">
+                                                    <segue destination="ozW-xa-bPD" kind="popoverPresentation" identifier="showConfig" popoverAnchorView="tex-9q-ItC" id="U73-Ph-zBM">
                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                     </segue>
                                                 </connections>
@@ -146,6 +154,7 @@
                                 </constraints>
                                 <items>
                                     <tabBarItem title="" image="head" id="Hpf-aD-Q4n"/>
+                                    <tabBarItem title="" image="face" id="c06-nU-jCm"/>
                                     <tabBarItem tag="1" title="" image="hair" id="7UP-ce-yF4"/>
                                     <tabBarItem tag="2" title="" image="shirt" id="xkd-6w-Fuy"/>
                                     <tabBarItem tag="3" title="" image="legs" id="GJW-wV-AdU"/>
@@ -240,6 +249,7 @@
                                     <constraint firstItem="JmA-Lj-pdY" firstAttribute="top" secondItem="28T-GQ-I2l" secondAttribute="top" constant="10" id="M2G-k0-CSH"/>
                                     <constraint firstItem="rTo-jA-JMQ" firstAttribute="top" secondItem="yie-Uq-gfz" secondAttribute="bottom" constant="10" id="Q1T-Me-Vdg"/>
                                     <constraint firstItem="yie-Uq-gfz" firstAttribute="top" secondItem="a6m-Ci-DNx" secondAttribute="bottom" constant="10" id="Thc-HC-TaJ"/>
+                                    <constraint firstItem="yie-Uq-gfz" firstAttribute="leading" secondItem="28T-GQ-I2l" secondAttribute="leading" priority="1" id="W9m-kA-J6L"/>
                                     <constraint firstItem="rTo-jA-JMQ" firstAttribute="leading" secondItem="28T-GQ-I2l" secondAttribute="leading" constant="26" id="a17-HL-w5M">
                                         <variation key="heightClass=regular-widthClass=compact" constant="16"/>
                                     </constraint>
@@ -250,6 +260,7 @@
                                     <constraint firstAttribute="trailing" secondItem="rTo-jA-JMQ" secondAttribute="trailing" constant="20" id="xS1-Rh-3Ob">
                                         <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                                     </constraint>
+                                    <constraint firstItem="a6m-Ci-DNx" firstAttribute="leading" secondItem="28T-GQ-I2l" secondAttribute="leading" priority="1" constant="-20" id="xzs-Iq-Czy"/>
                                     <constraint firstItem="JmA-Lj-pdY" firstAttribute="leading" secondItem="28T-GQ-I2l" secondAttribute="leading" constant="4" id="yxC-hJ-rpF"/>
                                 </constraints>
                                 <variation key="default">
@@ -302,6 +313,7 @@
                             <constraint firstItem="8Gu-Lz-VIH" firstAttribute="top" secondItem="xww-RZ-a6X" secondAttribute="top" id="0K7-bq-nMr"/>
                             <constraint firstItem="Fh6-1G-HAh" firstAttribute="top" secondItem="28T-GQ-I2l" secondAttribute="bottom" id="1pj-Bn-Yu7"/>
                             <constraint firstItem="Fh6-1G-HAh" firstAttribute="top" secondItem="0hr-v8-T98" secondAttribute="bottom" id="4LP-43-Vqb"/>
+                            <constraint firstItem="28T-GQ-I2l" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" priority="1" id="8TW-3g-eWj"/>
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="top" secondItem="XWr-Dp-aRv" secondAttribute="bottom" id="ALK-cw-46M"/>
                             <constraint firstItem="8Gu-Lz-VIH" firstAttribute="trailing" secondItem="xww-RZ-a6X" secondAttribute="trailing" id="Fiv-co-lPU"/>
                             <constraint firstItem="XWr-Dp-aRv" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" id="L4t-4f-YPg"/>
@@ -311,6 +323,7 @@
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="bottom" secondItem="xww-RZ-a6X" secondAttribute="bottom" id="bQh-FY-CaE"/>
                             <constraint firstItem="0hr-v8-T98" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" id="baF-kZ-DLw"/>
                             <constraint firstItem="28T-GQ-I2l" firstAttribute="trailing" secondItem="xww-RZ-a6X" secondAttribute="trailing" id="d2D-7y-JhR"/>
+                            <constraint firstItem="xww-RZ-a6X" firstAttribute="trailing" secondItem="0hr-v8-T98" secondAttribute="trailing" priority="1" id="jKw-Nh-qk7"/>
                             <constraint firstItem="XWr-Dp-aRv" firstAttribute="top" secondItem="xww-RZ-a6X" secondAttribute="top" id="k6c-aa-bjs"/>
                             <constraint firstItem="tmI-2h-wcU" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" id="naI-ew-fe7"/>
                             <constraint firstItem="Fh6-1G-HAh" firstAttribute="leading" secondItem="xww-RZ-a6X" secondAttribute="leading" id="plP-Ku-kPT"/>
@@ -327,16 +340,25 @@
                         <outlet property="cameraBtn" destination="QFQ-G2-pTN" id="NJc-F4-21x"/>
                         <outlet property="enneSectionsTabbar" destination="tmI-2h-wcU" id="wXn-eE-1BU"/>
                         <outlet property="enneView" destination="XWr-Dp-aRv" id="bCX-ps-1Lj"/>
-                        <outlet property="eraserConstraint" destination="F2h-hk-EHZ" id="b9E-Bf-R2K"/>
+                        <outlet property="eraserBtn" destination="a6m-Ci-DNx" id="gp2-dC-pea"/>
+                        <outlet property="eraserLeadingConstraint" destination="xzs-Iq-Czy" id="8MS-zv-OkR"/>
+                        <outlet property="eraserTrailingConstraint" destination="F2h-hk-EHZ" id="yQu-tx-kP9"/>
+                        <outlet property="faceImageView" destination="lIA-JH-X51" id="W2S-sA-fYu"/>
                         <outlet property="hairImageView" destination="xCs-Zb-2jJ" id="SF1-Dx-ZVp"/>
                         <outlet property="headImageView" destination="Jk3-63-Q6i" id="teT-oZ-CwJ"/>
                         <outlet property="legsImageView" destination="bPG-FU-NFS" id="p36-Wx-nyR"/>
-                        <outlet property="pencilConstraint" destination="jHX-bj-Omi" id="hPv-WO-qMk"/>
+                        <outlet property="pencilBtn" destination="yie-Uq-gfz" id="N5K-Cx-3BQ"/>
+                        <outlet property="pencilLeadingConstraint" destination="W9m-kA-J6L" id="xjp-rV-SJS"/>
+                        <outlet property="pencilTrailingConstraint" destination="jHX-bj-Omi" id="Qo4-th-Sh9"/>
                         <outlet property="sectionCollection" destination="Fh6-1G-HAh" id="nBX-db-nmt"/>
                         <outlet property="shirtImageView" destination="u5S-bf-XEx" id="ux9-Ic-IOk"/>
                         <outlet property="shoesImageView" destination="dV7-7f-bTk" id="6ar-ub-BFU"/>
+                        <outlet property="shuffleViewLeadingConstraint" destination="baF-kZ-DLw" id="jPX-6U-dpd"/>
+                        <outlet property="shuffleViewTrailingConstraint" destination="jKw-Nh-qk7" id="9vb-Bv-gVt"/>
                         <outlet property="toggleCanvas" destination="rTo-jA-JMQ" id="hpw-eZ-hrQ"/>
                         <outlet property="toggleShake" destination="Vsr-W8-iri" id="MVC-E5-OBE"/>
+                        <outlet property="toolsViewLeadingConstraint" destination="8TW-3g-eWj" id="Igi-nJ-gg8"/>
+                        <outlet property="toolsViewTrailingConstraint" destination="d2D-7y-JhR" id="QM6-bm-VkT"/>
                         <outlet property="widthControl" destination="fir-QQ-U7f" id="FM8-Ie-FpL"/>
                     </connections>
                 </viewController>
@@ -489,6 +511,7 @@
         <image name="config" width="30" height="30"/>
         <image name="enneeye" width="750" height="1334"/>
         <image name="eraser" width="60" height="30"/>
+        <image name="face" width="30" height="30"/>
         <image name="hair" width="30" height="30"/>
         <image name="head" width="30" height="30"/>
         <image name="legs" width="30" height="30"/>
