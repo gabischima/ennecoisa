@@ -21,18 +21,23 @@ class InfoViewController: UIViewController {
 
     struct Subsection {
         var title: String
-        var cellIdentifier: String
+        var cellIdentifier: CellIdentifier
         var image: UIImage?
+    }
+    
+    enum CellIdentifier: String {
+        case switchCell = "switchCell"
+        case `default` = "cell"
     }
     
     let sections: [Section] = [
         Section(title: "Configurations", items: [
-            Subsection(title: "Drawing tools position", cellIdentifier: "switchCell", image: UIImage(named: "drawing_tools")),
-            Subsection(title: "Save drawing", cellIdentifier: "cell", image: UIImage(named: "download"))
+            Subsection(title: "Drawing tools position", cellIdentifier: .switchCell, image: UIImage(named: "drawing_tools")),
+            Subsection(title: "Save drawing", cellIdentifier: .default, image: UIImage(named: "download"))
         ]),
         Section(title: "Info", items: [
-            Subsection(title: "Download blank Enne", cellIdentifier: "cell", image: UIImage(named: "download")),
-            Subsection(title: "Go to website", cellIdentifier: "cell", image: UIImage(named: "external_link"))
+            Subsection(title: "Download blank Enne", cellIdentifier: .default, image: UIImage(named: "download")),
+            Subsection(title: "Go to website", cellIdentifier: .default, image: UIImage(named: "external_link"))
         ])
     ]
     
@@ -103,50 +108,51 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = sections[indexPath.section].items[indexPath.row]
-        if (item.cellIdentifier == "switchCell") {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchTableViewCell
-            cell.title?.text = item.title
-            cell.imageView?.image = item.image ?? nil
-            cell.interfaceSwitch.selectedSegmentIndex = toolsPosition.rawValue
-            cell.interfaceSwitch.addTarget(self, action: #selector(changeInterface(sender:)), for: .valueChanged)
-            cell.imageView?.contentMode = .scaleAspectFit
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DefaultTableViewCell
-            cell.title?.text = item.title
-            cell.imageView?.image = item.image ?? nil
-            return cell
+        switch item.cellIdentifier {
+            case .default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DefaultTableViewCell
+                cell.title?.text = NSLocalizedString(item.title, comment: "")
+                cell.imageView?.image = item.image ?? nil
+                return cell
+            case .switchCell:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchTableViewCell
+                cell.title?.text = NSLocalizedString(item.title, comment: "")
+                cell.imageView?.image = item.image ?? nil
+                cell.interfaceSwitch.selectedSegmentIndex = toolsPosition.rawValue
+                cell.interfaceSwitch.addTarget(self, action: #selector(changeInterface(sender:)), for: .valueChanged)
+                cell.imageView?.contentMode = .scaleAspectFit
+                return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
-        case 0:
-            switch indexPath.row {
+            case 0:
+                switch indexPath.row {
+                case 1:
+                    if (self.delegate) != nil {
+                        if let image = delegate?.saveEnneToCameraRoll() {
+                            UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                        }
+                    }
+                break
+                default:
+                    break
+                }
             case 1:
-                if (self.delegate) != nil {
-                    if let image = delegate?.saveEnneToCameraRoll() {
+                switch indexPath.row {
+                case 0:
+                    if let image = UIImage(named: "card") {
                         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
                     }
+                case 1:
+                    openSite()
+                default:
+                    break
                 }
-            break
             default:
                 break
-            }
-        case 1:
-            switch indexPath.row {
-            case 0:
-                if let image = UIImage(named: "card") {
-                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-                }
-            case 1:
-                openSite()
-            default:
-                break
-            }
-        default:
-            break
         }
     }
 }
