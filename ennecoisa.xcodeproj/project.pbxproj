@@ -15,7 +15,6 @@
 		068E00A423CA6AC1004C45CF /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */; };
 		068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */; };
 		0693EF762468A51D00E0337D /* ToggleCanvasButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693EF752468A51D00E0337D /* ToggleCanvasButton.swift */; };
-		06A9DFBA24832D8700C11672 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A9DFB924832D8700C11672 /* SwitchTableViewCell.xib */; };
 		06A9DFBC2483300500C11672 /* DefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A9DFBB2483300500C11672 /* DefaultTableViewCell.xib */; };
 		06A9DFBE2483301F00C11672 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9DFBD2483301F00C11672 /* DefaultTableViewCell.swift */; };
 		06A9DFC02483302A00C11672 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9DFBF2483302A00C11672 /* SwitchTableViewCell.swift */; };
@@ -24,6 +23,7 @@
 		06BD174324034D250028FADC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06BD174124034D250028FADC /* Localizable.strings */; };
 		06C2DBC62482D1DF00DA34C0 /* SetInterfaceDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2DBC52482D1DF00DA34C0 /* SetInterfaceDirection.swift */; };
 		06F938AB2407626700977459 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06F938A92407626700977459 /* InfoPlist.strings */; };
+		06FF57CD248BD86600D8D358 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06FF57CF248BD86600D8D358 /* SwitchTableViewCell.xib */; };
 		867AF3AA22C511FA001C1E8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AF3A922C511FA001C1E8F /* AppDelegate.swift */; };
 		867AF3AE22C511FA001C1E8F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AF3AD22C511FA001C1E8F /* CameraViewController.swift */; };
 		867AF3B122C511FA001C1E8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 867AF3AF22C511FA001C1E8F /* Main.storyboard */; };
@@ -59,7 +59,6 @@
 		068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		0693EF752468A51D00E0337D /* ToggleCanvasButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCanvasButton.swift; sourceTree = "<group>"; };
-		06A9DFB924832D8700C11672 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		06A9DFBB2483300500C11672 /* DefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultTableViewCell.xib; sourceTree = "<group>"; };
 		06A9DFBD2483301F00C11672 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		06A9DFBF2483302A00C11672 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +71,8 @@
 		06C2DBC52482D1DF00DA34C0 /* SetInterfaceDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterfaceDirection.swift; sourceTree = "<group>"; };
 		06F938AA2407626700977459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		06F938AC2407627000977459 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		06FF57CE248BD86600D8D358 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SwitchTableViewCell.xib; sourceTree = "<group>"; };
+		06FF57D1248BD86A00D8D358 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/SwitchTableViewCell.strings"; sourceTree = "<group>"; };
 		867AF3A622C511FA001C1E8F /* ennecoisa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ennecoisa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		867AF3A922C511FA001C1E8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		867AF3AD22C511FA001C1E8F /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +137,7 @@
 				068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */,
 				867AF3B422C511FB001C1E8F /* LaunchScreen.storyboard */,
 				06030820246B7616001C78B8 /* WidthControl.swift */,
-				06A9DFB924832D8700C11672 /* SwitchTableViewCell.xib */,
+				06FF57CF248BD86600D8D358 /* SwitchTableViewCell.xib */,
 				06A9DFBF2483302A00C11672 /* SwitchTableViewCell.swift */,
 				06A9DFBB2483300500C11672 /* DefaultTableViewCell.xib */,
 				06A9DFBD2483301F00C11672 /* DefaultTableViewCell.swift */,
@@ -337,7 +338,7 @@
 				06A9DFBC2483300500C11672 /* DefaultTableViewCell.xib in Resources */,
 				06F938AB2407626700977459 /* InfoPlist.strings in Resources */,
 				867AF3B622C511FB001C1E8F /* LaunchScreen.storyboard in Resources */,
-				06A9DFBA24832D8700C11672 /* SwitchTableViewCell.xib in Resources */,
+				06FF57CD248BD86600D8D358 /* SwitchTableViewCell.xib in Resources */,
 				068E00A423CA6AC1004C45CF /* ItemCollectionViewCell.xib in Resources */,
 				867AF3B322C511FB001C1E8F /* Assets.xcassets in Resources */,
 				867AF3B122C511FA001C1E8F /* Main.storyboard in Resources */,
@@ -430,6 +431,15 @@
 				06F938AC2407627000977459 /* pt-BR */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		06FF57CF248BD86600D8D358 /* SwitchTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06FF57CE248BD86600D8D358 /* Base */,
+				06FF57D1248BD86A00D8D358 /* pt-BR */,
+			);
+			name = SwitchTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 		867AF3AF22C511FA001C1E8F /* Main.storyboard */ = {

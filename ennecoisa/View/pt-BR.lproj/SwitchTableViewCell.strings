@@ -1,0 +1,6 @@
+
+/* Class = "UISegmentedControl"; iSn-pL-rrh.segmentTitles[0] = "Left"; ObjectID = "iSn-pL-rrh"; */
+"iSn-pL-rrh.segmentTitles[0]" = "Esquerda";
+
+/* Class = "UISegmentedControl"; iSn-pL-rrh.segmentTitles[1] = "Right"; ObjectID = "iSn-pL-rrh"; */
+"iSn-pL-rrh.segmentTitles[1]" = "Direita";
