@@ -234,30 +234,37 @@ class ViewController: UIViewController {
         let canvasImage: UIImage! = self.canvasView.drawing.image(from: self.canvasView.frame, scale: 2.0)
 
         let size = ARSize.device
-        
-        UIGraphicsBeginImageContext(size)
-        
-        let newWidth = 750 * (size.height/1334)
-        let canvasSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        let enneSize = CGRect(origin: CGPoint(x: (canvasSize.midX - newWidth/2), y: 0), size: CGSize(width: newWidth, height: size.height))
+        var contextSize = CGSize()
 
+        if toAR {
+            contextSize = ARSize.device
+        } else {
+            contextSize.height = UIScreen.main.bounds.size.height * 2
+            contextSize.width = UIScreen.main.bounds.size.width * 2
+        }
+
+        UIGraphicsBeginImageContext(contextSize)
+        
+        let newWidth = 750 * (size.height/1334) // new enne img width
+        let canvasSize = CGRect(x: 0, y: (contextSize.height - size.height) / 2, width: size.width, height: size.height)
+        let enneSize = CGRect(origin: CGPoint(x: (canvasSize.midX - newWidth/2), y: (contextSize.height - size.height) / 2), size: CGSize(width: newWidth, height: size.height))
+        
         if (!toAR) {
             let enne: UIImage? = UIImage(named: "base")
             enne?.draw(in: enneSize)
         }
+        
         face?.draw(in: enneSize)
         hair?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         head?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         shoes?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         legs?.draw(in: enneSize, blendMode: .normal, alpha: 1)
         shirt?.draw(in: enneSize, blendMode: .normal, alpha: 1)
-        
-
         canvasImage?.draw(in: canvasSize, blendMode: .normal, alpha: 1)
-
+        
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-
+        
         return newImage
     }
     
