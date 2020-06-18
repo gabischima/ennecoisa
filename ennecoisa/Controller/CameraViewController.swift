@@ -65,9 +65,12 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
         let contentImage = UIImage(contentsOfFile: path)!
         plane.firstMaterial?.diffuse.contents = contentImage
         
-        // set plane size from user device
-        plane.width = ARSize.device.width / ARSize.divider
-        plane.height = ARSize.device.height / ARSize.divider
+        let imgRatio = contentImage.size.width / contentImage.size.height
+        let planeSize = EnneImg.newSize(sizeToTransform: contentImage.size, relativeTo: EnneImg.physicalSize, relativeRatio: imgRatio)
+
+        // set plane size from image size
+        plane.width = planeSize.width
+        plane.height = planeSize.height
         
         // wrap the plane in a node and rotate it so it's facing us
         let planeNode = SCNNode(geometry: plane)

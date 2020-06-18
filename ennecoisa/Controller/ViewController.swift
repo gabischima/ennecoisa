@@ -231,40 +231,62 @@ class ViewController: UIViewController {
         let legs: UIImage? = UIImage(named: self.selectedImages[4])
         let shoes: UIImage? = UIImage(named: self.selectedImages[5])
 
-        let canvasImage: UIImage! = self.canvasView.drawing.image(from: self.canvasView.frame, scale: 2.0)
+        let screenScale = UIScreen.main.scale
 
-        let size = ARSize.device
+        let canvasImage: UIImage! = self.canvasView.drawing.image(from: self.canvasView.frame, scale: screenScale)
+
         var contextSize = CGSize()
 
+        var enneSize = CGSize(width: 750, height: 1334)
+        var canvasSize = CGSize(width: canvasImage.size.width, height: canvasImage.size.height)
+        let canvasRatio = canvasSize.width / canvasSize.height
+
         if toAR {
-            contextSize = ARSize.device
+            // context is canvas size relative to enne fixed size w 750 x h 1334
+            canvasSize = EnneImg.newSize(sizeToTransform: canvasSize, relativeTo: enneSize, relativeRatio: canvasRatio)
+            contextSize = canvasSize
         } else {
-            contextSize.height = UIScreen.main.bounds.size.height * 2
-            contextSize.width = UIScreen.main.bounds.size.width * 2
+            // context is device size in scale
+            let screenBounds = UIScreen.main.bounds
+            let screenScale = UIScreen.main.scale
+            contextSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
+            // canvas size is relative to context
+            canvasSize.height = canvasSize.height * contextSize.width / canvasSize.width
+            canvasSize.width = contextSize.width
+            // enne img is relative to canvas
+            enneSize = EnneImg.newSize(sizeToTransform: enneSize, relativeTo: canvasSize, relativeRatio: canvasRatio)
         }
 
         UIGraphicsBeginImageContext(contextSize)
         
-        let newWidth = 750 * (size.height/1334) // new enne img width
-        let canvasSize = CGRect(x: 0, y: (contextSize.height - size.height) / 2, width: size.width, height: size.height)
-        let enneSize = CGRect(origin: CGPoint(x: (canvasSize.midX - newWidth/2), y: (contextSize.height - size.height) / 2), size: CGSize(width: newWidth, height: size.height))
+        let enneRect = CGRect(origin: CGPoint(x: (contextSize.width - enneSize.width) / 2, y: (contextSize.height - enneSize.height) / 2), size: enneSize)
+        let canvasRect = CGRect(origin: CGPoint(x: (contextSize.width - canvasSize.width) / 2, y: (contextSize.height - canvasSize.height) / 2), size: canvasSize)
+
+        /*
+        // fill to test size
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(UIColor.black.cgColor)
+        context.fill(enneRect)
         
+        context.setFillColor(UIColor(red: 1, green: 0, blue: 0, alpha: 0.3).cgColor)
+        context.fill(canvasRect)
+         */
         if (!toAR) {
             let enne: UIImage? = UIImage(named: "base")
-            enne?.draw(in: enneSize)
+            enne?.draw(in: enneRect)
         }
-        
-        face?.draw(in: enneSize)
-        hair?.draw(in: enneSize, blendMode: .normal, alpha: 1)
-        head?.draw(in: enneSize, blendMode: .normal, alpha: 1)
-        shoes?.draw(in: enneSize, blendMode: .normal, alpha: 1)
-        legs?.draw(in: enneSize, blendMode: .normal, alpha: 1)
-        shirt?.draw(in: enneSize, blendMode: .normal, alpha: 1)
-        canvasImage?.draw(in: canvasSize, blendMode: .normal, alpha: 1)
-        
+
+        face?.draw(in: enneRect)
+        hair?.draw(in: enneRect, blendMode: .normal, alpha: 1)
+        head?.draw(in: enneRect, blendMode: .normal, alpha: 1)
+        shoes?.draw(in: enneRect, blendMode: .normal, alpha: 1)
+        legs?.draw(in: enneRect, blendMode: .normal, alpha: 1)
+        shirt?.draw(in: enneRect, blendMode: .normal, alpha: 1)
+        canvasImage?.draw(in: canvasRect, blendMode: .normal, alpha: 1)
+
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
+
         return newImage
     }
     
