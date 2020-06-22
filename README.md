@@ -1,9 +1,6 @@
 # ennecoisa
 Enne is a character made by (me)[https://gabischima.github.io/] thought for interaction. The app brings this iteraction to others.
 
-## 🔖 Version
-**v1.0.0**
-
 This application uses [gitflow](https://jeffkreeftmeijer.com/git-flow/).
 
 ## 🟢 Status
