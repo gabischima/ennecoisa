@@ -1,9 +1,6 @@
 # ennecoisa
 Enne is a character made by (me)[https://gabischima.github.io/] thought for interaction. The app brings this iteraction to others.
 
-## 🔖 Version
-**v1.0.0**
-
 This application uses [gitflow](https://jeffkreeftmeijer.com/git-flow/).
 
 ## 🟢 Status
@@ -13,7 +10,7 @@ Project is _in progress_
 1. Clone
 2. Change team and bundle identifier
 3. Run in device
-> ⚠️ the app reaquires iOS 12+ and camera for Augmented Reality interaction.
+> ⚠️ the app reaquires iOS 13+ and camera for Augmented Reality interaction.
 
 ## 📚 References
 - [https://github.com/AFathi/ARVideoKit/issues](https://github.com/AFathi/ARVideoKit/issues)

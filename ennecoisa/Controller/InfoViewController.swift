@@ -10,34 +10,44 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-    @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    let titles =
-    [
-        [
-            "Download blank enne",
-            "Go to website"
-        ]
+    var delegate: ConfigurationDelegate?
+    
+    struct Section {
+        var title: String
+        var items: [Subsection]
+    }
+
+    struct Subsection {
+        var title: String
+        var cellIdentifier: CellIdentifier
+        var image: UIImage?
+    }
+    
+    enum CellIdentifier: String {
+        case switchCell = "switchCell"
+        case `default` = "cell"
+    }
+    
+    let sections: [Section] = [
+        Section(title: "Configurations", items: [
+            Subsection(title: "Drawing tools position", cellIdentifier: .switchCell, image: UIImage(named: "drawing_tools")),
+            Subsection(title: "Save drawing", cellIdentifier: .default, image: UIImage(named: "download"))
+        ]),
+        Section(title: "Info", items: [
+            Subsection(title: "Download blank Enne", cellIdentifier: .default, image: UIImage(named: "download")),
+            Subsection(title: "Go to website", cellIdentifier: .default, image: UIImage(named: "external_link"))
+        ])
     ]
     
-    let images =
-    [
-        [
-            "download",
-            "external_link"
-        ]
-    ]
+    var toolsPosition: ToolsPosition = .right
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        // show close btn if iOS < 13.0
-        if #available(iOS 13, *) {
-            self.closeBtn.isHidden = true
-        } else {
-            self.closeBtn.isHidden = false
-        }
+        self.tableView.register(UINib(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        self.tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "switchCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,15 +57,11 @@ class InfoViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
-    @IBAction func closeView(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         guard error == nil else {
             // Error saving image
-            showAlert(title: "Photo could not be saved", message: "Please, check permissions.")
+            showAlert(title: "Image could not be saved", message: "Please, check permissions.")
             return
         }
         // Image saved successfully
@@ -71,39 +77,82 @@ class InfoViewController: UIViewController {
     func openSite () {
         UIApplication.shared.open(URL(string: "https://gabischima.github.io/en/ennecoisa")!, options: [:], completionHandler: nil)
     }
+    
+    @objc func changeInterface(sender: UISegmentedControl) {
+        if (self.delegate) != nil {
+            delegate?.setToolsPosition(position: ToolsPosition(rawValue: sender.selectedSegmentIndex) ?? .right)
+        }
+    }
 }
 
 extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return titles.count
+        return sections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles[section].count
+        return sections[section].items.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].title
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 24.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = NSLocalizedString(titles[indexPath.section][indexPath.row], comment: "")
-        cell.imageView?.image = UIImage(named: images[indexPath.section][indexPath.row])
-        cell.imageView?.contentMode = .scaleAspectFit
-        
-        return cell
+        let item = sections[indexPath.section].items[indexPath.row]
+        switch item.cellIdentifier {
+            case .default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DefaultTableViewCell
+                cell.title?.text = NSLocalizedString(item.title, comment: "")
+                cell.imageView?.image = item.image ?? nil
+                return cell
+            case .switchCell:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchTableViewCell
+                cell.title?.text = NSLocalizedString(item.title, comment: "")
+                cell.imageView?.image = item.image ?? nil
+                cell.interfaceSwitch.selectedSegmentIndex = toolsPosition.rawValue
+                cell.interfaceSwitch.addTarget(self, action: #selector(changeInterface(sender:)), for: .valueChanged)
+                cell.imageView?.contentMode = .scaleAspectFit
+                return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (indexPath.section == 0) {
-            switch indexPath.row {
+        switch indexPath.section {
             case 0:
-                if let image = UIImage(named: "card") {
-                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                switch indexPath.row {
+                case 1:
+                    if (self.delegate) != nil {
+                        if let image = delegate?.saveEnneToCameraRoll() {
+                            UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                        }
+                    }
+                break
+                default:
+                    break
                 }
             case 1:
-                openSite()
+                switch indexPath.row {
+                case 0:
+                    if let image = UIImage(named: "card") {
+                        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    }
+                case 1:
+                    openSite()
+                default:
+                    break
+                }
             default:
                 break
-            }
         }
     }
 }

@@ -14,19 +14,12 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var feedbackView: UIView!
-    @IBOutlet weak var closeBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set the view's delegate
         sceneView.delegate = self
         configureLighting()
-        // show close btn if iOS < 13.0
-        if #available(iOS 13, *) {
-            self.closeBtn.isHidden = true
-        } else {
-            self.closeBtn.isHidden = false
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,12 +57,20 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
     // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         // create a plane
-        let plane = SCNPlane(width: 750/57, height: 1334/57)
+        let plane = SCNPlane()
         
         // add image from directory to plane
         let fileName = "image.png"
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/" + fileName
-        plane.firstMaterial?.diffuse.contents = UIImage(contentsOfFile: path)
+        let contentImage = UIImage(contentsOfFile: path)!
+        plane.firstMaterial?.diffuse.contents = contentImage
+        
+        let imgRatio = contentImage.size.width / contentImage.size.height
+        let planeSize = EnneImg.newSize(sizeToTransform: contentImage.size, relativeTo: EnneImg.physicalSize, relativeRatio: imgRatio)
+
+        // set plane size from image size
+        plane.width = planeSize.width
+        plane.height = planeSize.height
         
         // wrap the plane in a node and rotate it so it's facing us
         let planeNode = SCNNode(geometry: plane)
@@ -83,17 +84,14 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
-        
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
     }
     
     func fadeIn() {
