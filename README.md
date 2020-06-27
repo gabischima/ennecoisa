@@ -1,5 +1,5 @@
 # ennecoisa
-Enne is a character made by (me)[https://gabischima.github.io/] thought for interaction. The app brings this iteraction to others.
+Enne is a character made by [me](https://gabischima.github.io/) thought for interaction. The app brings this iteraction to others.
 
 This application uses [gitflow](https://jeffkreeftmeijer.com/git-flow/).
 
