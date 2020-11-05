@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 struct EnneSection: Equatable {
     let slug: String
     var icon: UIImage? {
