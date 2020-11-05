@@ -216,7 +216,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showConfig" {
-            if let nextViewController = segue.destination as? InfoViewController {
+            if let nextViewController = segue.destination as? ConfigViewController {
                 nextViewController.delegate = self
                 nextViewController.toolsPosition = self.toolsPosition
             }
@@ -414,7 +414,7 @@ extension ViewController: UIPencilInteractionDelegate {
     }
 }
 
-//MARK: - Set Tools Position delegate
+//MARK: - ConfigurationDelegate
 extension ViewController: ConfigurationDelegate {
     func setToolsPosition(position: ToolsPosition) {
         toolsPosition = position
@@ -448,5 +448,9 @@ extension ViewController: ConfigurationDelegate {
 
     func saveEnneToCameraRoll() -> UIImage {
         return mergeImages(toAR: false)
+    }
+    
+    func clearCanvas() {
+        canvasView.clearCanvas()
     }
 }

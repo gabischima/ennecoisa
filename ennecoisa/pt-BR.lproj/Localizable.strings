@@ -6,11 +6,13 @@
   Copyright © 2020 Gabriela Schirmer. All rights reserved.
 */
 
-/* INFO VIEW */
+/* CONFIG VIEW */
 "Configurations" = "Configurações";
 "Info" = "Info";
 "Drawing tools position" = "Posição das ferramentas";
 "Save drawing" = "Savar desenho";
+"Clear drawing" = "Limpar desenho";
+"Are you sure you want to delete your drawing? This action cannot be undone." = "Tem certeza que deseja excluir seu desenho? Essa ação não pode ser desfeita.";
 "Download blank Enne" = "Baixar Enne em branco";
 "Go to website" = "Ir para o site";
 

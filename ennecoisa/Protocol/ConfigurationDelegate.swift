@@ -11,4 +11,5 @@ import UIKit
 protocol ConfigurationDelegate {
     func setToolsPosition(position: ToolsPosition)
     func saveEnneToCameraRoll() -> UIImage
+    func clearCanvas()
 }

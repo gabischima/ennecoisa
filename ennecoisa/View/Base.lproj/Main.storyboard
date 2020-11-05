@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9x8-VY-5JV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9x8-VY-5JV">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -224,7 +226,7 @@
                                                 </connections>
                                             </slider>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="fir-QQ-U7f" firstAttribute="centerX" secondItem="JmA-Lj-pdY" secondAttribute="centerX" id="1NQ-Ij-6uC"/>
                                             <constraint firstAttribute="bottom" secondItem="fir-QQ-U7f" secondAttribute="bottom" id="GEp-Tk-Zzk"/>
@@ -234,7 +236,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="a6m-Ci-DNx" secondAttribute="trailing" constant="-20" id="F2h-hk-EHZ"/>
                                     <constraint firstItem="rTo-jA-JMQ" firstAttribute="top" secondItem="yie-Uq-gfz" secondAttribute="bottom" constant="10" id="Q1T-Me-Vdg"/>
@@ -283,7 +285,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Dhq-n3-u7m" secondAttribute="bottom" constant="10" id="8zr-OP-Set"/>
                                     <constraint firstItem="Vsr-W8-iri" firstAttribute="leading" secondItem="0hr-v8-T98" secondAttribute="leading" constant="20" id="Cj5-HZ-rBF">
@@ -298,6 +300,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="xww-RZ-a6X"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8Gu-Lz-VIH" firstAttribute="top" secondItem="xww-RZ-a6X" secondAttribute="top" id="0K7-bq-nMr"/>
@@ -322,7 +325,6 @@
                             <constraint firstItem="Fh6-1G-HAh" firstAttribute="top" secondItem="QFQ-G2-pTN" secondAttribute="bottom" constant="10" id="uuL-cL-bmm"/>
                             <constraint firstItem="Fh6-1G-HAh" firstAttribute="trailing" secondItem="xww-RZ-a6X" secondAttribute="trailing" id="vRK-zd-Cli"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="xww-RZ-a6X"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -399,6 +401,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bxC-DJ-nLl" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="6b9-A3-fAJ"/>
@@ -414,7 +417,6 @@
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
                             <constraint firstItem="bxC-DJ-nLl" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="suy-LX-1aa"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <navigationItem key="navigationItem" id="8iW-Pr-85N"/>
                     <connections>
@@ -426,10 +428,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
         </scene>
-        <!--Info View Controller-->
+        <!--Config View Controller-->
         <scene sceneID="A0B-WH-7us">
             <objects>
-                <viewController id="ozW-xa-bPD" customClass="InfoViewController" customModule="ennecoisa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ozW-xa-bPD" customClass="ConfigViewController" customModule="ennecoisa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mjU-ec-ThI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -444,7 +446,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="24" sectionFooterHeight="48" translatesAutoresizingMaskIntoConstraints="NO" id="WWB-IU-tg5">
                                 <rect key="frame" x="0.0" y="76" width="414" height="746"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="sectionIndexBackgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemGray5Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="6cY-U7-Y5L" style="IBUITableViewCellStyleDefault" id="CHK-uD-EGR">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
@@ -470,7 +472,8 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="qqs-vj-30c"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="WWB-IU-tg5" firstAttribute="leading" secondItem="qqs-vj-30c" secondAttribute="leading" id="2LE-gk-NU7"/>
                             <constraint firstItem="WWB-IU-tg5" firstAttribute="trailing" secondItem="qqs-vj-30c" secondAttribute="trailing" id="8dU-UT-jw5"/>
@@ -480,7 +483,6 @@
                             <constraint firstItem="dST-ZJ-OqR" firstAttribute="top" secondItem="qqs-vj-30c" secondAttribute="top" id="deb-j5-kpo"/>
                             <constraint firstAttribute="bottom" secondItem="WWB-IU-tg5" secondAttribute="bottom" constant="20" symbolic="YES" id="wYH-G1-bMo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="qqs-vj-30c"/>
                     </view>
                     <navigationItem key="navigationItem" id="L7P-Sl-dNA"/>
                     <connections>
@@ -520,5 +522,14 @@
         <image name="take_picture" width="73" height="73"/>
         <image name="undo" width="34" height="34"/>
         <image name="undo_highlight" width="34" height="34"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
