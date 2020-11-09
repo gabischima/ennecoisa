@@ -15,7 +15,6 @@ class ConfigViewController: UIViewController {
     var delegate: ConfigurationDelegate?
     
     struct Section {
-        var title: String
         var items: [Item]
     }
 
@@ -28,20 +27,24 @@ class ConfigViewController: UIViewController {
     enum CellIdentifier: String {
         case `default` = "cell"
         case switchCell = "switchCell"
+        case detail = "detail"
     }
     
     var selectedCell: DefaultTableViewCell?
     
     let sections: [Section] = [
-        Section(title: "Configurations", items: [
+        Section(items: [
             Item(title: "Save drawing", cellIdentifier: .default, image: UIImage(named: "download")),
             Item(title: "Drawing tools position", cellIdentifier: .switchCell, image: UIImage(named: "drawing_tools")),
             Item(title: "Clear drawing", cellIdentifier: .default, image: UIImage(named: "trash"))
         ]),
-        Section(title: "Info", items: [
+        Section(items: [
             Item(title: "Download blank Enne", cellIdentifier: .default, image: UIImage(named: "download")),
             Item(title: "Go to website", cellIdentifier: .default, image: UIImage(named: "external_link")),
             Item(title: "Instagram Ennecoisa", cellIdentifier: .default, image: UIImage(named: "instagram"))
+        ]),
+        Section(items: [
+            Item(title: "App version", cellIdentifier: .detail, image: UIImage(named: "tag"))
         ])
     ]
     
@@ -52,6 +55,7 @@ class ConfigViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.register(UINib(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "switchCell")
+        self.tableView.register(UINib(nibName: "DetailTableViewCell", bundle: nil), forCellReuseIdentifier: "detail")
     }
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
@@ -61,6 +65,13 @@ class ConfigViewController: UIViewController {
             return
         }
         selectedCell?.status = .success
+    }
+    
+    func appVersion() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        return "\(version) (\(build))"
     }
     
     func showAlert(title: String, message: String, type: UIAlertAction.Style) {
@@ -85,14 +96,14 @@ class ConfigViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    func openSite () {
+    func openSite() {
         UIApplication.shared.open(URL(string: "https://gabischima.github.io/en/ennecoisa")!, options: [:], completionHandler: nil)
     }
     
-    func openInstagram () {
+    func openInstagram() {
         let instagramHook = URL(string: "instagram://user?username=ennecoisa")
-        if let hook = instagramHook, UIApplication.shared.canOpenURL(hook) {
-            UIApplication.shared.open(hook)
+        if UIApplication.shared.canOpenURL(instagramHook! as URL) {
+            UIApplication.shared.open(instagramHook!)
         } else {
             UIApplication.shared.open(URL(string: "http://instagram.com/ennecoisa")!)
         }
@@ -114,34 +125,36 @@ extension ConfigViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].items.count
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].title
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 24.0
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = sections[indexPath.section].items[indexPath.row]
         switch item.cellIdentifier {
             case .default:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DefaultTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: item.cellIdentifier.rawValue, for: indexPath) as! DefaultTableViewCell
                 cell.title?.text = NSLocalizedString(item.title, comment: "")
                 cell.icon?.image = item.image ?? nil
                 return cell
             case .switchCell:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: item.cellIdentifier.rawValue, for: indexPath) as! SwitchTableViewCell
                 cell.title?.text = NSLocalizedString(item.title, comment: "")
                 cell.icon?.image = item.image ?? nil
                 cell.interfaceSwitch.selectedSegmentIndex = toolsPosition.rawValue
                 cell.interfaceSwitch.addTarget(self, action: #selector(changeInterface(sender:)), for: .valueChanged)
                 cell.imageView?.contentMode = .scaleAspectFit
+                return cell
+            case .detail:
+                let cell = tableView.dequeueReusableCell(withIdentifier: item.cellIdentifier.rawValue, for: indexPath) as! DetailTableViewCell
+                cell.title?.text = NSLocalizedString(item.title, comment: "")
+                cell.icon?.image = item.image ?? nil
+                cell.detail?.text = appVersion()
                 return cell
         }
     }

@@ -23,6 +23,8 @@
 		06BA56D924059E1E006E6C93 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA56D824059E1E006E6C93 /* ConfigViewController.swift */; };
 		06BD174324034D250028FADC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06BD174124034D250028FADC /* Localizable.strings */; };
 		06C2DBC62482D1DF00DA34C0 /* ConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2DBC52482D1DF00DA34C0 /* ConfigurationDelegate.swift */; };
+		06EAA3612558E8E600EA3D83 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAA3602558E8E600EA3D83 /* DetailTableViewCell.xib */; };
+		06EAA36E2558EB4E00EA3D83 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAA36D2558EB4E00EA3D83 /* DetailTableViewCell.swift */; };
 		06F938AB2407626700977459 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06F938A92407626700977459 /* InfoPlist.strings */; };
 		06FF57CD248BD86600D8D358 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06FF57CF248BD86600D8D358 /* SwitchTableViewCell.xib */; };
 		867AF3AA22C511FA001C1E8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AF3A922C511FA001C1E8F /* AppDelegate.swift */; };
@@ -71,6 +73,8 @@
 		06BD174224034D250028FADC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		06BD174424034D380028FADC /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		06C2DBC52482D1DF00DA34C0 /* ConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationDelegate.swift; sourceTree = "<group>"; };
+		06EAA3602558E8E600EA3D83 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
+		06EAA36D2558EB4E00EA3D83 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		06F938AA2407626700977459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		06F938AC2407627000977459 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		06FF57CE248BD86600D8D358 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SwitchTableViewCell.xib; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				06A9DFBF2483302A00C11672 /* SwitchTableViewCell.swift */,
 				06A9DFBB2483300500C11672 /* DefaultTableViewCell.xib */,
 				06A9DFBD2483301F00C11672 /* DefaultTableViewCell.swift */,
+				06EAA3602558E8E600EA3D83 /* DetailTableViewCell.xib */,
+				06EAA36D2558EB4E00EA3D83 /* DetailTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06BD174324034D250028FADC /* Localizable.strings in Resources */,
+				06EAA3612558E8E600EA3D83 /* DetailTableViewCell.xib in Resources */,
 				06A9DFBC2483300500C11672 /* DefaultTableViewCell.xib in Resources */,
 				06F938AB2407626700977459 /* InfoPlist.strings in Resources */,
 				867AF3B622C511FB001C1E8F /* LaunchScreen.storyboard in Resources */,
@@ -370,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0694EFE324A133A900D43EAC /* Extension+PKCanvasView.swift in Sources */,
+				06EAA36E2558EB4E00EA3D83 /* DetailTableViewCell.swift in Sources */,
 				06B3DE8B23C677BA00C1E843 /* ViewController.swift in Sources */,
 				064D54542481E87200F2976D /* EnneSection.swift in Sources */,
 				06A9DFC02483302A00C11672 /* SwitchTableViewCell.swift in Sources */,
