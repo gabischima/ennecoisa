@@ -41,7 +41,7 @@ class ConfigViewController: UIViewController {
         Section(title: "Info", items: [
             Item(title: "Download blank Enne", cellIdentifier: .default, image: UIImage(named: "download")),
             Item(title: "Go to website", cellIdentifier: .default, image: UIImage(named: "external_link")),
-            Item(title: "Instagram Ennecoisa", cellIdentifier: .default, image: UIImage(named: "external_link"))
+            Item(title: "Instagram Ennecoisa", cellIdentifier: .default, image: UIImage(named: "instagram"))
         ])
     ]
     
