@@ -62,9 +62,12 @@ class ConfigViewController: UIViewController {
         guard error == nil else {
             // Error saving image
             showAlert(title: "Image could not be saved", message: "Please, check permissions.", type: .default)
+            selectedCell?.status = .default
+            selectedCell = nil
             return
         }
         selectedCell?.status = .success
+        selectedCell = nil
     }
     
     func appVersion() -> String {
@@ -81,17 +84,16 @@ class ConfigViewController: UIViewController {
     }
     
     func confirmationAlert(title: String, message: String, origin: IndexPath) {
-        let cell = tableView.cellForRow(at: origin) as! DefaultTableViewCell
-        cell.status = .loading
         let alert = UIAlertController(title: NSLocalizedString(title, comment: ""), message: NSLocalizedString(message, comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { _ in
+            self.selectedCell?.status = .default
             self.selectedCell = nil
-            cell.status = .default
         }))
         alert.addAction(UIAlertAction(title: "Clear", style: .destructive, handler: { _ in
             guard let del = self.delegate else { return }
             del.clearCanvas()
-            cell.status = .success
+            self.selectedCell?.status = .success
+            self.selectedCell = nil
         }))
         self.present(alert, animated: true)
     }
@@ -176,6 +178,7 @@ extension ConfigViewController: UITableViewDelegate, UITableViewDataSource {
                 case 2:
                     let cell = tableView.cellForRow(at: indexPath) as! DefaultTableViewCell
                     selectedCell = cell
+                    cell.status = .loading
                     confirmationAlert(title: "Clear drawing", message: "Are you sure you want to delete your drawing? This action cannot be undone.", origin: indexPath)
                     break
                 default:
@@ -184,8 +187,21 @@ extension ConfigViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 switch indexPath.row {
                 case 0:
+                    let cell = tableView.cellForRow(at: indexPath) as! DefaultTableViewCell
+                    selectedCell = cell
+                    cell.status = .loading
                     guard let image = UIImage(named: "card") else { return }
-                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    let contextSize = CGSize(width: image.size.width, height: image.size.height)
+
+                    UIGraphicsBeginImageContext(contextSize)
+                    let contextRect = CGRect(x: 0, y: 0, width: contextSize.width, height: contextSize.height)
+
+                    image.draw(in: contextRect)
+
+                    let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+                    UIGraphicsEndImageContext()
+
+                    UIImageWriteToSavedPhotosAlbum(newImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
                 case 1:
                     openSite()
                 case 2:
