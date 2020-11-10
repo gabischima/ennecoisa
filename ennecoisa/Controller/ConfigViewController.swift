@@ -49,7 +49,18 @@ class ConfigViewController: UIViewController {
     ]
     
     var toolsPosition: ToolsPosition = .right
-    
+
+    var appVersion: String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        return "\(version) (\(build))"
+    }
+}
+
+//MARK: - ViewController functions
+extension ConfigViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
@@ -57,7 +68,10 @@ class ConfigViewController: UIViewController {
         self.tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "switchCell")
         self.tableView.register(UINib(nibName: "DetailTableViewCell", bundle: nil), forCellReuseIdentifier: "detail")
     }
+}
 
+//MARK: - Image save Callback
+extension ConfigViewController {
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
             // Error saving image
@@ -69,14 +83,10 @@ class ConfigViewController: UIViewController {
         selectedCell?.status = .success
         selectedCell = nil
     }
-    
-    func appVersion() -> String {
-        let dictionary = Bundle.main.infoDictionary!
-        let version = dictionary["CFBundleShortVersionString"] as! String
-        let build = dictionary["CFBundleVersion"] as! String
-        return "\(version) (\(build))"
-    }
-    
+}
+
+//MARK: - Alerts
+extension ConfigViewController {
     func showAlert(title: String, message: String, type: UIAlertAction.Style) {
         let alert = UIAlertController(title: NSLocalizedString(title, comment: ""), message: NSLocalizedString(message, comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: type, handler: nil))
@@ -97,7 +107,10 @@ class ConfigViewController: UIViewController {
         }))
         self.present(alert, animated: true)
     }
+}
 
+//MARK: - Open URL
+extension ConfigViewController {
     func openSite() {
         UIApplication.shared.open(URL(string: "https://gabischima.github.io/en/ennecoisa")!, options: [:], completionHandler: nil)
     }
@@ -110,7 +123,9 @@ class ConfigViewController: UIViewController {
             UIApplication.shared.open(URL(string: "http://instagram.com/ennecoisa")!)
         }
     }
-    
+}
+//MARK: - Cell actions
+extension ConfigViewController {
     @objc func changeInterface(sender: UISegmentedControl) {
         if (self.delegate) != nil {
             delegate?.setToolsPosition(position: ToolsPosition(rawValue: sender.selectedSegmentIndex) ?? .right)
@@ -176,7 +191,7 @@ extension ConfigViewController: UITableViewDelegate, UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: item.cellIdentifier.rawValue, for: indexPath) as! DetailTableViewCell
                 cell.title?.text = NSLocalizedString(item.title, comment: "")
                 cell.icon?.image = item.image ?? nil
-                cell.detail?.text = appVersion()
+                cell.detail?.text = appVersion
                 return cell
         }
     }
