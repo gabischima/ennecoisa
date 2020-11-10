@@ -126,10 +126,8 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         guard error == nil else {
-            // Error saving image
             showAlert()
             return
         }
-        // Image saved successfully
     }
 }
