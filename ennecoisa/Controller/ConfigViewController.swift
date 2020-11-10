@@ -116,6 +116,26 @@ class ConfigViewController: UIViewController {
             delegate?.setToolsPosition(position: ToolsPosition(rawValue: sender.selectedSegmentIndex) ?? .right)
         }
     }
+    
+    func saveDrawing() {
+        guard let image = delegate?.saveEnneToCameraRoll() else { return }
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    func saveBlankEnne() {
+        guard let image = UIImage(named: "card") else { return }
+        let contextSize = CGSize(width: image.size.width, height: image.size.height)
+
+        UIGraphicsBeginImageContext(contextSize)
+        let contextRect = CGRect(x: 0, y: 0, width: contextSize.width, height: contextSize.height)
+
+        image.draw(in: contextRect)
+
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        UIImageWriteToSavedPhotosAlbum(newImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
 }
 
 //TODO: Separate delegate / datasource
@@ -168,10 +188,9 @@ extension ConfigViewController: UITableViewDelegate, UITableViewDataSource {
                 case 0:
                     let cell = tableView.cellForRow(at: indexPath) as! DefaultTableViewCell
                     cell.status = .loading
-                    selectedCell = cell
-                    if (self.delegate) != nil {
-                        guard let image = delegate?.saveEnneToCameraRoll() else { return }
-                        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    self.selectedCell = cell
+                    DispatchQueue.main.async {
+                        self.saveDrawing()
                     }
                 case 1:
                     break
@@ -190,18 +209,13 @@ extension ConfigViewController: UITableViewDelegate, UITableViewDataSource {
                     let cell = tableView.cellForRow(at: indexPath) as! DefaultTableViewCell
                     selectedCell = cell
                     cell.status = .loading
-                    guard let image = UIImage(named: "card") else { return }
-                    let contextSize = CGSize(width: image.size.width, height: image.size.height)
-
-                    UIGraphicsBeginImageContext(contextSize)
-                    let contextRect = CGRect(x: 0, y: 0, width: contextSize.width, height: contextSize.height)
-
-                    image.draw(in: contextRect)
-
-                    let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-                    UIGraphicsEndImageContext()
-
-                    UIImageWriteToSavedPhotosAlbum(newImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    /*
+                     simple save image stoped working
+                     had to add context
+                    */
+                    DispatchQueue.main.async {
+                        self.saveBlankEnne()
+                    }
                 case 1:
                     openSite()
                 case 2:
