@@ -25,8 +25,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var shoesImageView: UIImageView!
     @IBOutlet weak var enneView: UIView!
     
-    @IBOutlet weak var toggleShake: ShakeItButton!
-    @IBOutlet weak var toggleCanvas: ToggleCanvasButton!
+    @IBOutlet weak var toggleShake: ToggleButton!
+    @IBOutlet weak var toggleCanvas: ToggleButton!
     
     @IBOutlet weak var eraserTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var eraserLeadingConstraint: NSLayoutConstraint!
@@ -54,8 +54,6 @@ class ViewController: UIViewController {
     var pencilTool = PKInkingTool(.pencil, color: .black, width: 6)
     
     var currentTool: Tools = Tools.pencil
-
-    var canShakeItToShuffle: Bool = true
     
     var toolsPosition: ToolsPosition = .right
 
@@ -176,6 +174,8 @@ extension ViewController {
                 view.addGestureRecognizer(tap)
             }
         }
+
+        self.canvasView.isUserInteractionEnabled = self.toggleCanvas.isOn
     }
     
     //MARK: - Functions
@@ -322,11 +322,7 @@ extension ViewController {
     }
     
     @IBAction func toggleCanvasAction(_ sender: Any) {
-        if self.toggleCanvas.isOn {
-            self.canvasView.isUserInteractionEnabled = true
-        } else {
-            self.canvasView.isUserInteractionEnabled = false
-        }
+        self.canvasView.isUserInteractionEnabled = self.toggleCanvas.isOn
     }
     
     @IBAction func changeToolAction(_ sender: UIButton) {
