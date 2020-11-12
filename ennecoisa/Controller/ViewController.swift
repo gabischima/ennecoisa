@@ -66,12 +66,12 @@ class ViewController: UIViewController {
      * shoes = 4
      */
     var enneSections: [EnneSection] = [
-        EnneSection(slug: "head", size: 3),
-        EnneSection(slug: "face", size: 7),
-        EnneSection(slug: "hair", size: 11),
-        EnneSection(slug: "shirt", size: 6),
-        EnneSection(slug: "legs", size: 4),
-        EnneSection(slug: "shoes", size: 3)
+        EnneSection(slug: "head", size: 5),
+        EnneSection(slug: "face", size: 10),
+        EnneSection(slug: "hair", size: 12),
+        EnneSection(slug: "shirt", size: 9),
+        EnneSection(slug: "legs", size: 6),
+        EnneSection(slug: "shoes", size: 5)
     ]
 
     /* Active Set */
