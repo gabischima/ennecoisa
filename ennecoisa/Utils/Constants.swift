@@ -23,7 +23,7 @@ struct EnneImg {
     ///
     /// - Parameters:
     ///     - sizeToTransform: original size to be transformed
-    ///     - relativeTo: size used to resize
+    ///     - relativeTo: relative size used to resize
     ///     - relativeRatio: ratio used to compare with EnneImg.ratio
     static func newSize(sizeToTransform: CGSize, relativeTo: CGSize, relativeRatio: CGFloat) -> CGSize {
         var newSize = CGSize()

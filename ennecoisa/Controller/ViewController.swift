@@ -9,10 +9,10 @@
 import UIKit
 import PencilKit
 
+//MARK: - ViewController Properties
 class ViewController: UIViewController {
 
     //MARK: - IBOutlet
-
     @IBOutlet weak var enneSectionsTabbar: UITabBar!
     @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var sectionCollection: UICollectionView!
@@ -25,8 +25,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var shoesImageView: UIImageView!
     @IBOutlet weak var enneView: UIView!
     
-    @IBOutlet weak var toggleShake: ShakeItButton!
-    @IBOutlet weak var toggleCanvas: ToggleCanvasButton!
+    @IBOutlet weak var toggleShake: ToggleButton!
+    @IBOutlet weak var toggleCanvas: ToggleButton!
     
     @IBOutlet weak var eraserTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var eraserLeadingConstraint: NSLayoutConstraint!
@@ -54,8 +54,6 @@ class ViewController: UIViewController {
     var pencilTool = PKInkingTool(.pencil, color: .black, width: 6)
     
     var currentTool: Tools = Tools.pencil
-
-    var canShakeItToShuffle: Bool = true
     
     var toolsPosition: ToolsPosition = .right
 
@@ -68,12 +66,12 @@ class ViewController: UIViewController {
      * shoes = 4
      */
     var enneSections: [EnneSection] = [
-        EnneSection(slug: "head", size: 3),
-        EnneSection(slug: "face", size: 7),
-        EnneSection(slug: "hair", size: 11),
-        EnneSection(slug: "shirt", size: 6),
-        EnneSection(slug: "legs", size: 4),
-        EnneSection(slug: "shoes", size: 3)
+        EnneSection(slug: "head", size: 5),
+        EnneSection(slug: "face", size: 10),
+        EnneSection(slug: "hair", size: 12),
+        EnneSection(slug: "shirt", size: 9),
+        EnneSection(slug: "legs", size: 6),
+        EnneSection(slug: "shoes", size: 5)
     ]
 
     /* Active Set */
@@ -81,8 +79,13 @@ class ViewController: UIViewController {
     var activeSection = EnneSections.head
     // selected image for each set
     var selectedImages: [String] = []
-    
-    //MARK: - View Controller methos
+
+}
+
+//MARK: - ViewController functions
+extension ViewController {
+
+    //MARK: - View Controller methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,14 +112,6 @@ class ViewController: UIViewController {
         
         self.widthControl.value = 6.0
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
     
     //MARK: - Motion method
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -141,6 +136,12 @@ class ViewController: UIViewController {
         let canvasView = PKCanvasView(frame: self.enneView.bounds)
         self.canvasView = canvasView
         self.enneView.addSubview(canvasView)
+
+        if #available(iOS 14.0, *) {
+            canvasView.drawingPolicy = .anyInput
+        } else {
+            canvasView.allowsFingerDrawing = true
+        }
         
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -173,6 +174,8 @@ class ViewController: UIViewController {
                 view.addGestureRecognizer(tap)
             }
         }
+
+        self.canvasView.isUserInteractionEnabled = self.toggleCanvas.isOn
     }
     
     //MARK: - Functions
@@ -189,7 +192,7 @@ class ViewController: UIViewController {
         self.enneView.layer.add(animation, forKey: "position")
     }
     
-    // TODO: change tool constrait relative to tools positions
+///TODO: component
     func changeTool (_ tool: Int) {
         switch tool {
         case Tools.pencil.rawValue:
@@ -216,7 +219,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showConfig" {
-            if let nextViewController = segue.destination as? InfoViewController {
+            if let nextViewController = segue.destination as? ConfigViewController {
                 nextViewController.delegate = self
                 nextViewController.toolsPosition = self.toolsPosition
             }
@@ -262,15 +265,14 @@ class ViewController: UIViewController {
         let enneRect = CGRect(origin: CGPoint(x: (contextSize.width - enneSize.width) / 2, y: (contextSize.height - enneSize.height) / 2), size: enneSize)
         let canvasRect = CGRect(origin: CGPoint(x: (contextSize.width - canvasSize.width) / 2, y: (contextSize.height - canvasSize.height) / 2), size: canvasSize)
 
-        /*
-        // fill to test size
-        let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(UIColor.black.cgColor)
-        context.fill(enneRect)
-        
-        context.setFillColor(UIColor(red: 1, green: 0, blue: 0, alpha: 0.3).cgColor)
-        context.fill(canvasRect)
-         */
+///TEST: fill size to check proportions
+//        let context = UIGraphicsGetCurrentContext()!
+//        context.setFillColor(UIColor.black.cgColor)
+//        context.fill(enneRect)
+//
+//        context.setFillColor(UIColor(red: 1, green: 0, blue: 0, alpha: 0.3).cgColor)
+//        context.fill(canvasRect)
+
         if (!toAR) {
             let enne: UIImage? = UIImage(named: "base")
             enne?.draw(in: enneRect)
@@ -290,9 +292,14 @@ class ViewController: UIViewController {
         return newImage
     }
     
-    //MARK: - IBAction
+//    MARK: - IBAction
+    /**
+    Save image for AR visualization
+    - parameter sender: The element responsable for triggering the function.
+    */
+
     @IBAction func saveImageToAR(_ sender: Any) {
-        // get images
+        // get combined images
         let newImage = mergeImages(toAR: true)
         
         // save in contents directory
@@ -315,11 +322,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func toggleCanvasAction(_ sender: Any) {
-        if self.toggleCanvas.isOn {
-            self.canvasView.isUserInteractionEnabled = true
-        } else {
-            self.canvasView.isUserInteractionEnabled = false
-        }
+        self.canvasView.isUserInteractionEnabled = self.toggleCanvas.isOn
     }
     
     @IBAction func changeToolAction(_ sender: UIButton) {
@@ -345,7 +348,7 @@ class ViewController: UIViewController {
     
 }
 
-//MARK: - Tabbar delegate
+//MARK: - UITabBarDelegate
 extension ViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         self.activeSection = EnneSections(rawValue: item.tag)!
@@ -355,7 +358,11 @@ extension ViewController: UITabBarDelegate {
     }
 }
 
-//MARK: - Collection view delegate / datasource
+///TODO: Separate delegate / datasource
+//MARK: - Collection View
+//      - UICollectionViewDelegate
+//      - UICollectionViewDataSource
+//      - UICollectionViewDelegateFlowLayout
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.enneSections[self.activeSection.rawValue].size
@@ -399,7 +406,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
 }
 
-//MARK: - Pencil delegate
+//MARK: - UIPencilInteractionDelegate
 extension ViewController: UIPencilInteractionDelegate {
     func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
         if (self.toggleCanvas.isOn) {
@@ -414,7 +421,7 @@ extension ViewController: UIPencilInteractionDelegate {
     }
 }
 
-//MARK: - Set Tools Position delegate
+//MARK: - ConfigurationDelegate
 extension ViewController: ConfigurationDelegate {
     func setToolsPosition(position: ToolsPosition) {
         toolsPosition = position
@@ -448,5 +455,9 @@ extension ViewController: ConfigurationDelegate {
 
     func saveEnneToCameraRoll() -> UIImage {
         return mergeImages(toAR: false)
+    }
+    
+    func clearCanvas() {
+        canvasView.clearCanvas()
     }
 }
