@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9x8-VY-5JV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9x8-VY-5JV">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -180,7 +180,6 @@
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6m-Ci-DNx" userLabel="eraser">
                                         <rect key="frame" x="14" y="10" width="60" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="eraser"/>
                                         <connections>
                                             <action selector="changeToolAction:" destination="9x8-VY-5JV" eventType="touchUpInside" id="J6A-VH-wYj"/>
@@ -188,7 +187,6 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yie-Uq-gfz" userLabel="pencil">
                                         <rect key="frame" x="-6" y="50" width="60" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="pencil"/>
                                         <connections>
                                             <action selector="changeToolAction:" destination="9x8-VY-5JV" eventType="touchUpInside" id="aRe-JG-5je"/>
@@ -196,12 +194,10 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTo-jA-JMQ" userLabel="toggleCanvas" customClass="ToggleButton" customModule="ennecoisa" customModuleProvider="target">
                                         <rect key="frame" x="10" y="90" width="34" height="34"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="rTo-jA-JMQ" secondAttribute="height" multiplier="1:1" id="AdR-3H-dzA"/>
                                             <constraint firstAttribute="width" constant="34" id="t3m-c4-7xY"/>
                                         </constraints>
-                                        <state key="normal" image="pencilon_btn"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="imageOn" value="pencilon_btn"/>
                                             <userDefinedRuntimeAttribute type="image" keyPath="imageOff" value="penciloff_btn"/>
@@ -241,7 +237,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="a6m-Ci-DNx" secondAttribute="trailing" constant="-20" id="F2h-hk-EHZ"/>
                                     <constraint firstItem="rTo-jA-JMQ" firstAttribute="top" secondItem="yie-Uq-gfz" secondAttribute="bottom" constant="10" id="Q1T-Me-Vdg"/>
@@ -269,7 +264,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsr-W8-iri" userLabel="toggleShake" customClass="ToggleButton" customModule="ennecoisa" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="34" height="34"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="34" id="0xj-hL-x65"/>
                                             <constraint firstAttribute="width" secondItem="Vsr-W8-iri" secondAttribute="height" multiplier="1:1" id="Dcn-WB-dUC"/>
@@ -282,7 +276,6 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhq-n3-u7m" userLabel="shuffle">
                                         <rect key="frame" x="10" y="54" width="34" height="34"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Dhq-n3-u7m" secondAttribute="height" multiplier="1:1" id="WuZ-qs-DAC"/>
                                             <constraint firstAttribute="width" constant="34" id="Xjb-bu-Orb"/>
@@ -294,7 +287,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Dhq-n3-u7m" secondAttribute="bottom" constant="10" id="8zr-OP-Set"/>
                                     <constraint firstItem="Vsr-W8-iri" firstAttribute="leading" secondItem="0hr-v8-T98" secondAttribute="leading" constant="20" id="Cj5-HZ-rBF">
@@ -509,13 +501,13 @@
     </scenes>
     <designables>
         <designable name="Vsr-W8-iri">
-            <size key="intrinsicContentSize" width="34" height="34"/>
+            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
         <designable name="fir-QQ-U7f">
             <size key="intrinsicContentSize" width="168" height="29"/>
         </designable>
         <designable name="rTo-jA-JMQ">
-            <size key="intrinsicContentSize" width="34" height="34"/>
+            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
     </designables>
     <resources>
