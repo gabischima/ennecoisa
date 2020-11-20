@@ -351,10 +351,15 @@ extension ViewController {
 //MARK: - UITabBarDelegate
 extension ViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        self.activeSection = EnneSections(rawValue: item.tag)!
-        self.sectionCollection.reloadData()
-        self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
-        self.sectionCollection.showsHorizontalScrollIndicator = false
+        if (self.activeSection == EnneSections(rawValue: item.tag)!) {
+            self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: true)
+        } else {
+            self.activeSection = EnneSections(rawValue: item.tag)!
+            self.sectionCollection.reloadData()
+            self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
+            self.sectionCollection.showsHorizontalScrollIndicator = false
+            
+        }
     }
 }
 
