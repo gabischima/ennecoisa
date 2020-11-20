@@ -314,9 +314,10 @@ extension ViewController {
     @IBAction func shuffleAction() {
         for (i, section) in self.enneSections.enumerated() {
             let j = Int(arc4random_uniform(UInt32(section.size)))
-            self.selectedImages[i] = "\(section.slug)_\(j)"
+            let enneImg = "\(section.slug)_\(j)"
+            self.selectedImages[i] = enneImg
             if let imageView = self.enneView.viewWithTag(i) as? UIImageView {
-                imageView.image = UIImage(named: "\(section.slug)_\(j)")
+                imageView.image = UIImage(named: enneImg)
             }
         }
         self.sectionCollection.reloadData()
@@ -378,16 +379,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath) as! ItemCollectionViewCell
-        
-        let imgSlug = "\(self.enneSections[self.activeSection.rawValue].slug)_\(indexPath.row)"
-        if let img = UIImage(named: "\(self.enneSections[self.activeSection.rawValue].slug)_\(indexPath.row)_icon") {
-            cell.thumbnail.image = img
+        let enneImg = "\(self.enneSections[self.activeSection.rawValue].slug)_\(indexPath.row)"
+
+        if let icon = UIImage(named: "\(enneImg)_icon") {
+            cell.thumbnail.image = icon
             cell.thumbnail.alpha = 0.6
             cell.backgroundColor = .white
         }
-        if let _ = self.selectedImages.firstIndex(of: imgSlug) {
+
+        if let _ = self.selectedImages.firstIndex(of: enneImg) {
             cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         } else {
@@ -407,9 +408,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             collectionView.deselectItem(at: indexPath, animated: false)
             return false
         }
-        let imgSlug = self.enneSections[self.activeSection.rawValue].slug
-        imageView?.image = UIImage(named: "\(imgSlug)_\(indexPath.row)")
-        self.selectedImages[activeIndex] = imgSlug
+        let enneImg = "\(self.enneSections[self.activeSection.rawValue].slug)_\(indexPath.row)"
+        imageView?.image = UIImage(named: enneImg)
+        self.selectedImages[activeIndex] = enneImg
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         return true
     }
