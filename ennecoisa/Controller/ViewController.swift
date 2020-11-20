@@ -60,10 +60,11 @@ class ViewController: UIViewController {
     /*
      * Images
      * head = 0
-     * hair = 1
-     * shirt = 2
-     * legs = 3
-     * shoes = 4
+     * face = 1
+     * hair = 2
+     * shirt = 3
+     * legs = 4
+     * shoes = 5
      */
     var enneSections: [EnneSection] = [
         EnneSection(slug: "head", size: 5),
