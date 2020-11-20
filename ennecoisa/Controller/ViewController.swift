@@ -313,10 +313,10 @@ extension ViewController {
     
     @IBAction func shuffleAction() {
         for (i, section) in self.enneSections.enumerated() {
-            let j = Int(arc4random_uniform(UInt32(section.images.count)))
-            self.selectedImages[i] = section.images[j].slug
+            let j = Int(arc4random_uniform(UInt32(section.size)))
+            self.selectedImages[i] = "\(section.slug)_\(j)"
             if let imageView = self.enneView.viewWithTag(i) as? UIImageView {
-                imageView.image = section.images[j].image
+                imageView.image = UIImage(named: "\(section.slug)_\(j)")
             }
         }
         self.sectionCollection.reloadData()
@@ -356,10 +356,9 @@ extension ViewController: UITabBarDelegate {
             self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: true)
         } else {
             self.activeSection = EnneSections(rawValue: item.tag)!
-            self.sectionCollection.reloadData()
             self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
             self.sectionCollection.showsHorizontalScrollIndicator = false
-            
+            self.sectionCollection.reloadData()
         }
     }
 }
@@ -379,33 +378,38 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath) as! ItemCollectionViewCell
-        let enneimg = self.enneSections[self.activeSection.rawValue].images[indexPath.row]
-        cell.thumbnail.image = enneimg.icon
-        cell.thumbnail.alpha = 0.6
-        if let _ = self.selectedImages.firstIndex(of: enneimg.slug) {
+        
+        let imgSlug = "\(self.enneSections[self.activeSection.rawValue].slug)_\(indexPath.row)"
+        if let img = UIImage(named: "\(self.enneSections[self.activeSection.rawValue].slug)_\(indexPath.row)_icon") {
+            cell.thumbnail.image = img
+            cell.thumbnail.alpha = 0.6
+            cell.backgroundColor = .white
+        }
+        if let _ = self.selectedImages.firstIndex(of: imgSlug) {
             cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         } else {
             cell.isSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
         }
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let imageView = self.enneView.viewWithTag(self.activeSection.rawValue) as? UIImageView
         let activeIndex = self.activeSection.rawValue
-        if let selectedItems = collectionView.indexPathsForSelectedItems {
-            if selectedItems.contains(indexPath) {
-                self.selectedImages[activeIndex] = "\(self.activeSection)_"
-                imageView?.image = nil
-                collectionView.deselectItem(at: indexPath, animated: false)
-                return false
-            }
+        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.contains(indexPath) {
+            self.selectedImages[activeIndex] = "\(self.activeSection)_"
+            imageView?.image = nil
+            collectionView.deselectItem(at: indexPath, animated: false)
+            return false
         }
-        imageView?.image = self.enneSections[activeIndex].images[indexPath.row].image
-        self.selectedImages[activeIndex] = self.enneSections[activeIndex].images[indexPath.row].slug
+        let imgSlug = self.enneSections[self.activeSection.rawValue].slug
+        imageView?.image = UIImage(named: "\(imgSlug)_\(indexPath.row)")
+        self.selectedImages[activeIndex] = imgSlug
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         return true
     }
