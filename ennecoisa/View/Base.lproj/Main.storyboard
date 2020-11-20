@@ -501,13 +501,13 @@
     </scenes>
     <designables>
         <designable name="Vsr-W8-iri">
-            <size key="intrinsicContentSize" width="30" height="34"/>
+            <size key="intrinsicContentSize" width="34" height="34"/>
         </designable>
         <designable name="fir-QQ-U7f">
             <size key="intrinsicContentSize" width="168" height="29"/>
         </designable>
         <designable name="rTo-jA-JMQ">
-            <size key="intrinsicContentSize" width="30" height="34"/>
+            <size key="intrinsicContentSize" width="34" height="34"/>
         </designable>
     </designables>
     <resources>
