@@ -69,7 +69,7 @@ class ViewController: UIViewController {
     var enneSections: [EnneSection] = [
         EnneSection(slug: "head", size: 5),
         EnneSection(slug: "face", size: 10),
-        EnneSection(slug: "hair", size: 12),
+        EnneSection(slug: "hair", size: 13),
         EnneSection(slug: "shirt", size: 9),
         EnneSection(slug: "legs", size: 6),
         EnneSection(slug: "shoes", size: 5)
