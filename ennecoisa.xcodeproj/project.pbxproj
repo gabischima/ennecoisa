@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		06030821246B7616001C78B8 /* WidthControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06030820246B7616001C78B8 /* WidthControl.swift */; };
-		0609283C23D40D5C0023465F /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0609283B23D40D5C0023465F /* ExtensionView.swift */; };
+		0609283C23D40D5C0023465F /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0609283B23D40D5C0023465F /* Extension+UIView.swift */; };
+		0634C1C92555E8FE008D58AF /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634C1C82555E8FE008D58AF /* ToggleButton.swift */; };
 		064D54542481E87200F2976D /* EnneSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D54532481E87200F2976D /* EnneSection.swift */; };
 		0657E9462478862600B1EA06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0657E9452478862600B1EA06 /* Constants.swift */; };
-		0689382C23DB9BFD00D025AB /* ShakeItButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689382B23DB9BFD00D025AB /* ShakeItButton.swift */; };
 		068E00A423CA6AC1004C45CF /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */; };
 		068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */; };
-		0693EF762468A51D00E0337D /* ToggleCanvasButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693EF752468A51D00E0337D /* ToggleCanvasButton.swift */; };
+		0694EFE324A133A900D43EAC /* Extension+PKCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0694EFE224A133A900D43EAC /* Extension+PKCanvasView.swift */; };
 		06A9DFBC2483300500C11672 /* DefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A9DFBB2483300500C11672 /* DefaultTableViewCell.xib */; };
 		06A9DFBE2483301F00C11672 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9DFBD2483301F00C11672 /* DefaultTableViewCell.swift */; };
 		06A9DFC02483302A00C11672 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9DFBF2483302A00C11672 /* SwitchTableViewCell.swift */; };
 		06B3DE8B23C677BA00C1E843 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3DE8A23C677BA00C1E843 /* ViewController.swift */; };
-		06BA56D924059E1E006E6C93 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA56D824059E1E006E6C93 /* InfoViewController.swift */; };
+		06BA56D924059E1E006E6C93 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA56D824059E1E006E6C93 /* ConfigViewController.swift */; };
 		06BD174324034D250028FADC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06BD174124034D250028FADC /* Localizable.strings */; };
-		06C2DBC62482D1DF00DA34C0 /* SetInterfaceDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2DBC52482D1DF00DA34C0 /* SetInterfaceDirection.swift */; };
+		06C2DBC62482D1DF00DA34C0 /* ConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2DBC52482D1DF00DA34C0 /* ConfigurationDelegate.swift */; };
+		06EAA3612558E8E600EA3D83 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAA3602558E8E600EA3D83 /* DetailTableViewCell.xib */; };
+		06EAA36E2558EB4E00EA3D83 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAA36D2558EB4E00EA3D83 /* DetailTableViewCell.swift */; };
 		06F938AB2407626700977459 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06F938A92407626700977459 /* InfoPlist.strings */; };
 		06FF57CD248BD86600D8D358 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06FF57CF248BD86600D8D358 /* SwitchTableViewCell.xib */; };
 		867AF3AA22C511FA001C1E8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AF3A922C511FA001C1E8F /* AppDelegate.swift */; };
@@ -52,23 +54,25 @@
 
 /* Begin PBXFileReference section */
 		06030820246B7616001C78B8 /* WidthControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthControl.swift; sourceTree = "<group>"; };
-		0609283B23D40D5C0023465F /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
+		0609283B23D40D5C0023465F /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		0634C1C82555E8FE008D58AF /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToggleButton.swift; path = ennecoisa/Components/ToggleButton.swift; sourceTree = SOURCE_ROOT; };
 		064D54532481E87200F2976D /* EnneSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnneSection.swift; sourceTree = "<group>"; };
 		0657E9452478862600B1EA06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		0689382B23DB9BFD00D025AB /* ShakeItButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeItButton.swift; sourceTree = "<group>"; };
 		068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
-		0693EF752468A51D00E0337D /* ToggleCanvasButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCanvasButton.swift; sourceTree = "<group>"; };
+		0694EFE224A133A900D43EAC /* Extension+PKCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+PKCanvasView.swift"; sourceTree = "<group>"; };
 		06A9DFBB2483300500C11672 /* DefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultTableViewCell.xib; sourceTree = "<group>"; };
 		06A9DFBD2483301F00C11672 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		06A9DFBF2483302A00C11672 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		06B3DE8A23C677BA00C1E843 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		06BA56D824059E1E006E6C93 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		06BA56D824059E1E006E6C93 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		06BA56DB2405F4AB006E6C93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		06BD173324034B400028FADC /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		06BD174224034D250028FADC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		06BD174424034D380028FADC /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		06C2DBC52482D1DF00DA34C0 /* SetInterfaceDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterfaceDirection.swift; sourceTree = "<group>"; };
+		06C2DBC52482D1DF00DA34C0 /* ConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationDelegate.swift; sourceTree = "<group>"; };
+		06EAA3602558E8E600EA3D83 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
+		06EAA36D2558EB4E00EA3D83 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		06F938AA2407626700977459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		06F938AC2407627000977459 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		06FF57CE248BD86600D8D358 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SwitchTableViewCell.xib; sourceTree = "<group>"; };
@@ -116,7 +120,8 @@
 		0609283A23D40D450023465F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0609283B23D40D5C0023465F /* ExtensionView.swift */,
+				0609283B23D40D5C0023465F /* Extension+UIView.swift */,
+				0694EFE224A133A900D43EAC /* Extension+PKCanvasView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -136,11 +141,12 @@
 				068E00AB23CA9062004C45CF /* ItemCollectionViewCell.swift */,
 				068E00A323CA6AC1004C45CF /* ItemCollectionViewCell.xib */,
 				867AF3B422C511FB001C1E8F /* LaunchScreen.storyboard */,
-				06030820246B7616001C78B8 /* WidthControl.swift */,
 				06FF57CF248BD86600D8D358 /* SwitchTableViewCell.xib */,
 				06A9DFBF2483302A00C11672 /* SwitchTableViewCell.swift */,
 				06A9DFBB2483300500C11672 /* DefaultTableViewCell.xib */,
 				06A9DFBD2483301F00C11672 /* DefaultTableViewCell.swift */,
+				06EAA3602558E8E600EA3D83 /* DetailTableViewCell.xib */,
+				06EAA36D2558EB4E00EA3D83 /* DetailTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -150,9 +156,7 @@
 			children = (
 				06B3DE8A23C677BA00C1E843 /* ViewController.swift */,
 				867AF3AD22C511FA001C1E8F /* CameraViewController.swift */,
-				0689382B23DB9BFD00D025AB /* ShakeItButton.swift */,
-				0693EF752468A51D00E0337D /* ToggleCanvasButton.swift */,
-				06BA56D824059E1E006E6C93 /* InfoViewController.swift */,
+				06BA56D824059E1E006E6C93 /* ConfigViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -165,10 +169,19 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		06ABE023255AED200062954D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0634C1C82555E8FE008D58AF /* ToggleButton.swift */,
+				06030820246B7616001C78B8 /* WidthControl.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		06C2DBC42482D1B300DA34C0 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				06C2DBC52482D1DF00DA34C0 /* SetInterfaceDirection.swift */,
+				06C2DBC52482D1DF00DA34C0 /* ConfigurationDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -196,6 +209,7 @@
 		867AF3A822C511FA001C1E8F /* ennecoisa */ = {
 			isa = PBXGroup;
 			children = (
+				06ABE023255AED200062954D /* Components */,
 				06C2DBC42482D1B300DA34C0 /* Protocol */,
 				064D54522481E85300F2976D /* Model */,
 				0689382E23DBA18B00D025AB /* Controller */,
@@ -335,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06BD174324034D250028FADC /* Localizable.strings in Resources */,
+				06EAA3612558E8E600EA3D83 /* DetailTableViewCell.xib in Resources */,
 				06A9DFBC2483300500C11672 /* DefaultTableViewCell.xib in Resources */,
 				06F938AB2407626700977459 /* InfoPlist.strings in Resources */,
 				867AF3B622C511FB001C1E8F /* LaunchScreen.storyboard in Resources */,
@@ -366,16 +381,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0694EFE324A133A900D43EAC /* Extension+PKCanvasView.swift in Sources */,
+				06EAA36E2558EB4E00EA3D83 /* DetailTableViewCell.swift in Sources */,
 				06B3DE8B23C677BA00C1E843 /* ViewController.swift in Sources */,
 				064D54542481E87200F2976D /* EnneSection.swift in Sources */,
 				06A9DFC02483302A00C11672 /* SwitchTableViewCell.swift in Sources */,
-				0689382C23DB9BFD00D025AB /* ShakeItButton.swift in Sources */,
-				0609283C23D40D5C0023465F /* ExtensionView.swift in Sources */,
-				06BA56D924059E1E006E6C93 /* InfoViewController.swift in Sources */,
+				0634C1C92555E8FE008D58AF /* ToggleButton.swift in Sources */,
+				0609283C23D40D5C0023465F /* Extension+UIView.swift in Sources */,
+				06BA56D924059E1E006E6C93 /* ConfigViewController.swift in Sources */,
 				068E00AC23CA9062004C45CF /* ItemCollectionViewCell.swift in Sources */,
 				0657E9462478862600B1EA06 /* Constants.swift in Sources */,
-				06C2DBC62482D1DF00DA34C0 /* SetInterfaceDirection.swift in Sources */,
-				0693EF762468A51D00E0337D /* ToggleCanvasButton.swift in Sources */,
+				06C2DBC62482D1DF00DA34C0 /* ConfigurationDelegate.swift in Sources */,
 				867AF3AE22C511FA001C1E8F /* CameraViewController.swift in Sources */,
 				867AF3AA22C511FA001C1E8F /* AppDelegate.swift in Sources */,
 				06030821246B7616001C78B8 /* WidthControl.swift in Sources */,
@@ -586,7 +602,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2X8JS4RXWL;
 				INFOPLIST_FILE = ennecoisa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -594,7 +610,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabischima.ennecoisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -607,7 +623,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2X8JS4RXWL;
 				INFOPLIST_FILE = ennecoisa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -615,7 +631,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabischima.ennecoisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

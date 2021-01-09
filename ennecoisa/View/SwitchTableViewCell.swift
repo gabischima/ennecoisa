@@ -12,4 +12,9 @@ class SwitchTableViewCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var interfaceSwitch: UISegmentedControl!
+
+    override func awakeFromNib() {
+       super.awakeFromNib()
+        selectionStyle = .none
+    }
 }

@@ -9,10 +9,10 @@
 import UIKit
 import PencilKit
 
+//MARK: - ViewController Properties
 class ViewController: UIViewController {
 
     //MARK: - IBOutlet
-
     @IBOutlet weak var enneSectionsTabbar: UITabBar!
     @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var sectionCollection: UICollectionView!
@@ -25,8 +25,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var shoesImageView: UIImageView!
     @IBOutlet weak var enneView: UIView!
     
-    @IBOutlet weak var toggleShake: ShakeItButton!
-    @IBOutlet weak var toggleCanvas: ToggleCanvasButton!
+    @IBOutlet weak var toggleShake: ToggleButton!
+    @IBOutlet weak var toggleCanvas: ToggleButton!
     
     @IBOutlet weak var eraserTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var eraserLeadingConstraint: NSLayoutConstraint!
@@ -54,26 +54,25 @@ class ViewController: UIViewController {
     var pencilTool = PKInkingTool(.pencil, color: .black, width: 6)
     
     var currentTool: Tools = Tools.pencil
-
-    var canShakeItToShuffle: Bool = true
     
     var toolsPosition: ToolsPosition = .right
 
     /*
      * Images
      * head = 0
-     * hair = 1
-     * shirt = 2
-     * legs = 3
-     * shoes = 4
+     * face = 1
+     * hair = 2
+     * shirt = 3
+     * legs = 4
+     * shoes = 5
      */
     var enneSections: [EnneSection] = [
-        EnneSection(slug: "head", size: 3),
-        EnneSection(slug: "face", size: 7),
-        EnneSection(slug: "hair", size: 11),
-        EnneSection(slug: "shirt", size: 6),
-        EnneSection(slug: "legs", size: 4),
-        EnneSection(slug: "shoes", size: 3)
+        EnneSection(slug: "head", size: 5),
+        EnneSection(slug: "face", size: 10),
+        EnneSection(slug: "hair", size: 13),
+        EnneSection(slug: "shirt", size: 9),
+        EnneSection(slug: "legs", size: 6),
+        EnneSection(slug: "shoes", size: 5)
     ]
 
     /* Active Set */
@@ -81,8 +80,13 @@ class ViewController: UIViewController {
     var activeSection = EnneSections.head
     // selected image for each set
     var selectedImages: [String] = []
-    
-    //MARK: - View Controller methos
+
+}
+
+//MARK: - ViewController functions
+extension ViewController {
+
+    //MARK: - View Controller methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,14 +113,6 @@ class ViewController: UIViewController {
         
         self.widthControl.value = 6.0
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
     
     //MARK: - Motion method
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -141,6 +137,12 @@ class ViewController: UIViewController {
         let canvasView = PKCanvasView(frame: self.enneView.bounds)
         self.canvasView = canvasView
         self.enneView.addSubview(canvasView)
+
+        if #available(iOS 14.0, *) {
+            canvasView.drawingPolicy = .anyInput
+        } else {
+            canvasView.allowsFingerDrawing = true
+        }
         
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -173,6 +175,8 @@ class ViewController: UIViewController {
                 view.addGestureRecognizer(tap)
             }
         }
+
+        self.canvasView.isUserInteractionEnabled = self.toggleCanvas.isOn
     }
     
     //MARK: - Functions
@@ -189,7 +193,7 @@ class ViewController: UIViewController {
         self.enneView.layer.add(animation, forKey: "position")
     }
     
-    // TODO: change tool constrait relative to tools positions
+///TODO: component
     func changeTool (_ tool: Int) {
         switch tool {
         case Tools.pencil.rawValue:
@@ -216,7 +220,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showConfig" {
-            if let nextViewController = segue.destination as? InfoViewController {
+            if let nextViewController = segue.destination as? ConfigViewController {
                 nextViewController.delegate = self
                 nextViewController.toolsPosition = self.toolsPosition
             }
@@ -262,15 +266,14 @@ class ViewController: UIViewController {
         let enneRect = CGRect(origin: CGPoint(x: (contextSize.width - enneSize.width) / 2, y: (contextSize.height - enneSize.height) / 2), size: enneSize)
         let canvasRect = CGRect(origin: CGPoint(x: (contextSize.width - canvasSize.width) / 2, y: (contextSize.height - canvasSize.height) / 2), size: canvasSize)
 
-        /*
-        // fill to test size
-        let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(UIColor.black.cgColor)
-        context.fill(enneRect)
-        
-        context.setFillColor(UIColor(red: 1, green: 0, blue: 0, alpha: 0.3).cgColor)
-        context.fill(canvasRect)
-         */
+///TEST: fill size to check proportions
+//        let context = UIGraphicsGetCurrentContext()!
+//        context.setFillColor(UIColor.black.cgColor)
+//        context.fill(enneRect)
+//
+//        context.setFillColor(UIColor(red: 1, green: 0, blue: 0, alpha: 0.3).cgColor)
+//        context.fill(canvasRect)
+
         if (!toAR) {
             let enne: UIImage? = UIImage(named: "base")
             enne?.draw(in: enneRect)
@@ -290,9 +293,14 @@ class ViewController: UIViewController {
         return newImage
     }
     
-    //MARK: - IBAction
+//    MARK: - IBAction
+    /**
+    Save image for AR visualization
+    - parameter sender: The element responsable for triggering the function.
+    */
+
     @IBAction func saveImageToAR(_ sender: Any) {
-        // get images
+        // get combined images
         let newImage = mergeImages(toAR: true)
         
         // save in contents directory
@@ -305,21 +313,18 @@ class ViewController: UIViewController {
     
     @IBAction func shuffleAction() {
         for (i, section) in self.enneSections.enumerated() {
-            let j = Int(arc4random_uniform(UInt32(section.images.count)))
-            self.selectedImages[i] = section.images[j].slug
+            let j = Int(arc4random_uniform(UInt32(section.size)))
+            let enneImg = "\(section.slug)_\(j)"
+            self.selectedImages[i] = enneImg
             if let imageView = self.enneView.viewWithTag(i) as? UIImageView {
-                imageView.image = section.images[j].image
+                imageView.image = UIImage(named: enneImg)
             }
         }
         self.sectionCollection.reloadData()
     }
     
     @IBAction func toggleCanvasAction(_ sender: Any) {
-        if self.toggleCanvas.isOn {
-            self.canvasView.isUserInteractionEnabled = true
-        } else {
-            self.canvasView.isUserInteractionEnabled = false
-        }
+        self.canvasView.isUserInteractionEnabled = self.toggleCanvas.isOn
     }
     
     @IBAction func changeToolAction(_ sender: UIButton) {
@@ -345,17 +350,25 @@ class ViewController: UIViewController {
     
 }
 
-//MARK: - Tabbar delegate
+//MARK: - UITabBarDelegate
 extension ViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        self.activeSection = EnneSections(rawValue: item.tag)!
-        self.sectionCollection.reloadData()
-        self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
-        self.sectionCollection.showsHorizontalScrollIndicator = false
+        if (self.activeSection == EnneSections(rawValue: item.tag)!) {
+            self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: true)
+        } else {
+            self.activeSection = EnneSections(rawValue: item.tag)!
+            self.sectionCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .right, animated: false)
+            self.sectionCollection.showsHorizontalScrollIndicator = false
+            self.sectionCollection.reloadData()
+        }
     }
 }
 
-//MARK: - Collection view delegate / datasource
+///TODO: Separate delegate / datasource
+//MARK: - Collection View
+//      - UICollectionViewDelegate
+//      - UICollectionViewDataSource
+//      - UICollectionViewDelegateFlowLayout
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.enneSections[self.activeSection.rawValue].size
@@ -367,39 +380,44 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath) as! ItemCollectionViewCell
-        let enneimg = self.enneSections[self.activeSection.rawValue].images[indexPath.row]
-        cell.thumbnail.image = enneimg.icon
-        cell.thumbnail.alpha = 0.6
-        if let _ = self.selectedImages.firstIndex(of: enneimg.slug) {
+        let enneImg = "\(self.enneSections[self.activeSection.rawValue].slug)_\(indexPath.row)"
+
+        if let icon = UIImage(named: "\(enneImg)_icon") {
+            cell.thumbnail.image = icon
+            cell.thumbnail.alpha = 0.6
+            cell.backgroundColor = .white
+        }
+
+        if let _ = self.selectedImages.firstIndex(of: enneImg) {
             cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         } else {
             cell.isSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
         }
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let imageView = self.enneView.viewWithTag(self.activeSection.rawValue) as? UIImageView
         let activeIndex = self.activeSection.rawValue
-        if let selectedItems = collectionView.indexPathsForSelectedItems {
-            if selectedItems.contains(indexPath) {
-                self.selectedImages[activeIndex] = "\(self.activeSection)_"
-                imageView?.image = nil
-                collectionView.deselectItem(at: indexPath, animated: false)
-                return false
-            }
+        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.contains(indexPath) {
+            self.selectedImages[activeIndex] = "\(self.activeSection)_"
+            imageView?.image = nil
+            collectionView.deselectItem(at: indexPath, animated: false)
+            return false
         }
-        imageView?.image = self.enneSections[activeIndex].images[indexPath.row].image
-        self.selectedImages[activeIndex] = self.enneSections[activeIndex].images[indexPath.row].slug
+        let enneImg = "\(self.enneSections[self.activeSection.rawValue].slug)_\(indexPath.row)"
+        imageView?.image = UIImage(named: enneImg)
+        self.selectedImages[activeIndex] = enneImg
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         return true
     }
 
 }
 
-//MARK: - Pencil delegate
+//MARK: - UIPencilInteractionDelegate
 extension ViewController: UIPencilInteractionDelegate {
     func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
         if (self.toggleCanvas.isOn) {
@@ -414,7 +432,7 @@ extension ViewController: UIPencilInteractionDelegate {
     }
 }
 
-//MARK: - Set Tools Position delegate
+//MARK: - ConfigurationDelegate
 extension ViewController: ConfigurationDelegate {
     func setToolsPosition(position: ToolsPosition) {
         toolsPosition = position
@@ -448,5 +466,9 @@ extension ViewController: ConfigurationDelegate {
 
     func saveEnneToCameraRoll() -> UIImage {
         return mergeImages(toAR: false)
+    }
+    
+    func clearCanvas() {
+        canvasView.clearCanvas()
     }
 }

@@ -6,13 +6,15 @@
   Copyright © 2020 Gabriela Schirmer. All rights reserved.
 */
 
-/* INFO VIEW */
-"Configurations" = "Configurations";
-"Info" = "Info";
+/* CONFIG VIEW */
 "Drawing tools position" = "Drawing tools position";
 "Save drawing" = "Save drawing";
+"Clear drawing" = "Clear drawing";
+"Are you sure you want to delete your drawing? This action cannot be undone." = "Are you sure you want to delete your drawing? This action cannot be undone.";
 "Download blank Enne" = "Download blank Enne";
 "Go to website" = "Go to website";
+"Instagram Ennecoisa" = "Instagram Ennecoisa";
+"App version" = "App version";
 
 /* SHARED */
 "Success!" = "Success!";
