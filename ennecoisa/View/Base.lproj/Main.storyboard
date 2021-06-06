@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9x8-VY-5JV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9x8-VY-5JV">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -113,12 +113,12 @@
                                             </barButtonItem>
                                         </leftBarButtonItems>
                                         <barButtonItem key="rightBarButtonItem" id="8pp-pw-LOt">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tex-9q-ItC" userLabel="config">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tex-9q-ItC" userLabel="settings">
                                                 <rect key="frame" x="360" y="6" width="34" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="config"/>
+                                                <state key="normal" image="settings"/>
                                                 <connections>
-                                                    <segue destination="ozW-xa-bPD" kind="popoverPresentation" identifier="showConfig" popoverAnchorView="tex-9q-ItC" id="U73-Ph-zBM">
+                                                    <segue destination="ozW-xa-bPD" kind="popoverPresentation" identifier="showSettings" popoverAnchorView="tex-9q-ItC" id="U73-Ph-zBM">
                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                     </segue>
                                                 </connections>
@@ -433,10 +433,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
         </scene>
-        <!--Config View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="A0B-WH-7us">
             <objects>
-                <viewController id="ozW-xa-bPD" customClass="ConfigViewController" customModule="ennecoisa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ozW-xa-bPD" customClass="SettingsViewController" customModule="ennecoisa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mjU-ec-ThI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -501,13 +501,13 @@
     </scenes>
     <designables>
         <designable name="Vsr-W8-iri">
-            <size key="intrinsicContentSize" width="34" height="34"/>
+            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
         <designable name="fir-QQ-U7f">
             <size key="intrinsicContentSize" width="168" height="29"/>
         </designable>
         <designable name="rTo-jA-JMQ">
-            <size key="intrinsicContentSize" width="34" height="34"/>
+            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
     </designables>
     <resources>
@@ -516,7 +516,6 @@
         <image name="camera_btn" width="55" height="55"/>
         <image name="clearColor" width="375" height="49"/>
         <image name="close" width="34" height="34"/>
-        <image name="config" width="30" height="30"/>
         <image name="eraser" width="60" height="30"/>
         <image name="face" width="30" height="30"/>
         <image name="hair" width="30" height="30"/>
@@ -527,6 +526,7 @@
         <image name="pencilon_btn" width="34" height="34"/>
         <image name="redo" width="34" height="34"/>
         <image name="redo_highlight" width="34" height="34"/>
+        <image name="settings" width="30" height="30"/>
         <image name="shakeitoff_btn" width="34" height="34"/>
         <image name="shakeiton_btn" width="34" height="34"/>
         <image name="shirt" width="30" height="30"/>

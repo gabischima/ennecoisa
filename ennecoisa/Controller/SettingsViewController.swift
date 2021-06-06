@@ -1,5 +1,5 @@
 //
-//  ConfigViewController.swift
+//  SettingsViewController.swift
 //  ennecoisa
 //
 //  Created by Gabriela Schirmer Mauricio on 25/02/20.
@@ -8,20 +8,20 @@
 
 import UIKit
 
-class ConfigViewController: UIViewController {
+class SettingsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var delegate: ConfigurationDelegate?
+    var delegate: SettingsDelegate?
     
     struct Section {
-        var items: [Item]
+        let items: [Item]
     }
 
     struct Item {
-        var title: String
-        var cellIdentifier: CellIdentifier
-        var image: UIImage?
+        let title: String
+        let cellIdentifier: CellIdentifier
+        let image: UIImage?
     }
     
     enum CellIdentifier: String {
@@ -59,7 +59,7 @@ class ConfigViewController: UIViewController {
 }
 
 //MARK: - ViewController functions
-extension ConfigViewController {
+extension SettingsViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ extension ConfigViewController {
 }
 
 //MARK: - Image save Callback
-extension ConfigViewController {
+extension SettingsViewController {
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
             // Error saving image
@@ -86,7 +86,7 @@ extension ConfigViewController {
 }
 
 //MARK: - Alerts
-extension ConfigViewController {
+extension SettingsViewController {
     func showAlert(title: String, message: String, type: UIAlertAction.Style) {
         let alert = UIAlertController(title: NSLocalizedString(title, comment: ""), message: NSLocalizedString(message, comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: type, handler: nil))
@@ -110,7 +110,7 @@ extension ConfigViewController {
 }
 
 //MARK: - Open URL
-extension ConfigViewController {
+extension SettingsViewController {
     func openSite() {
         UIApplication.shared.open(URL(string: "https://gabischima.github.io/en/ennecoisa")!, options: [:], completionHandler: nil)
     }
@@ -125,7 +125,7 @@ extension ConfigViewController {
     }
 }
 //MARK: - Cell actions
-extension ConfigViewController {
+extension SettingsViewController {
     @objc func changeInterface(sender: UISegmentedControl) {
         if (self.delegate) != nil {
             delegate?.setToolsPosition(position: ToolsPosition(rawValue: sender.selectedSegmentIndex) ?? .right)
@@ -154,7 +154,7 @@ extension ConfigViewController {
 }
 
 //TODO: Separate delegate / datasource
-extension ConfigViewController: UITableViewDelegate, UITableViewDataSource {
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }

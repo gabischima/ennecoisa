@@ -219,8 +219,8 @@ extension ViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showConfig" {
-            if let nextViewController = segue.destination as? ConfigViewController {
+        if segue.identifier == "showSettings" {
+            if let nextViewController = segue.destination as? SettingsViewController {
                 nextViewController.delegate = self
                 nextViewController.toolsPosition = self.toolsPosition
             }
@@ -432,8 +432,8 @@ extension ViewController: UIPencilInteractionDelegate {
     }
 }
 
-//MARK: - ConfigurationDelegate
-extension ViewController: ConfigurationDelegate {
+//MARK: - SettingsDelegate
+extension ViewController: SettingsDelegate {
     func setToolsPosition(position: ToolsPosition) {
         toolsPosition = position
         UserDefaults.standard.set(String(position.rawValue), forKey: "toolsPosition")
