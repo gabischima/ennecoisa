@@ -10,7 +10,7 @@ import UIKit
 
 struct EnneSection: Equatable {
     let slug: String
-    var icon: UIImage?
+    let icon: UIImage?
     let size: Int
 
     init(slug: String, size: Int) {

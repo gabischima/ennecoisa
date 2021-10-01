@@ -8,7 +8,8 @@
 
 import UIKit
 
-@IBDesignable class ToggleButton: UIButton {
+@IBDesignable
+class ToggleButton: UIButton {
     
     @IBInspectable
     var isOn: Bool = true {

@@ -247,7 +247,7 @@ extension ViewController {
 
         if toAR {
             // context is canvas size relative to enne fixed size w 750 x h 1334
-            canvasSize = EnneImg.newSize(sizeToTransform: canvasSize, relativeTo: enneSize, relativeRatio: canvasRatio)
+            canvasSize = EnneImg.newSize(transformFrom: canvasSize, relativeTo: enneSize, withRatio: canvasRatio)
             contextSize = canvasSize
         } else {
             // context is device size in scale
@@ -258,7 +258,7 @@ extension ViewController {
             canvasSize.height = canvasSize.height * contextSize.width / canvasSize.width
             canvasSize.width = contextSize.width
             // enne img is relative to canvas
-            enneSize = EnneImg.newSize(sizeToTransform: enneSize, relativeTo: canvasSize, relativeRatio: canvasRatio)
+            enneSize = EnneImg.newSize(transformFrom: enneSize, relativeTo: canvasSize, withRatio: canvasRatio)
         }
 
         UIGraphicsBeginImageContext(contextSize)
@@ -266,7 +266,7 @@ extension ViewController {
         let enneRect = CGRect(origin: CGPoint(x: (contextSize.width - enneSize.width) / 2, y: (contextSize.height - enneSize.height) / 2), size: enneSize)
         let canvasRect = CGRect(origin: CGPoint(x: (contextSize.width - canvasSize.width) / 2, y: (contextSize.height - canvasSize.height) / 2), size: canvasSize)
 
-///TEST: fill size to check proportions
+/// TEST: fill size to check proportions
 //        let context = UIGraphicsGetCurrentContext()!
 //        context.setFillColor(UIColor.black.cgColor)
 //        context.fill(enneRect)

@@ -209,13 +209,13 @@
 		867AF3A822C511FA001C1E8F /* ennecoisa */ = {
 			isa = PBXGroup;
 			children = (
+				0609283A23D40D450023465F /* Extensions */,
 				06ABE023255AED200062954D /* Components */,
 				06C2DBC42482D1B300DA34C0 /* Protocol */,
 				064D54522481E85300F2976D /* Model */,
 				0689382E23DBA18B00D025AB /* Controller */,
 				0689382D23DBA18400D025AB /* View */,
 				0693EF772468B80B00E0337D /* Utils */,
-				0609283A23D40D450023465F /* Extensions */,
 				867AF3A922C511FA001C1E8F /* AppDelegate.swift */,
 				867AF3B222C511FB001C1E8F /* Assets.xcassets */,
 				867AF3B722C511FB001C1E8F /* Info.plist */,

@@ -66,7 +66,7 @@ class CameraViewController: UIViewController, ARSCNViewDelegate {
         plane.firstMaterial?.diffuse.contents = contentImage
         
         let imgRatio = contentImage.size.width / contentImage.size.height
-        let planeSize = EnneImg.newSize(sizeToTransform: contentImage.size, relativeTo: EnneImg.physicalSize, relativeRatio: imgRatio)
+        let planeSize = EnneImg.newSize(transformFrom: contentImage.size, relativeTo: EnneImg.physicalSize, withRatio: imgRatio)
 
         // set plane size from image size
         plane.width = planeSize.width

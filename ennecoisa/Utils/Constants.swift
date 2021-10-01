@@ -9,29 +9,29 @@
 import UIKit
 
 struct EnneImg {
-    static var size: CGSize {
-        return CGSize(width: 750, height: 1334)
-    }
-    static var physicalSize: CGSize {
-        return CGSize(width: 13.21, height: 23.5)
-    }
-    static var ratio: CGFloat {
-        return size.width / size.height
+    struct Size {
+        static var virtual = CGSize(width: 750, height: 1334)
+        static var physical = CGSize(width: 13.21, height: 23.5)
     }
 
-    /// Returns a new CGSize relative to EnneImg.ratio.
+    static var ratio: CGFloat {
+        return Size.virtual.width / Size.virtual.height
+    }
+
+    /// Returns a new CGSize relative to EnneImg.ratio
+    /// The new size is based on scaled to fit aspect
     ///
     /// - Parameters:
-    ///     - sizeToTransform: original size to be transformed
+    ///     - transformFrom: original size to be transformed
     ///     - relativeTo: relative size used to resize
     ///     - relativeRatio: ratio used to compare with EnneImg.ratio
-    static func newSize(sizeToTransform: CGSize, relativeTo: CGSize, relativeRatio: CGFloat) -> CGSize {
+    static func newSize(transformFrom oldsize: CGSize, relativeTo: CGSize, withRatio relativeRatio: CGFloat) -> CGSize {
         var newSize = CGSize()
         if ratio > relativeRatio {
-            newSize.height = sizeToTransform.height * relativeTo.width / sizeToTransform.width
+            newSize.height = oldsize.height * relativeTo.width / oldsize.width
             newSize.width = relativeTo.width
         } else {
-            newSize.width = sizeToTransform.width * relativeTo.height / sizeToTransform.height
+            newSize.width = oldsize.width * relativeTo.height / oldsize.height
             newSize.height = relativeTo.height
         }
         return newSize
